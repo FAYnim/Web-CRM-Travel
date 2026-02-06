@@ -23,13 +23,12 @@
                 <th scope="col">Email</th>
                 <th scope="col">Handphone</th>
                 <th scope="col">Alamat</th>
-                <th scope="col">Opsi</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include('koneksi.php');
-            $data = mysqli_query($koneksi, "SELECT * FROM data");
+            include('config.php');
+            $data = mysqli_query($config, "SELECT * FROM data");
             $no = 0;
             while ($baris = mysqli_fetch_array($data)){
                 $no++;
