@@ -14,11 +14,11 @@
             <form action="process-login.php" method="POST">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control border-2" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" class="form-control border-2" id="inp-email" name="inp-email">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control border-2" id="exampleInputPassword1">
+                    <input type="password" class="form-control border-2" id="inp-password" name="inp-password">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
