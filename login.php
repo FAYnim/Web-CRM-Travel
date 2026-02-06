@@ -11,7 +11,7 @@
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="col-12 col-sm-10 col-md-6 col-lg-4 border rounded p-4 bg-light">
             <h1>Login</h1>
-            <form>
+            <form action="process-login.php" method="POST">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="email" class="form-control border-2" id="exampleInputEmail1" aria-describedby="emailHelp">
