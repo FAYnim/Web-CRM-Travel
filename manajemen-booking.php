@@ -1,3 +1,14 @@
+<?php
+include('config.php');
+
+// Fetch customers from database
+$query_customer = mysqli_query($koneksi, "SELECT id, nama FROM manajemen_customer ORDER BY nama");
+$customers = mysqli_fetch_all($query_customer, MYSQLI_ASSOC);
+
+// Fetch packages from database
+$query_paket = mysqli_query($koneksi, "SELECT id, nama_paket FROM manajemen_paket ORDER BY nama_paket");
+$pakets = mysqli_fetch_all($query_paket, MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,17 +23,17 @@
 
     <div class="container col-md-6 mt-5">
     <h1>Manajemen Booking</h1>
-    <p> Silahkan isi data dibawah ini dengan benar. </p>
+    <p> Silahkan isi data dessous ini dengan benar. </p>
 
-    <form method="POST" action="submit.php">
+    <form method="POST" action="submit-manajemen-booking.php">
         
         <div class="mb-3">
     <label>Customer :</label>
     <select class="form-control" name="nama" required>
         <option value=""> Pilih Customer </option>
-        <option value="Andi">Andi</option>
-        <option value="Budi">Budi</option>
-        <option value="Siti">Siti</option>
+        <?php foreach($customers as $customer): ?>
+            <option value="<?= htmlspecialchars($customer['nama']) ?>"><?= htmlspecialchars($customer['nama']) ?></option>
+        <?php endforeach; ?>
     </select>
 </div>
 
@@ -30,9 +41,9 @@
     <label>Paket :</label>
     <select class="form-control" name="paket" required>
         <option value=""> Pilih Paket </option>
-        <option value="Paket A">Paket A</option>
-        <option value="Paket B">Paket B</option>
-        <option value="Paket C">Paket C</option>
+        <?php foreach($pakets as $paket): ?>
+            <option value="<?= htmlspecialchars($paket['nama_paket']) ?>"><?= htmlspecialchars($paket['nama_paket']) ?></option>
+        <?php endforeach; ?>
     </select>
 </div>
 
