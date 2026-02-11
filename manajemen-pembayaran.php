@@ -1,134 +1,50 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manajemen Pembayaran</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            padding: 20px;
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        form {
-            margin-bottom: 30px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin: 6px 0 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-simpan {
-            background: #28a745;
-            color: white;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-
-        table th {
-            background: #007bff;
-            color: white;
-        }
-
-        .btn-edit {
-            background: #ffc107;
-            color: black;
-        }
-
-        .btn-hapus {
-            background: #dc3545;
-            color: white;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
 </head>
 <body>
+    <?php include('navbar.php'); ?>
 
-<div class="container">
-    <h2>Manajemen Pembayaran</h2>
+    <div class="container col-md-6 mt-5">
+        <h1>Manajemen Pembayaran</h1>
+        <p>Silakan isi data dibawah ini dengan benar</p>
 
-    <!-- Form Input Pembayaran -->
-    <form>
-        <label>Booking</label>
-        <input type="text" placeholder="Kode / Nama Booking">
+        <form method="POST" action="submit-manajemen-pembayaran.php">
+          <div class="mb-3">
+            <label class="form-label">Nomer:</label>
+            <input class="form-control" type="text" name="nomer" placeholder="Isi Dengan Nomer..." required> 
+          </div>
 
-        <label>Tanggal Pembayaran</label>
-        <input type="date">
+          <div class="mb-3">
+            <label class="form-label">Booking:</label>
+            <input class="form-control" type="text" name="booking" placeholder="Isi Dengan Booking..." required>
+          </div>  
 
-        <label>Jumlah Pembayaran</label>
-        <input type="number" placeholder="Masukkan jumlah">
+          <div class="mb-3">
+            <label class="form-label">Tanggal:</label>
+            <input class="form-control" type="date" name="tanggal" placeholder="Isi Dengan Tanggal..." required>
+          </div>
 
-        <label>Metode Pembayaran</label>
-        <select>
-            <option>-- Pilih Metode --</option>
-            <option>Transfer Bank</option>
-            <option>Cash</option>
-            <option>E-Wallet</option>
-        </select>
+          <div class="mb-3">
+            <label class="form-label">Jumlah:</label>
+            <input class="form-control" type="text" name="jumlah" placeholder="Isi Dengan Jumlah..." required>
+          </div>
 
-        <button type="submit" class="btn-simpan">Simpan Pembayaran</button>
-    </form>
-
-    <!-- Tabel Riwayat Pembayaran -->
-    <h3>Riwayat Pembayaran</h3>
-    <table>
-        <tr>
-            <th>No</th>
-            <th>Booking</th>
-            <th>Tanggal</th>
-            <th>Jumlah</th>
-            <th>Metode</th>
-            <th>Aksi</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>BK-001</td>
-            <td>2026-02-05</td>
-            <td>Rp 500.000</td>
-            <td>Transfer Bank</td>
-            <td>
-                <button class="btn-edit">Edit</button>
-                <button class="btn-hapus">Hapus</button>
-            </td>
-        </tr>
-    </table>
-</div>
-
+          <div class="mb-3">
+            <label class="form-label">Metode:</label>
+            <input class="form-control" type="text" name="metode" placeholder="Isi Dengan Metode..." required>
+          </div>
+            
+            <button class="btn btn-primary"type="submit">Submit</button>
+              
+        </form>
+    </div>
+    
 </body>
 </html>
