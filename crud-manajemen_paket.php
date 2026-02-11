@@ -57,7 +57,7 @@
                     <?php echo $editData ? "Update" : "Tambah"; ?>
                 </button>
                 <?php if ($editData): ?>
-                    <a href="paket.php" class="w-full text-center border py-2 rounded-lg">Batal</a>
+                    <a href="manajemen-paket.php" class="w-full text-center border py-2 rounded-lg">Batal</a>
                 <?php endif; ?>
             </div>
         </form>
