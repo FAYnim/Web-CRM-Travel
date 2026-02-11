@@ -1,3 +1,11 @@
+<?php
+include('config.php');
+
+$id = $_GET['id'];
+$query = mysqli_query($koneksi, "SELECT * FROM manajemen_customer WHERE id='$id'");
+$data = mysqli_fetch_array($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,31 +23,32 @@
         <h1>Customer</h1>
         <p>Silakan isi data dibawah ini dengan benar</p>
 
-        <form method="POST" action="submit-manajemen-customer.php">
+        <form method="POST" action="update-manajemen-customer.php">
+        <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+
           <div class="mb-3">
             <label class="form-label">Nama:</label>
-            <input class="form-control" type="text" name="nama" placeholder="Isi Dengan Nama..." required> 
+            <input class="form-control" type="text" name="nama" value="<?php echo $data['nama']; ?>">
           </div>
 
           <div class="mb-3">
             <label class="form-label">Email:</label>
-            <input class="form-control" type="email" name="email" placeholder="Isi Dengan Email..." required>
+            <input class="form-control" type="email" name="email" value="<?php echo $data['email']; ?>">
           </div>  
 
           <div class="mb-3">
             <label class="form-label">Handphone:</label>
-            <input class="form-control" type="number" name="handphone" placeholder="Isi Dengan No.HP..." required>
+            <input class="form-control" type="text" name="handphone" value="<?php echo $data['handphone']; ?>">
           </div>
 
           <div class="mb-3">
             <label class="form-label">Alamat:</label>
-            <input class="form-control" type="text" name="alamat" placeholder="Isi Dengan Alamat..." required>
+            <input class="form-control" type="text" name="alamat" value="<?php echo $data['alamat']; ?>">
           </div>
             
-            <button class="btn btn-primary"type="submit">Submit</button>
+            <button class="btn btn-primary"type="submit">Simpan</button>
               
         </form>
     </div>
-    
 </body>
 </html>

@@ -11,7 +11,7 @@ $alamat = $_POST['alamat'];
 // echo $handphone . "<br>";
 // echo $alamat . "<br>";
 
-$submit = mysqli_query($config,"INSERT INTO data (nama,email,handphone,alamat) VALUES ('$nama','$email','$handphone','$alamat')");
+$submit = mysqli_query($koneksi,"INSERT INTO manajemen_customer (nama,email,handphone,alamat) VALUES ('$nama','$email','$handphone','$alamat')");
 
 if($submit == TRUE){
     echo "Berhasil Tersimpan ke Database";
