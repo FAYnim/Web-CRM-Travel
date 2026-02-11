@@ -23,9 +23,9 @@
         </thead>
         <tbody>
             <?php 
-            include('koneksi.php');
+            include('config.php');
     
-            $data = mysqli_query($koneksi, "SELECT * FROM data");
+            $data = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran");
             $no = 0;
             while($baris = mysqli_fetch_array($data)){
                 $no++;
