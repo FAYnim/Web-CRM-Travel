@@ -19,11 +19,12 @@ $data = mysqli_fetch_array($query);
 <body>
     <?php include('navbar.php'); ?>
 
+    
     <div class="container col-md-6 mt-5">
         <h1>Customer</h1>
         <p>Silakan isi data dibawah ini dengan benar</p>
 
-        <form method="POST" action="update-manajemen-customer.php">
+        <form method="POST" action="src/api/update-manajemen-customer.php">
         <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
           <div class="mb-3">

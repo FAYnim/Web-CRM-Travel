@@ -15,7 +15,7 @@
         <h1>Customer</h1>
         <p>Silakan isi data dibawah ini dengan benar</p>
 
-        <form method="POST" action="submit-manajemen-customer.php">
+        <form method="POST" action="src/api/submit-manajemen-customer.php">
           <div class="mb-3">
             <label class="form-label">Nama:</label>
             <input class="form-control" type="text" name="nama" placeholder="Isi Dengan Nama..." required> 
