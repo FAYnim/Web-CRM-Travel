@@ -1,56 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-</head>
-<body>
-    <?php include('navbar.php'); ?>
+<?php
+include('config.php');
 
-    <div class="container mt-5">
-    <h1>Data Customer</h1>
-    <p>Berikut adalah data yang sudah terdaftar</p>
+$page_title = 'Data Customer';
+ob_start();
+?>
 
-    <a href="manajemen-customer.php" class="btn btn-primary mb-3">Tambah Customer Baru</a>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Email</th>
-                <th scope="col">Handphone</th>
-                <th scope="col">Alamat</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            include('config.php');
-            $data = mysqli_query($koneksi, "SELECT * FROM manajemen_customer");
-            $no = 0;
-            while ($baris = mysqli_fetch_array($data)){
-                $no++;
-            ?>
-            <tr>
-                <td class="baris"><?php echo $no; ?></td>
-                <td class="baris"><?php echo $baris['nama']; ?></td>
-                <td class="baris"><?php echo $baris['email']; ?></td>
-                <td class="baris"><?php echo $baris['handphone']; ?></td>
-                <td class="baris"><?php echo $baris['alamat']; ?></td>
-                <td class="baris">
-                    <a href="edit-manajemen-customer.php?id=<?php echo $baris['id'] ?>">Edit</a>
-                    <a href="src/api/hapus-manajemen-customer.php?id=<?php echo $baris['id'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
-                </td>
-            </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
+<div class="dashboard-card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <span><i class="bi bi-people me-2"></i>Data Customer</span>
+        <a href="manajemen-customer.php" class="btn btn-primary btn-sm">
+            <i class="bi bi-person-plus me-1"></i>Tambah Customer Baru
+        </a>
     </div>
-</body>
-</html>
+    <div class="card-body p-0">
+        <p class="text-muted px-3 pt-3 mb-3">Berikut adalah data yang sudah terdaftar</p>
+        <div class="table-responsive">
+            <table class="table table-dashboard">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Handphone</th>
+                        <th>Alamat</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $data = mysqli_query($koneksi, "SELECT * FROM manajemen_customer");
+                    $no = 0;
+                    while ($baris = mysqli_fetch_array($data)){
+                        $no++;
+                    ?>
+                    <tr>
+                        <td><?php echo $no; ?></td>
+                        <td><?php echo htmlspecialchars($baris['nama']); ?></td>
+                        <td><?php echo htmlspecialchars($baris['email']); ?></td>
+                        <td><?php echo htmlspecialchars($baris['handphone']); ?></td>
+                        <td><?php echo htmlspecialchars($baris['alamat']); ?></td>
+                        <td>
+                            <a href="edit-manajemen-customer.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                            <a href="src/api/hapus-manajemen-customer.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                <i class="bi bi-trash"></i> Hapus
+                            </a>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<?php
+$content = ob_get_clean();
+include('layout.php');
+?>

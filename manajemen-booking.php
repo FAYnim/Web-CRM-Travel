@@ -8,48 +8,54 @@ $customers = mysqli_fetch_all($query_customer, MYSQLI_ASSOC);
 // Fetch packages from database
 $query_paket = mysqli_query($koneksi, "SELECT id, nama_paket FROM manajemen_paket ORDER BY nama_paket");
 $pakets = mysqli_fetch_all($query_paket, MYSQLI_ASSOC);
+
+$page_title = 'Tambah Booking';
+ob_start();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manajemen Booking</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
-<body>
-    <?php include('navbar.php'); ?>
 
-    <div class="container col-md-6 mt-5">
-    <h1>Manajemen Booking</h1>
-    <p> Silahkan isi data dessous ini dengan benar. </p>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-6">
+        <div class="dashboard-card">
+            <div class="card-header">
+                <i class="bi bi-calendar-plus me-2"></i>Tambah Booking Baru
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-4">Silahkan isi data dibawah ini dengan benar.</p>
 
-    <form method="POST" action="src/api/submit-manajemen-booking.php">
-        
-        <div class="mb-3">
-    <label>Customer :</label>
-    <select class="form-control" name="nama" required>
-        <option value=""> Pilih Customer </option>
-        <?php foreach($customers as $customer): ?>
-            <option value="<?= htmlspecialchars($customer['nama']) ?>"><?= htmlspecialchars($customer['nama']) ?></option>
-        <?php endforeach; ?>
-    </select>
+                <form method="POST" action="src/api/submit-manajemen-booking.php">
+                    <div class="mb-3">
+                        <label class="form-label">Customer :</label>
+                        <select class="form-select" name="nama" required>
+                            <option value="">Pilih Customer</option>
+                            <?php foreach($customers as $customer): ?>
+                                <option value="<?= htmlspecialchars($customer['nama']) ?>"><?= htmlspecialchars($customer['nama']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Paket :</label>
+                        <select class="form-select" name="paket" required>
+                            <option value="">Pilih Paket</option>
+                            <?php foreach($pakets as $paket): ?>
+                                <option value="<?= htmlspecialchars($paket['nama_paket']) ?>"><?= htmlspecialchars($paket['nama_paket']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-check-lg me-1"></i>Kirim
+                        </button>
+                        <a href="data-manajemen-booking.php" class="btn btn-secondary">Batal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="mb-3">
-    <label>Paket :</label>
-    <select class="form-control" name="paket" required>
-        <option value=""> Pilih Paket </option>
-        <?php foreach($pakets as $paket): ?>
-            <option value="<?= htmlspecialchars($paket['nama_paket']) ?>"><?= htmlspecialchars($paket['nama_paket']) ?></option>
-        <?php endforeach; ?>
-    </select>
-</div>
-
-        <button class="btn btn-primary" type="submit">Kirim</button>
-    </form>
-
-    </div> 
-</body>
-</html>
+<?php
+$content = ob_get_clean();
+include('layout.php');
+?>

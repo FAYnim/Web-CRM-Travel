@@ -1,45 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-</head>
-<body>
-    <?php include('navbar.php'); ?>
+<?php
+$page_title = 'Tambah Customer';
+ob_start();
+?>
 
-    <div class="container col-md-6 mt-5">
-        <h1>Customer</h1>
-        <p>Silakan isi data dibawah ini dengan benar</p>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-6">
+        <div class="dashboard-card">
+            <div class="card-header">
+                <i class="bi bi-person-plus me-2"></i>Tambah Customer Baru
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-4">Silakan isi data dibawah ini dengan benar</p>
 
-        <form method="POST" action="src/api/submit-manajemen-customer.php">
-          <div class="mb-3">
-            <label class="form-label">Nama:</label>
-            <input class="form-control" type="text" name="nama" placeholder="Isi Dengan Nama..." required> 
-          </div>
+                <form method="POST" action="src/api/submit-manajemen-customer.php">
+                    <div class="mb-3">
+                        <label class="form-label">Nama:</label>
+                        <input class="form-control" type="text" name="nama" placeholder="Isi Dengan Nama..." required>
+                    </div>
 
-          <div class="mb-3">
-            <label class="form-label">Email:</label>
-            <input class="form-control" type="email" name="email" placeholder="Isi Dengan Email..." required>
-          </div>  
+                    <div class="mb-3">
+                        <label class="form-label">Email:</label>
+                        <input class="form-control" type="email" name="email" placeholder="Isi Dengan Email..." required>
+                    </div>
 
-          <div class="mb-3">
-            <label class="form-label">Handphone:</label>
-            <input class="form-control" type="number" name="handphone" placeholder="Isi Dengan No.HP..." required>
-          </div>
+                    <div class="mb-3">
+                        <label class="form-label">Handphone:</label>
+                        <input class="form-control" type="number" name="handphone" placeholder="Isi Dengan No.HP..." required>
+                    </div>
 
-          <div class="mb-3">
-            <label class="form-label">Alamat:</label>
-            <input class="form-control" type="text" name="alamat" placeholder="Isi Dengan Alamat..." required>
-          </div>
-            
-            <button class="btn btn-primary"type="submit">Submit</button>
-              
-        </form>
+                    <div class="mb-3">
+                        <label class="form-label">Alamat:</label>
+                        <input class="form-control" type="text" name="alamat" placeholder="Isi Dengan Alamat..." required>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="bi bi-check-lg me-1"></i>Submit
+                        </button>
+                        <a href="data-manajemen-customer.php" class="btn btn-secondary">Batal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    
-</body>
-</html>
+</div>
+
+<?php
+$content = ob_get_clean();
+include('layout.php');
+?>
