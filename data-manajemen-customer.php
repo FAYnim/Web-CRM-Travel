@@ -15,6 +15,8 @@
     <h1>Data Customer</h1>
     <p>Berikut adalah data yang sudah terdaftar</p>
 
+    <a href="manajemen-customer.php" class="btn btn-primary mb-3">Tambah Customer Baru</a>
+
     <table class="table">
         <thead>
             <tr>
@@ -40,8 +42,8 @@
                 <td class="baris"><?php echo $baris['handphone']; ?></td>
                 <td class="baris"><?php echo $baris['alamat']; ?></td>
                 <td class="baris">
-                    <a href="edit-manajemen-customer.php?id=<?php echo $baris['id'] ?>">EDIT</a>
-                    <a href="hapus-manajemen-customer.php?id=<?php echo $baris['id'] ?>">HAPUS</a>
+                    <a href="edit-manajemen-customer.php?id=<?php echo $baris['id'] ?>">Edit</a>
+                    <a href="src/api/hapus-manajemen-customer.php?id=<?php echo $baris['id'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                 </td>
             </tr>
             <?php

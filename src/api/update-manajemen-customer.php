@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('../../config.php');
 
 if(isset($_POST['id'])){
 
@@ -17,7 +17,8 @@ if(isset($_POST['id'])){
         WHERE id='$id'");
 
     if($update){
-        echo "Berhasil Terupdate ke Database";
+        header("Location: ../../data-manajemen-customer.php");
+        // echo "Berhasil Terupdate ke Database";
     }else{
         echo "Gagal Terupdate: " . mysqli_error($koneksi);
     }

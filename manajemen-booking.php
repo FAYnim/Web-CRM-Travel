@@ -25,7 +25,7 @@ $pakets = mysqli_fetch_all($query_paket, MYSQLI_ASSOC);
     <h1>Manajemen Booking</h1>
     <p> Silahkan isi data dessous ini dengan benar. </p>
 
-    <form method="POST" action="submit-manajemen-booking.php">
+    <form method="POST" action="src/api/submit-manajemen-booking.php">
         
         <div class="mb-3">
     <label>Customer :</label>

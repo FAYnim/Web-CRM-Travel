@@ -9,45 +9,46 @@
 <body>
     <?php include('navbar.php'); ?>
     <div class="container mt-5" >
-<h1>Data Pembayaran</h1>
-    <p>Berikut adalah data yang sudah membayar</p>
+        <h1>Data Pembayaran</h1>
+        <p>Berikut adalah data yang sudah membayar</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Booking</th>
-                <th>Tanggal</th>
-                <th>Jumlah</th>
-                <th>Metode</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-            include('config.php');
-    
-            $data = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran");
-            $no = 0;
-            while($baris = mysqli_fetch_array($data)){
-                $no++;
+        <a href="manajemen-pembayaran.php" class="btn btn-primary mb-3">Tambah Pembayaran Baru</a>
 
-            
-            ?>
-            <tr>
-                <td><?php echo $baris['booking']; ?>  </td>
-                <td><?php echo $baris['tanggal']; ?>  </td>
-                <td><?php echo $baris['jumlah']; ?>  </td>
-                <td><?php echo $baris['metode']; ?>  </td>
-                <td>
-                    <a href="edit.php?no=<?php echo $baris ['no']; ?>">EDIT  </a>
-                    <a href="hapus.php?no=<?php echo $baris ['no']; ?>">HAPUS </a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Booking</th>
+                    <th>Jumlah</th>
+                    <th>Metode</th>
+                    <th>Tanggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                include('config.php');
+        
+                $data = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran");
+                $no = 0;
+                while($baris = mysqli_fetch_array($data)){
+                    $no++;
+
+                
+                ?>
+                <tr>
+                    <td><?php echo $no; ?></td>
+                    <td><?php echo $baris['booking']; ?>  </td>
+                    <td><?php echo $baris['jumlah']; ?>  </td>
+                    <td><?php echo $baris['metode']; ?>  </td>
+                    <td><?php echo $baris['tanggal']; ?>  </td>
+                    <td>
+                        <a href="edit-manajemen-pembayaran.php?id=<?php echo $baris['id'] ?>">Edit</a>
+                        <a href="src/api/hapus-manajemen-pembayaran.php?id=<?php echo $baris['id'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
-                    
-                    
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
     
 </body>

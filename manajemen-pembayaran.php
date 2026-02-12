@@ -15,7 +15,7 @@
         <h1>Manajemen Pembayaran</h1>
         <p>Silakan isi data dibawah ini dengan benar</p>
 
-        <form method="POST" action="submit-manajemen-pembayaran.php">
+        <form method="POST" action="src/api/submit-manajemen-pembayaran.php">
           <div class="mb-3">
             <label class="form-label">Nomer:</label>
             <input class="form-control" type="text" name="nomer" placeholder="Isi Dengan Nomer..." required> 
