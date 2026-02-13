@@ -4,7 +4,7 @@ ob_start();
 ?>
 
 <div class="row justify-content-center">
-    <div class="col-lg-8 col-xl-6">
+    <div class="col-lg-12 col-xl-12">
         <div class="dashboard-card">
             <div class="card-header">
                 <i class="bi bi-cash-stack me-2"></i>Tambah Pembayaran Baru
