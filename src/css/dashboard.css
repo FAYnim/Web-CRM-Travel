@@ -6,7 +6,7 @@
     --sidebar-width: 260px;
     --sidebar-bg: #1e293b;
     --sidebar-hover: #334155;
-    --sidebar-active: #0d6efd;
+    --sidebar-active: #799acb4a;
     --sidebar-text: #94a3b8;
     --sidebar-text-active: #ffffff;
     --header-height: 60px;
@@ -98,7 +98,7 @@ body {
 }
 
 .sidebar-nav .nav-link.active {
-    background: var(--sidebar-active);
+background: var(--sidebar-active);
     color: var(--sidebar-text-active);
 }
 
