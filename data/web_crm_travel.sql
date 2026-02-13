@@ -121,7 +121,8 @@ CREATE TABLE `user` (
   `nama` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `handphone` int(11) NOT NULL,
-  `alamat` varchar(100) NOT NULL
+  `alamat` varchar(100) NOT NULL,
+  `pw` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

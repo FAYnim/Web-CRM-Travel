@@ -1,5 +1,10 @@
 <?php
-include('config.php');
+include 'config.php';
+
+// print_r($_SESSION);
+if($_SESSION['login'] != true) {
+    header("Location: login.php");
+}
 
 $page_title = 'Dashboard';
 
