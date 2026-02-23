@@ -28,108 +28,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 <body>
 
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <a href="index.php" class="sidebar-brand">
-            <i class="bi bi-airplane-engines"></i>
-            <span>CRM Travel</span>
-        </a>
-
-        <ul class="sidebar-nav">
-            <!-- Dashboard -->
-            <li class="nav-item">
-                <a href="index.php" class="nav-link <?php echo $current_page === 'index.php' ? 'active' : ''; ?>">
-                    <i class="bi bi-grid-1x2"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <span class="nav-label">Manajemen</span>
-
-            <!-- Customer -->
-            <li class="nav-item">
-                <a href="#menuCustomer" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-customer.php', 'data-manajemen-customer.php', 'edit-manajemen-customer.php']) ? 'true' : 'false'; ?>">
-                    <i class="bi bi-people"></i>
-                    <span>Customer</span>
-                </a>
-                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-customer.php', 'data-manajemen-customer.php', 'edit-manajemen-customer.php']) ? 'show active' : ''; ?>" id="menuCustomer">
-                    <li class="nav-item">
-                        <a href="data-manajemen-customer.php" class="nav-link <?php echo $current_page === 'data-manajemen-customer.php' ? 'active' : ''; ?>">
-                            <span>Data Customer</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="manajemen-customer.php" class="nav-link <?php echo $current_page === 'manajemen-customer.php' ? 'active' : ''; ?>">
-                            <span>Tambah Customer</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Booking -->
-            <li class="nav-item">
-                <a href="#menuBooking" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-booking.php', 'data-manajemen-booking.php']) ? 'true' : 'false'; ?>">
-                    <i class="bi bi-calendar-check"></i>
-                    <span>Booking</span>
-                </a>
-                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-booking.php', 'data-manajemen-booking.php']) ? 'show active' : ''; ?>" id="menuBooking">
-                    <li class="nav-item">
-                        <a href="data-manajemen-booking.php" class="nav-link <?php echo $current_page === 'data-manajemen-booking.php' ? 'active' : ''; ?>">
-                            <span>Data Booking</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="manajemen-booking.php" class="nav-link <?php echo $current_page === 'manajemen-booking.php' ? 'active' : ''; ?>">
-                            <span>Tambah Booking</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Paket Wifi -->
-            <li class="nav-item">
-                <a href="#menuPaket" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-paket.php', 'data-manajemen-paket.php', 'edit-manajemen-paket.php']) ? 'true' : 'false'; ?>">
-                    <i class="bi bi-suitcase-lg"></i>
-                    <span>Paket Wifi</span>
-                </a>
-                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-paket.php', 'data-manajemen-paket.php', 'edit-manajemen-paket.php']) ? 'show active' : ''; ?>" id="menuPaket">
-                    <li class="nav-item">
-                        <a href="data-manajemen-paket.php" class="nav-link <?php echo $current_page === 'data-manajemen-paket.php' ? 'active' : ''; ?>">
-                            <span>Data Paket</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="manajemen-paket.php" class="nav-link <?php echo $current_page === 'manajemen-paket.php' ? 'active' : ''; ?>">
-                            <span>Tambah Paket</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Pembayaran -->
-            <li class="nav-item">
-                <a href="#menuPembayaran" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-pembayaran.php', 'data-manajemen-pembayaran.php', 'edit-manajemen-pembayaran.php']) ? 'true' : 'false'; ?>">
-                    <i class="bi bi-credit-card"></i>
-                    <span>Pembayaran</span>
-                </a>
-                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-pembayaran.php', 'data-manajemen-pembayaran.php', 'edit-manajemen-pembayaran.php']) ? 'show active   ' : ''; ?>" id="menuPembayaran">
-                    <li class="nav-item">
-                        <a href="data-manajemen-pembayaran.php" class="nav-link <?php echo $current_page === 'data-manajemen-pembayaran.php' ? 'active' : ''; ?>">
-                            <span>Data Pembayaran</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="manajemen-pembayaran.php" class="nav-link <?php echo $current_page === 'manajemen-pembayaran.php' ? 'active' : ''; ?>">
-                            <span>Tambah Pembayaran</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-        <div class="sidebar-footer">
-            <small>CRM Travel v1.0</small>
-        </div>
-    </aside>
+    <?= include "sidebar.php"?>
 
     <!-- Overlay for mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -155,45 +54,43 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
         <!-- Page Content -->
         <div class="page-content">
             <div class="row justify-content-center">
-                <div class="col-lg-8 col-xl-6">
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <i class="bi bi-pencil-square me-2"></i>Edit Customer
-                        </div>
-                        <div class="card-body">
-                            <p class="text-muted mb-4">Silakan edit data-dessous ini dengan benar</p>
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="bi bi-pencil-square me-2"></i>Edit Customer
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">Silakan edit data ini dengan benar</p>
 
-                            <form method="POST" action="src/api/update-manajemen-customer.php">
-                                <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                        <form method="POST" action="src/api/update-manajemen-customer.php">
+                            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
-                                <div class="mb-3">
-                                    <label class="form-label">Nama:</label>
-                                    <input class="form-control" type="text" name="nama" value="<?php echo htmlspecialchars($data['nama']); ?>">
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nama:</label>
+                                <input class="form-control" type="text" name="nama" value="<?php echo htmlspecialchars($data['nama']); ?>">
+                            </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Email:</label>
-                                    <input class="form-control" type="email" name="email" value="<?php echo htmlspecialchars($data['email']); ?>">
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email:</label>
+                                <input class="form-control" type="email" name="email" value="<?php echo htmlspecialchars($data['email']); ?>">
+                            </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Handphone:</label>
-                                    <input class="form-control" type="text" name="handphone" value="<?php echo htmlspecialchars($data['handphone']); ?>">
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label">Handphone:</label>
+                                <input class="form-control" type="text" name="handphone" value="<?php echo htmlspecialchars($data['handphone']); ?>">
+                            </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Alamat:</label>
-                                    <input class="form-control" type="text" name="alamat" value="<?php echo htmlspecialchars($data['alamat']); ?>">
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label">Alamat:</label>
+                                <input class="form-control" type="text" name="alamat" value="<?php echo htmlspecialchars($data['alamat']); ?>">
+                            </div>
 
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="bi bi-check-lg me-1"></i>Simpan
-                                    </button>
-                                    <a href="data-manajemen-customer.php" class="btn btn-secondary">Batal</a>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="bi bi-check-lg me-1"></i>Simpan
+                                </button>
+                                <a href="data-manajemen-customer.php" class="btn btn-secondary">Batal</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
