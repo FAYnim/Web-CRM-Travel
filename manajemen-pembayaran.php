@@ -85,6 +85,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 </div> -->
 
                                 <div class="mb-3">
+                                    
   <label class="form-label d-block">Metode:</label>
 
   <div class="form-check">
