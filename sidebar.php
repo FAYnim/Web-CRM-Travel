@@ -147,10 +147,22 @@
 
             <!-- Partner Maskapai -->
             <li class="nav-item">
-                <a href="manajemen-partner.php" class="nav-link <?php echo $current_page === 'manajemen-partner.php' ? 'active' : ''; ?>">
+                <a href="#menuPartner" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-partner.php', 'data-manajemen-partner.php', 'edit-manajemen-partner.php']) ? 'true' : 'false'; ?>">
                     <i class="bi bi-airplane"></i>
                     <span>Partner Maskapai</span>
                 </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-partner.php', 'data-manajemen-partner.php', 'edit-manajemen-partner.php']) ? 'show active' : ''; ?>" id="menuPartner">
+                    <li class="nav-item">
+                        <a href="data-manajemen-partner.php" class="nav-link <?php echo $current_page === 'data-manajemen-partner.php' ? 'active' : ''; ?>">
+                            <span>Data Partner</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-partner.php" class="nav-link <?php echo $current_page === 'manajemen-partner.php' ? 'active' : ''; ?>">
+                            <span>Tambah Partner</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <!-- Klien Korporasi -->
