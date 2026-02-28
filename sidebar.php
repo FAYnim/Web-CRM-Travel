@@ -94,6 +94,73 @@
                     </li>
                 </ul>
             </li>
+
+            <span class="nav-label">Landing Page</span>
+
+            <!-- Kategori -->
+            <li class="nav-item">
+                <a href="manajemen-kategori.php" class="nav-link <?php echo $current_page === 'manajemen-kategori.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-tags"></i>
+                    <span>Kategori</span>
+                </a>
+            </li>
+
+            <!-- Galeri -->
+            <li class="nav-item">
+                <a href="manajemen-galeri.php" class="nav-link <?php echo $current_page === 'manajemen-galeri.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-images"></i>
+                    <span>Galeri</span>
+                </a>
+            </li>
+
+            <!-- Testimoni -->
+            <li class="nav-item">
+                <a href="manajemen-testimoni.php" class="nav-link <?php echo $current_page === 'manajemen-testimoni.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-chat-quote"></i>
+                    <span>Testimoni</span>
+                </a>
+            </li>
+
+            <!-- Partner Maskapai -->
+            <li class="nav-item">
+                <a href="manajemen-partner.php" class="nav-link <?php echo $current_page === 'manajemen-partner.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-airplane"></i>
+                    <span>Partner Maskapai</span>
+                </a>
+            </li>
+
+            <!-- Klien Korporasi -->
+            <li class="nav-item">
+                <a href="manajemen-klien.php" class="nav-link <?php echo $current_page === 'manajemen-klien.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-building"></i>
+                    <span>Klien Korporasi</span>
+                </a>
+            </li>
+
+            <!-- Profil -->
+            <li class="nav-item">
+                <a href="#menuProfil" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['profil-kontak.php', 'profil-tentang.php', 'profil-medsos.php']) ? 'true' : 'false'; ?>">
+                    <i class="bi bi-gear"></i>
+                    <span>Profil</span>
+                </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['profil-kontak.php', 'profil-tentang.php', 'profil-medsos.php']) ? 'show active' : ''; ?>" id="menuProfil">
+                    <li class="nav-item">
+                        <a href="profil-kontak.php" class="nav-link <?php echo $current_page === 'profil-kontak.php' ? 'active' : ''; ?>">
+                            <span>Nomor Kontak</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profil-tentang.php" class="nav-link <?php echo $current_page === 'profil-tentang.php' ? 'active' : ''; ?>">
+                            <span>Tentang Kami</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profil-medsos.php" class="nav-link <?php echo $current_page === 'profil-medsos.php' ? 'active' : ''; ?>">
+                            <span>Media Sosial</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <div class="sidebar-footer">
