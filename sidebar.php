@@ -167,10 +167,22 @@
 
             <!-- Klien Korporasi -->
             <li class="nav-item">
-                <a href="manajemen-klien.php" class="nav-link <?php echo $current_page === 'manajemen-klien.php' ? 'active' : ''; ?>">
+                <a href="#menuKlienKorporasi" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-klien-korporasi.php', 'data-manajemen-klien-korporasi.php', 'edit-manajemen-klien-korporasi.php']) ? 'true' : 'false'; ?>">
                     <i class="bi bi-building"></i>
                     <span>Klien Korporasi</span>
                 </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-klien-korporasi.php', 'data-manajemen-klien-korporasi.php', 'edit-manajemen-klien-korporasi.php']) ? 'show active' : ''; ?>" id="menuKlienKorporasi">
+                    <li class="nav-item">
+                        <a href="data-manajemen-klien-korporasi.php" class="nav-link <?php echo $current_page === 'data-manajemen-klien-korporasi.php' ? 'active' : ''; ?>">
+                            <span>Data Klien Korporasi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-klien-korporasi.php" class="nav-link <?php echo $current_page === 'manajemen-klien-korporasi.php' ? 'active' : ''; ?>">
+                            <span>Tambah Klien Korporasi</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <!-- Profil -->
