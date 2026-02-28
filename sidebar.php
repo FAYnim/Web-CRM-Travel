@@ -127,10 +127,22 @@
 
             <!-- Testimoni -->
             <li class="nav-item">
-                <a href="manajemen-testimoni.php" class="nav-link <?php echo $current_page === 'manajemen-testimoni.php' ? 'active' : ''; ?>">
+                <a href="#menuTestimoni" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-testimoni.php', 'data-manajemen-testimoni.php', 'edit-manajemen-testimoni.php']) ? 'true' : 'false'; ?>">
                     <i class="bi bi-chat-quote"></i>
                     <span>Testimoni</span>
                 </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-testimoni.php', 'data-manajemen-testimoni.php', 'edit-manajemen-testimoni.php']) ? 'show active' : ''; ?>" id="menuTestimoni">
+                    <li class="nav-item">
+                        <a href="data-manajemen-testimoni.php" class="nav-link <?php echo $current_page === 'data-manajemen-testimoni.php' ? 'active' : ''; ?>">
+                            <span>Data Testimoni</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-testimoni.php" class="nav-link <?php echo $current_page === 'manajemen-testimoni.php' ? 'active' : ''; ?>">
+                            <span>Tambah Testimoni</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <!-- Partner Maskapai -->
