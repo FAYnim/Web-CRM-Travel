@@ -94,6 +94,121 @@
                     </li>
                 </ul>
             </li>
+
+            <span class="nav-label">Landing Page</span>
+
+            <!-- Kategori -->
+            <li class="nav-item">
+                <a href="#menuKategori" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-kategori.php', 'data-manajemen-kategori.php', 'edit-manajemen-kategori.php']) ? 'true' : 'false'; ?>">
+                    <i class="bi bi-tags"></i>
+                    <span>Kategori</span>
+                </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-kategori.php', 'data-manajemen-kategori.php', 'edit-manajemen-kategori.php']) ? 'show active' : ''; ?>" id="menuKategori">
+                    <li class="nav-item">
+                        <a href="data-manajemen-kategori.php" class="nav-link <?php echo $current_page === 'data-manajemen-kategori.php' ? 'active' : ''; ?>">
+                            <span>Data Kategori</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-kategori.php" class="nav-link <?php echo $current_page === 'manajemen-kategori.php' ? 'active' : ''; ?>">
+                            <span>Tambah Kategori</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Galeri -->
+            <li class="nav-item">
+                <a href="manajemen-galeri.php" class="nav-link <?php echo $current_page === 'manajemen-galeri.php' ? 'active' : ''; ?>">
+                    <i class="bi bi-images"></i>
+                    <span>Galeri</span>
+                </a>
+            </li>
+
+            <!-- Testimoni -->
+            <li class="nav-item">
+                <a href="#menuTestimoni" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-testimoni.php', 'data-manajemen-testimoni.php', 'edit-manajemen-testimoni.php']) ? 'true' : 'false'; ?>">
+                    <i class="bi bi-chat-quote"></i>
+                    <span>Testimoni</span>
+                </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-testimoni.php', 'data-manajemen-testimoni.php', 'edit-manajemen-testimoni.php']) ? 'show active' : ''; ?>" id="menuTestimoni">
+                    <li class="nav-item">
+                        <a href="data-manajemen-testimoni.php" class="nav-link <?php echo $current_page === 'data-manajemen-testimoni.php' ? 'active' : ''; ?>">
+                            <span>Data Testimoni</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-testimoni.php" class="nav-link <?php echo $current_page === 'manajemen-testimoni.php' ? 'active' : ''; ?>">
+                            <span>Tambah Testimoni</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Partner Maskapai -->
+            <li class="nav-item">
+                <a href="#menuPartner" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-partner.php', 'data-manajemen-partner.php', 'edit-manajemen-partner.php']) ? 'true' : 'false'; ?>">
+                    <i class="bi bi-airplane"></i>
+                    <span>Partner Maskapai</span>
+                </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-partner.php', 'data-manajemen-partner.php', 'edit-manajemen-partner.php']) ? 'show active' : ''; ?>" id="menuPartner">
+                    <li class="nav-item">
+                        <a href="data-manajemen-partner.php" class="nav-link <?php echo $current_page === 'data-manajemen-partner.php' ? 'active' : ''; ?>">
+                            <span>Data Partner</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-partner.php" class="nav-link <?php echo $current_page === 'manajemen-partner.php' ? 'active' : ''; ?>">
+                            <span>Tambah Partner</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Klien Korporasi -->
+            <li class="nav-item">
+                <a href="#menuKlienKorporasi" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-klien-korporasi.php', 'data-manajemen-klien-korporasi.php', 'edit-manajemen-klien-korporasi.php']) ? 'true' : 'false'; ?>">
+                    <i class="bi bi-building"></i>
+                    <span>Klien Korporasi</span>
+                </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-klien-korporasi.php', 'data-manajemen-klien-korporasi.php', 'edit-manajemen-klien-korporasi.php']) ? 'show active' : ''; ?>" id="menuKlienKorporasi">
+                    <li class="nav-item">
+                        <a href="data-manajemen-klien-korporasi.php" class="nav-link <?php echo $current_page === 'data-manajemen-klien-korporasi.php' ? 'active' : ''; ?>">
+                            <span>Data Klien Korporasi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-klien-korporasi.php" class="nav-link <?php echo $current_page === 'manajemen-klien-korporasi.php' ? 'active' : ''; ?>">
+                            <span>Tambah Klien Korporasi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Profil -->
+            <li class="nav-item">
+                <a href="#menuProfil" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['profil-kontak.php', 'profil-tentang.php', 'profil-medsos.php']) ? 'true' : 'false'; ?>">
+                    <i class="bi bi-gear"></i>
+                    <span>Profil</span>
+                </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['profil-kontak.php', 'profil-tentang.php', 'profil-medsos.php']) ? 'show active' : ''; ?>" id="menuProfil">
+                    <li class="nav-item">
+                        <a href="profil-kontak.php" class="nav-link <?php echo $current_page === 'profil-kontak.php' ? 'active' : ''; ?>">
+                            <span>Nomor Kontak</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profil-tentang.php" class="nav-link <?php echo $current_page === 'profil-tentang.php' ? 'active' : ''; ?>">
+                            <span>Tentang Kami</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profil-medsos.php" class="nav-link <?php echo $current_page === 'profil-medsos.php' ? 'active' : ''; ?>">
+                            <span>Media Sosial</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <div class="sidebar-footer">
