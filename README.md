@@ -12,7 +12,11 @@ Web CRM Travel adalah sistem manajemen perjalanan yang memungkinkan admin untuk 
 - **Manajemen Customer** - Tambah, edit, hapus data customer
 - **Manajemen Booking** - Proses pemesanan paket wisata
 - **Manajemen Pembayaran** - Pencatatan pembayaran customer
-- **Paket wisata** - Tampilan paket wisata unggulan
+- **Manajemen Paket** - Kelola paket wisata
+- **Manajemen Kategori** - Kelola kategori paket wisata
+- **Manajemen Klien Korporasi** - Kelola klien korporasi
+- **Manajemen Partner/Maskapai** - Kelola partner dan maskapai
+- **Manajemen Testimoni** - Kelola testimoni customer
 
 ## Teknologi
 
@@ -27,26 +31,49 @@ Web CRM Travel adalah sistem manajemen perjalanan yang memungkinkan admin untuk 
 web-crm-travel/
 ├── config.php              # Konfigurasi database
 ├── login.php               # Halaman login
-├── process-login.php       # Proses autentikasi
 ├── navbar.php              # Komponen navigasi
+├── sidebar.php             # Komponen sidebar
+├── index.php               # Halaman utama
 ├── manajemen-customer.php  # Form input customer
 ├── data-manajemen-customer.php  # Data customer
 ├── edit-manajemen-customer.php  # Edit customer
-├── hapus-manajemen-customer.php # Hapus customer
-├── submit-manajemen-customer.php # Proses simpan customer
 ├── manajemen-booking.php   # Form booking
 ├── data-manajemen-booking.php   # Data booking
 ├── manajemen-pembayaran.php # Form pembayaran
 ├── data-manajemen-pembayaran.php # Data pembayaran
-├── paket.php               # Halaman paket wisata
+├── manajemen-paket.php     # Kelola paket wisata
+├── data-manajemen-paket.php # Data paket
+├── edit-manajemen-paket.php # Edit paket
+├── manajemen-kategori.php  # Kelola kategori
+├── data-manajemen-kategori.php # Data kategori
+├── edit-manajemen-kategori.php # Edit kategori
+├── manajemen-klien-korporasi.php # Kelola klien korporasi
+├── data-manajemen-klien-korporasi.php # Data klien
+├── edit-manajemen-klien-korporasi.php # Edit klien
+├── manajemen-partner.php   # Kelola partner/maskapai
+├── data-manajemen-partner.php # Data partner
+├── edit-manajemen-partner.php # Edit partner
+├── manajemen-testimoni.php # Kelola testimoni
+├── data-manajemen-testimoni.php # Data testimoni
+├── edit-manajemen-testimoni.php # Edit testimoni
 ├── src/
-│   └── css/
-│       └── login.css       # Styling login
+│   ├── css/
+│   │   └── login.css       # Styling login
+│   └── api/                # API processing files
+│       ├── process-login.php
+│       ├── submit-manajemen-*.php
+│       ├── update-manajemen-*.php
+│       └── hapus-manajemen-*.php
 └── data/
+    ├── schema.sql
     ├── manajemen_customer.sql
     ├── manajemen_booking.sql
     ├── manajemen_paket.sql
-    └── manajemen_pembayaran.sql
+    ├── manajemen_pembayaran.sql
+    ├── kategori.sql
+    ├── klien_korporasi.sql
+    ├── partner_maskapai.sql
+    └── testimoni.sql
 ```
 
 ## Instalasi
@@ -64,10 +91,14 @@ web-crm-travel/
 - `manajemen_booking` - Data booking
 - `manajemen_paket` - Data paket wisata
 - `manajemen_pembayaran` - Data pembayaran
+- `manajemen_kategori` - Data kategori paket
+- `manajemen_klien_korporasi` - Data klien korporasi
+- `manajemen_partner` - Data partner/maskapai
+- `manajemen_testimoni` - Data testimoni
 
 ## Akses Aplikasi
 
-1. Buka browser dan akses `http://localhost/web-crm-travel/login.php`
+1. Buka browser dan akses `http://localhost/web-crm-travel/`
 2. Login dengan kredensial yang sesuai
 
 ## Lisensi
