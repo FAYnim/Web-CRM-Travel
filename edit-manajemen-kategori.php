@@ -5,7 +5,11 @@ if($_SESSION['login'] != true) {
     header("Location: login.php");
 }
 
-$page_title = 'Tambah Kategori';
+$id = $_GET['id'];
+$query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE id='$id'");
+$data = mysqli_fetch_array($query);
+
+$page_title = 'Edit Kategori';
 $current_page = basename($_SERVER['SCRIPT_NAME']);
 ?>
 <!DOCTYPE html>
@@ -57,41 +61,42 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             </div>
             <?php endif; ?>
 
-            <div class="row">
-                <div class="col-lg-12 col-xl-12">
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <i class="bi bi-plus-circle me-2"></i>Tambah Kategori Baru
-                        </div>
-                        <div class="card-body">
-                            <p class="text-muted mb-4">Silakan isi data kategori dengan benar</p>
+            <div class="row justify-content-center">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="bi bi-pencil-square me-2"></i>Edit Kategori
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-4">Silakan edit data kategori dengan benar</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-kategori.php">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="nama_kategori" class="form-label">Nama Kategori <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" placeholder="Contoh: Wisata Alam, Wisata Budaya" required>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi singkat tentang kategori"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" id="status" name="status">
-                                        <option value="Aktif">Aktif</option>
-                                        <option value="Tidak Aktif">Tidak Aktif</option>
-                                    </select>
-                                </div>
-                                <div class="d-flex gap-2">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-check-lg me-1"></i>Submit
-                                    </button>
-                                    <a href="data-manajemen-kategori.php" class="btn btn-secondary">Batal</a>
-                                </div>
-                            </form>
-                        </div>
+                        <form method="POST" action="src/api/update-manajemen-kategori.php">
+                            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+
+                            <div class="mb-3">
+                                <label class="form-label">Nama Kategori <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="nama_kategori" value="<?php echo htmlspecialchars($data['nama_kategori']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Deskripsi</label>
+                                <textarea class="form-control" name="deskripsi" rows="3"><?php echo htmlspecialchars($data['deskripsi']); ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" name="status">
+                                    <option value="Aktif" <?php echo ($data['status'] == 'Aktif') ? 'selected' : ''; ?>>Aktif</option>
+                                    <option value="Tidak Aktif" <?php echo ($data['status'] == 'Tidak Aktif') ? 'selected' : ''; ?>>Tidak Aktif</option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="bi bi-check-lg me-1"></i>Simpan
+                                </button>
+                                <a href="data-manajemen-kategori.php" class="btn btn-secondary">Batal</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -99,10 +99,22 @@
 
             <!-- Kategori -->
             <li class="nav-item">
-                <a href="manajemen-kategori.php" class="nav-link <?php echo $current_page === 'manajemen-kategori.php' ? 'active' : ''; ?>">
+                <a href="#menuKategori" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-kategori.php', 'data-manajemen-kategori.php', 'edit-manajemen-kategori.php']) ? 'true' : 'false'; ?>">
                     <i class="bi bi-tags"></i>
                     <span>Kategori</span>
                 </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-kategori.php', 'data-manajemen-kategori.php', 'edit-manajemen-kategori.php']) ? 'show active' : ''; ?>" id="menuKategori">
+                    <li class="nav-item">
+                        <a href="data-manajemen-kategori.php" class="nav-link <?php echo $current_page === 'data-manajemen-kategori.php' ? 'active' : ''; ?>">
+                            <span>Data Kategori</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-kategori.php" class="nav-link <?php echo $current_page === 'manajemen-kategori.php' ? 'active' : ''; ?>">
+                            <span>Tambah Kategori</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <!-- Galeri -->
