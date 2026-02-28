@@ -74,14 +74,30 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 <input class="form-control" type="date" name="tanggal" value="<?php echo $data['tanggal']; ?>">
                             </div>
 
-							<div class="mb-3">
-								<label class="form-label">Jumlah:</label>
-								<input class="form-control" type="number" min="0" name="jumlah" value="<?php echo htmlspecialchars($data['jumlah']); ?>">
-							</div>
+                                <div class="mb-3">
+                                    <label class="form-label">Jumlah:</label>
+                                    <input class="form-control" type="number" min="0" name="jumlah" value="<?php echo htmlspecialchars($data['jumlah']); ?>">
+                                </div>
 
-						   <div class="mb-3">
+                               <div class="mb-3">
                                     
-						  <label class="form-label d-block">Metode:</label>
+  <label class="form-label d-block">Metode:</label>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="metode" value="Transfer Bank" required>
+    <label class="form-check-label">Transfer Bank</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="metode" value="QRIS">
+    <label class="form-check-label">QRIS</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="metode" value="Cash">
+    <label class="form-check-label">Cash</label>
+  </div>
+</div>
 
 						  <div class="form-check">
 							<input class="form-check-input" type="radio" name="metode" value="Transfer Bank" required>
