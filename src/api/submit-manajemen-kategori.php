@@ -14,8 +14,9 @@ $status = mysqli_real_escape_string($koneksi, $_POST['status']);
 
 // Query insert
 $query = "INSERT INTO kategori (nama_kategori, deskripsi, status) VALUES ('$nama_kategori', '$deskripsi', '$status')";
+$submit = mysqli_query($koneksi, $query);
 
-if(mysqli_query($koneksi, $query)) {
+if($submit) {
     // Redirect ke halaman data dengan pesan sukses
     header("Location: ../../data-manajemen-kategori.php?status=success&message=Kategori berhasil ditambahkan");
 } else {

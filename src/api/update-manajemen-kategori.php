@@ -15,8 +15,9 @@ $status = mysqli_real_escape_string($koneksi, $_POST['status']);
 
 // Query update
 $query = "UPDATE kategori SET nama_kategori = '$nama_kategori', deskripsi = '$deskripsi', status = '$status' WHERE id = '$id'";
+$submit = mysqli_query($koneksi, $query);
 
-if(mysqli_query($koneksi, $query)) {
+if($submit) {
     // Redirect ke halaman data dengan pesan sukses
     header("Location: ../../data-manajemen-kategori.php?status=success&message=Kategori berhasil diupdate");
 } else {

@@ -12,6 +12,7 @@ $id = mysqli_real_escape_string($koneksi, $_GET['id']);
 
 // Query delete
 $query = "DELETE FROM kategori WHERE id = '$id'";
+$submit = mysqli_query($koneksi, $query);
 
 if(mysqli_query($koneksi, $query)) {
     // Redirect ke halaman data dengan pesan sukses
