@@ -84,7 +84,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             font-size: 0.875rem;
             color: #666;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            /* -webkit-line-clamp: 2; */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
