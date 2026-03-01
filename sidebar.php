@@ -197,29 +197,12 @@
                 </ul>
             </li>
 
-            <!-- Profil -->
+            <!-- Setting Profil -->
             <li class="nav-item">
-                <a href="#menuProfil" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['profil-kontak.php', 'profil-tentang.php', 'profil-medsos.php']) ? 'true' : 'false'; ?>">
+                <a href="setting-profil.php" class="nav-link <?php echo $current_page === 'setting-profil.php' ? 'active' : ''; ?>">
                     <i class="bi bi-gear"></i>
-                    <span>Profil</span>
+                    <span>Setting Profil</span>
                 </a>
-                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['profil-kontak.php', 'profil-tentang.php', 'profil-medsos.php']) ? 'show active' : ''; ?>" id="menuProfil">
-                    <li class="nav-item">
-                        <a href="profil-kontak.php" class="nav-link <?php echo $current_page === 'profil-kontak.php' ? 'active' : ''; ?>">
-                            <span>Nomor Kontak</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="profil-tentang.php" class="nav-link <?php echo $current_page === 'profil-tentang.php' ? 'active' : ''; ?>">
-                            <span>Tentang Kami</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="profil-medsos.php" class="nav-link <?php echo $current_page === 'profil-medsos.php' ? 'active' : ''; ?>">
-                            <span>Media Sosial</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
         </ul>
 
