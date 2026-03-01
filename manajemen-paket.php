@@ -58,7 +58,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data paket wisata di bawah ini dengan benar</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-paket.php">
+                                <form method="POST" action="src/api/submit-manajemen-paket.php" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label class="form-label">Nama Paket:</label>
                                     <input class="form-control" type="text" name="nama_paket" placeholder="Contoh: Bali Paradise Escape" required>
@@ -66,7 +66,14 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                                 <div class="mb-3">
                                     <label class="form-label">Durasi:</label>
-                                    <input class="form-control" type="text" name="durasi" placeholder="Contoh: 5 Hari 4 Malam" required>
+                                    <div class="row g-2">
+                                        <div class="col">
+                                            <input class="form-control" type="number" name="durasi_hari" min="1" placeholder="Hari" required>
+                                        </div>
+                                        <div class="col">
+                                            <input class="form-control" type="number" name="durasi_malam" min="0" placeholder="Malam" required>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
@@ -76,17 +83,29 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                                 <div class="mb-3">
                                     <label class="form-label">Harga (Rp):</label>
-                                    <input class="form-control" type="number" name="harga" placeholder="Contoh: 4500000" required>
+                                    <input class="form-control" type="text" name="harga" pattern="^\\d{1,18}$" maxlength="18" placeholder="Contoh: 4500000" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">URL Gambar:</label>
-                                    <input class="form-control" type="url" name="gambar" placeholder="https://..." required>
+                                    <label class="form-label">Upload Gambar:</label>
+                                    <input class="form-control" type="file" name="gambar" accept="image/*" required>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Label (Opsional):</label>
-                                    <input class="form-control" type="text" name="label" placeholder="Contoh: Promo, Hot Deal">
+                                    <label class="form-label">Label:</label>
+                                    <div>
+                                        <?php $labelOptions = ['Promo', 'Hot Deal', 'Best Seller', 'Baru', 'Spesial']; ?>
+                                        <?php foreach ($labelOptions as $label): ?>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="label" id="label_<?php echo $label; ?>" value="<?php echo $label; ?>">
+                                                <label class="form-check-label" for="label_<?php echo $label; ?>"><?php echo $label; ?></label>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="label" id="label_none" value="" checked>
+                                            <label class="form-check-label" for="label_none">Tanpa Label</label>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
