@@ -11,8 +11,7 @@ $harga = (int)$_POST['harga'];
 $label = $_POST['label'] ?? "";
 $rating = (int)$_POST['rating'] ?? 5;
 
-// handle upload gambar - jika ada file gambra baru
-$gambar = $_POST['gambar_lama'] ?? ""; // default ke gambar lama
+$gambar = $_POST['gambar'] ?? "";
 if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
     $target_dir = "../../uploads/";
     if (!file_exists($target_dir)) {
@@ -27,7 +26,12 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
     }
 }
 
-$update = mysqli_query($koneksi, "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, gambar = '$gambar', label = '$label', rating = $rating WHERE id = $id");
+if($gambar == "") {
+	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, label = '$label', rating = $rating WHERE id = $id";
+} else {
+	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, gambar = '$gambar', label = '$label', rating = $rating WHERE id = $id";
+}
+$update = mysqli_query($koneksi, $query);
 
 if ($update == TRUE) {
     header("location: ../../data-manajemen-paket.php?success=Data berhasil diperbarui.");
