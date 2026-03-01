@@ -106,7 +106,7 @@ CREATE TABLE `manajemen_customer` (
   `id` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `handphone` int(11) NOT NULL,
+  `handphone` varchar(25) NOT NULL,
   `alamat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
