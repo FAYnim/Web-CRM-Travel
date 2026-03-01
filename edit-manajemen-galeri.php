@@ -10,12 +10,8 @@ $editData = null;
 if (isset($_GET["id"]) && $_GET["id"]) {
     $editId = (int)$_GET["id"];
     if ($editId > 0) {
-        $stmt = $koneksi->prepare("SELECT * FROM galeri WHERE id = ?");
-        $stmt->bind_param("i", $editId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $editData = $result->fetch_assoc();
-        $stmt->close();
+        $result = mysqli_query($koneksi, "SELECT * FROM galeri WHERE id = $editId");
+        $editData = mysqli_fetch_assoc($result);
     }
 }
 
