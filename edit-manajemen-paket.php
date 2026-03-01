@@ -71,7 +71,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <?php echo $editData ? 'Edit' : 'Tambah'; ?> Paket Wifi
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="src/api/<?php echo $editData ? 'update-manajemen-paket.php' : 'submit-manajemen-paket.php'; ?>">
+                        <form method="POST" action="src/api/<?php echo $editData ? 'update-manajemen-paket.php' : 'submit-manajemen-paket.php'; ?>" enctype="multipart/form-data">
                             <?php if ($editData): ?>
                                 <input type="hidden" name="id" value="<?php echo $editData['id']; ?>">
                             <?php endif; ?>
@@ -83,7 +83,14 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                             <div class="mb-3">
                                 <label class="form-label">Durasi</label>
-                                <input type="text" name="durasi" class="form-control" value="<?php echo htmlspecialchars($editData['durasi'] ?? ''); ?>" placeholder="5 Hari 4 Malam" required>
+                                <div class="row g-2">
+                                    <div class="col">
+                                        <input type="number" name="durasi_hari" class="form-control" min="1" value="<?php echo isset($editData['durasi']) ? (int)explode(' ', $editData['durasi'])[0] : ''; ?>" placeholder="Hari" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="number" name="durasi_malam" class="form-control" min="0" value="<?php echo isset($editData['durasi']) ? (int)explode(' ', $editData['durasi'])[2] : ''; ?>" placeholder="Malam" required>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -93,17 +100,34 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                             <div class="mb-3">
                                 <label class="form-label">Harga (Rp)</label>
-                                <input type="number" name="harga" class="form-control" value="<?php echo htmlspecialchars($editData['harga'] ?? ''); ?>" placeholder="4500000" required>
+                                <input type="text" name="harga" class="form-control" pattern="^\\d{1,18}$" maxlength="18" value="<?php echo htmlspecialchars($editData['harga'] ?? ''); ?>" placeholder="4500000" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">URL Gambar</label>
-                                <input type="url" name="gambar" class="form-control" value="<?php echo htmlspecialchars($editData['gambar'] ?? ''); ?>" placeholder="https://..." required>
+                                <label class="form-label">Upload Gambar</label>
+                                <input type="file" name="gambar" class="form-control" accept="image/*" <?php echo empty($editData['gambar']) ? 'required' : ''; ?>>
+                                <?php if (!empty($editData['gambar'])): ?>
+                                    <div class="mt-2">
+                                        <img src="<?php echo htmlspecialchars($editData['gambar']); ?>" alt="Preview" style="max-width: 200px; max-height: 150px;">
+                                    </div>
+                                <?php endif; ?>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Label (Opsional)</label>
-                                <input type="text" name="label" class="form-control" value="<?php echo htmlspecialchars($editData['label'] ?? ''); ?>" placeholder="Promo / Hot Deal">
+                                <label class="form-label">Label</label>
+                                <div>
+                                    <?php $labelOptions = ['Promo', 'Hot Deal', 'Best Seller', 'Baru', 'Spesial']; ?>
+                                    <?php foreach ($labelOptions as $label): ?>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="label" id="label_<?php echo $label; ?>" value="<?php echo $label; ?>" <?php echo (isset($editData['label']) && $editData['label'] == $label) ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="label_<?php echo $label; ?>"><?php echo $label; ?></label>
+                                        </div>
+                                    <?php endforeach; ?>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="label" id="label_none" value="" <?php echo (empty($editData['label'])) ? 'checked' : ''; ?>>
+                                        <label class="form-check-label" for="label_none">Tanpa Label</label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mb-3">
