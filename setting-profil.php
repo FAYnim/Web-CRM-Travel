@@ -46,7 +46,7 @@ if(!$profil) {
 <body>
 
     <!-- Sidebar -->
-    <?= include "sidebar.php"?>
+    <?php include "sidebar.php"; ?>
 
     <!-- Overlay for mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
