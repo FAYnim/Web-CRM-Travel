@@ -119,10 +119,22 @@
 
             <!-- Galeri -->
             <li class="nav-item">
-                <a href="manajemen-galeri.php" class="nav-link <?php echo $current_page === 'manajemen-galeri.php' ? 'active' : ''; ?>">
+                <a href="#menuGaleri" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-galeri.php', 'data-manajemen-galeri.php', 'edit-manajemen-galeri.php']) ? 'true' : 'false'; ?>">
                     <i class="bi bi-images"></i>
                     <span>Galeri</span>
                 </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-galeri.php', 'data-manajemen-galeri.php', 'edit-manajemen-galeri.php']) ? 'show active' : ''; ?>" id="menuGaleri">
+                    <li class="nav-item">
+                        <a href="data-manajemen-galeri.php" class="nav-link <?php echo $current_page === 'data-manajemen-galeri.php' ? 'active' : ''; ?>">
+                            <span>Data Galeri</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-galeri.php" class="nav-link <?php echo $current_page === 'manajemen-galeri.php' ? 'active' : ''; ?>">
+                            <span>Tambah Galeri</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <!-- Testimoni -->
