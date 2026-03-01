@@ -79,30 +79,24 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <input class="form-control" type="number" min="0" name="jumlah" placeholder="Isi Dengan Jumlah..." required>
                                 </div>
 
-                                <!-- <div class="mb-3">
-                                    <label class="form-label">Metode:</label>
-                                    <input class="form-control" type="radio" name="metode" placeholder="Isi Dengan Metode..." required>
-                                </div> -->
+                                <div class="mb-3">                                    
+								  <label class="form-label d-block">Metode:</label>
 
-                                <div class="mb-3">
-                                    
-  <label class="form-label d-block">Metode:</label>
+								  <div class="form-check">
+									<input class="form-check-input" type="radio" name="metode" value="Transfer Bank" required>
+									<label class="form-check-label">Transfer Bank</label>
+								  </div>
 
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="metode" value="Transfer Bank" required>
-    <label class="form-check-label">Transfer Bank</label>
-  </div>
+								  <div class="form-check">
+									<input class="form-check-input" type="radio" name="metode" value="QRIS">
+									<label class="form-check-label">QRIS</label>
+								  </div>
 
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="metode" value="QRIS">
-    <label class="form-check-label">QRIS</label>
-  </div>
-
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="metode" value="Cash">
-    <label class="form-check-label">Cash</label>
-  </div>
-</div>
+								  <div class="form-check">
+									<input class="form-check-input" type="radio" name="metode" value="Cash">
+									<label class="form-check-label">Cash</label>
+								  </div>
+								</div>
 
                                 <div class="d-flex gap-2">
                                     <button class="btn btn-primary" type="submit">
