@@ -29,13 +29,11 @@ if ($gambar == "") {
     exit;
 }
 
-$stmt = $koneksi->prepare("INSERT INTO galeri (judul, deskripsi, gambar) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $judul, $deskripsi, $gambar);
+$submit = mysqli_query($koneksi, "INSERT INTO galeri (judul, deskripsi, gambar) VALUES ('$judul', '$deskripsi', '$gambar')");
 
-if ($stmt->execute()) {
+if ($submit == TRUE) {
     header("location: ../../manajemen-galeri.php?success=Foto berhasil ditambahkan ke galeri.");
 } else {
     header("location: ../../manajemen-galeri.php?error=Gagal menyimpan data.");
 }
-$stmt->close();
 ?>

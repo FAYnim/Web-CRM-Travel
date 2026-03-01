@@ -6,12 +6,8 @@ $judul = $_POST['judul'];
 $deskripsi = $_POST['deskripsi'] ?? '';
 
 // Ambil gambar lama
-$stmt = $koneksi->prepare("SELECT gambar FROM galeri WHERE id = ?");
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
-$data = $result->fetch_assoc();
-$stmt->close();
+$result = mysqli_query($koneksi, "SELECT gambar FROM galeri WHERE id = $id");
+$data = mysqli_fetch_assoc($result);
 
 $gambar = $data['gambar'] ?? '';
 
@@ -41,13 +37,11 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
     }
 }
 
-$stmt = $koneksi->prepare("UPDATE galeri SET judul = ?, deskripsi = ?, gambar = ? WHERE id = ?");
-$stmt->bind_param("sssi", $judul, $deskripsi, $gambar, $id);
+$update = mysqli_query($koneksi, "UPDATE galeri SET judul = '$judul', deskripsi = '$deskripsi', gambar = '$gambar' WHERE id = $id");
 
-if ($stmt->execute()) {
+if ($update == TRUE) {
     header("location: ../../manajemen-galeri.php?success=Foto berhasil diperbarui.");
 } else {
     header("location: ../../manajemen-galeri.php?error=Gagal memperbarui data.");
 }
-$stmt->close();
 ?>
