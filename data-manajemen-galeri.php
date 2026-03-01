@@ -67,11 +67,8 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             right: 10px;
             display: flex;
             gap: 5px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .gallery-card:hover .card-actions {
             opacity: 1;
+            z-index: 10;
         }
         .gallery-card .card-actions .btn {
             width: 32px;
