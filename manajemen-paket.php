@@ -83,7 +83,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                                 <div class="mb-3">
                                     <label class="form-label">Harga (Rp):</label>
-                                    <input class="form-control" type="text" name="harga" pattern="^\\d{1,18}$" maxlength="18" placeholder="Contoh: 4500000" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                    <input class="form-control" type="text" name="harga" maxlength="18" placeholder="Contoh: 4500000" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                                 </div>
 
                                 <div class="mb-3">

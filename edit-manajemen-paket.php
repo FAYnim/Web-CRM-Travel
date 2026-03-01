@@ -20,7 +20,7 @@ if (isset($_GET["id"]) && $_GET["id"]) {
     }
 }
 
-$page_title = $editData ? 'Edit Paket Wifi' : 'Tambah Paket Wifi';
+$page_title = $editData ? 'Edit Paket Wisata' : 'Tambah Paket Wisata';
 $current_page = basename($_SERVER['SCRIPT_NAME']);
 ?>
 <!DOCTYPE html>
@@ -100,7 +100,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                             <div class="mb-3">
                                 <label class="form-label">Harga (Rp)</label>
-                                <input type="text" name="harga" class="form-control" pattern="^\\d{1,18}$" maxlength="18" value="<?php echo htmlspecialchars($editData['harga'] ?? ''); ?>" placeholder="4500000" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                                <input type="text" name="harga" class="form-control" maxlength="18" value="<?php echo htmlspecialchars($editData['harga'] ?? ''); ?>" placeholder="4500000" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                             </div>
 
                             <div class="mb-3">
