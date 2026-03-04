@@ -80,7 +80,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                                     <div class="col-md-5 mb-3">
                                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                                        <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi singkat foto (opsional)">
+										<textarea class="form-control" id="deskripsi" name="deskripsi" rows="2" placeholder="Deskripsi singkat foto (opsional)"></textarea>
                                     </div>
 
                                     <div class="col-md-3 mb-3">
