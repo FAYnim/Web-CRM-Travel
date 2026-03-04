@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `galeri` (
   `id` int(11) NOT NULL,
   `judul` varchar(120) NOT NULL,
-  `deskripsi` text DEFAULT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
   `gambar` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44,7 +44,7 @@ CREATE TABLE `galeri` (
 CREATE TABLE `kategori` (
   `id` int(11) NOT NULL,
   `nama_kategori` varchar(100) NOT NULL,
-  `deskripsi` text DEFAULT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
   `status` enum('Aktif','Tidak Aktif') DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -139,7 +139,7 @@ CREATE TABLE `partner_maskapai` (
   `nama_maskapai` varchar(100) NOT NULL,
   `kode_maskapai` varchar(10) NOT NULL,
   `negara_asal` varchar(100) NOT NULL,
-  `deskripsi` text DEFAULT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
   `status` enum('Aktif','Tidak Aktif') DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
