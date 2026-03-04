@@ -20,6 +20,11 @@ $status = mysqli_real_escape_string($koneksi, $_POST['status']);
 $tanggal_bergabung = mysqli_real_escape_string($koneksi, $_POST['tanggal_bergabung']);
 $keterangan = mysqli_real_escape_string($koneksi, $_POST['keterangan']);
 
+if (mb_strlen($keterangan) > 250) {
+    header("Location: ../../manajemen-klien-korporasi.php?status=error&message=Deskripsi maksimal 250 karakter");
+    exit;
+}
+
 // Query insert
 $query = "INSERT INTO klien_korporasi (nama_perusahaan, alamat, telepon, email, nama_pic, jabatan_pic, telepon_pic, email_pic, status, tanggal_bergabung, keterangan)
           VALUES ('$nama_perusahaan', '$alamat', '$telepon', '$email', '$nama_pic', '$jabatan_pic', '$telepon_pic', '$email_pic', '$status', '$tanggal_bergabung', '$keterangan')";
