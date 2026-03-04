@@ -14,6 +14,11 @@ $negara_asal = mysqli_real_escape_string($koneksi, $_POST['negara_asal']);
 $deskripsi = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
 $status = mysqli_real_escape_string($koneksi, $_POST['status']);
 
+if (mb_strlen($deskripsi) > 250) {
+    header("Location: ../../manajemen-partner.php?status=error&message=Deskripsi maksimal 250 karakter");
+    exit;
+}
+
 // Query insert
 $query = "INSERT INTO partner_maskapai (nama_maskapai, kode_maskapai, negara_asal, deskripsi, status) VALUES ('$nama_maskapai', '$kode_maskapai', '$negara_asal', '$deskripsi', '$status')";
 $submit = mysqli_query($koneksi, $query);
