@@ -59,14 +59,10 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
 
                             <form method="POST" action="src/api/submit-manajemen-pembayaran.php">
+                                
                                 <div class="mb-3">
-                                    <label class="form-label">Nomer:</label>
-                                    <input class="form-control" type="text" name="nomer" placeholder="Isi Dengan Nomer..." required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Booking:</label>
-                                    <input class="form-control" type="text" name="booking" placeholder="Isi Dengan Booking..." required>
+                                    <label class="form-label">Kode Booking</label>
+                                    <input type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -79,29 +75,43 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <input class="form-control" type="number" min="0" name="jumlah" placeholder="Isi Dengan Jumlah..." required>
                                 </div>
 
-                                <div class="mb-3">                                    
-								  <label class="form-label d-block">Metode:</label>
+                                <div class="mb-3">
+<label class="form-label">Metode Pembayaran</label>
 
-								  <div class="form-check">
-									<input class="form-check-input" type="radio" name="metode" value="Transfer Bank" required>
-									<label class="form-check-label">Transfer Bank</label>
-								  </div>
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="transfer bank" required>
+<label class="form-check-label">
+<i class="fa-solid fa-building-columns text-primary"></i>
+Transfer Bank
+</label>
+</div>
 
-								  <div class="form-check">
-									<input class="form-check-input" type="radio" name="metode" value="QRIS">
-									<label class="form-check-label">QRIS</label>
-								  </div>
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="qris">
+<label class="form-check-label">
+<i class="fa-solid fa-qrcode text-success"></i>
+QRIS
+</label>
+</div>
 
-								  <div class="form-check">
-									<input class="form-check-input" type="radio" name="metode" value="Cash">
-									<label class="form-check-label">Cash</label>
-								  </div>
-								</div>
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="cash">
+<label class="form-check-label">
+<i class="fa-solid fa-money-bill text-warning"></i>
+Cash
+</label>
+</div>
 
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="bi bi-check-lg me-1"></i>Submit
-                                    </button>
+</div>
+
+<div class="mb-3">
+<label class="form-label">Upload Bukti Transfer</label>
+<input type="file" name="bukti_transfer" class="form-control">
+</div>
+
+<button class="btn btn-success">
+<i class="fa-solid fa-floppy-disk"></i> Simpan Pembayaran
+</button>
                                     <a href="data-manajemen-pembayaran.php" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
@@ -136,3 +146,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
     </script>
 </body>
 </html>
+
+
+
+
