@@ -4,11 +4,6 @@ include('../../config.php');
 $judul = $_POST['judul'];
 $deskripsi = $_POST['deskripsi'] ?? '';
 
-if (mb_strlen($deskripsi) > 250) {
-    header("location: ../../manajemen-galeri.php?status=error&message=Deskripsi maksimal 250 karakter");
-    exit;
-}
-
 // handle upload gambar
 $gambar = "";
 if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
@@ -34,8 +29,7 @@ if ($gambar == "") {
     exit;
 }
 
-$query = "INSERT INTO galeri (judul, deskripsi, gambar) VALUES ('$judul', '$deskripsi', '$gambar')";
-$submit = mysqli_query($koneksi, $query);
+$submit = mysqli_query($koneksi, "INSERT INTO galeri (judul, deskripsi, gambar) VALUES ('$judul', '$deskripsi', '$gambar')");
 
 if ($submit == TRUE) {
     header("location: ../../data-manajemen-galeri.php?status=success&message=Foto berhasil ditambahkan ke galeri.");
