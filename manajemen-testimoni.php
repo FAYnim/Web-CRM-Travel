@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Tambah Testimoni';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -66,7 +66,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data testimoni pelanggan dengan benar</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-testimoni.php">
+                            <form method="POST" action="src/api/submit-manajemen-testimoni">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_pelanggan" class="form-label">Nama Pelanggan <span class="text-danger">*</span></label>
@@ -104,7 +104,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-lg me-1"></i>Submit
                                     </button>
-                                    <a href="data-manajemen-testimoni.php" class="btn btn-secondary">Batal</a>
+                                    <a href="data-manajemen-testimoni" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

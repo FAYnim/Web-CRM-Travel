@@ -1,8 +1,8 @@
 <?php
     include '../../config.php';
 
-    $redir_failed = "../../login.php";
-    $redir_success = "../../index.php";
+    $redir_failed = "../../login";
+    $redir_success = "../../index";
 
     $email = $_POST['inp-email'];
     $password = $_POST['inp-password'];

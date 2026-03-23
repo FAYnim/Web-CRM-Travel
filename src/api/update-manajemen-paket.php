@@ -34,7 +34,7 @@ if($gambar == "") {
 $update = mysqli_query($koneksi, $query);
 
 if ($update == TRUE) {
-    header("location: ../../data-manajemen-paket.php?success=Data berhasil diperbarui.");
+    header("location: ../../data-manajemen-paket?success=Data berhasil diperbarui.");
 } else {
     echo "Gagal Memperbarui";
 }

@@ -2,7 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 // Ambil data galeri berdasarkan ID
@@ -17,12 +17,12 @@ if (isset($_GET["id"]) && $_GET["id"]) {
 
 // Jika data tidak ditemukan, redirect ke data galeri
 if (!$editData) {
-    header("Location: data-manajemen-galeri.php?status=error&message=Data tidak ditemukan");
+    header("Location: data-manajemen-galeri?status=error&message=Data tidak ditemukan");
     exit;
 }
 
 $page_title = 'Edit Galeri';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -89,7 +89,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan edit data foto dengan mengisi form di bawah ini</p>
 
-                            <form method="POST" action="src/api/update-manajemen-galeri.php" enctype="multipart/form-data">
+                            <form method="POST" action="src/api/update-manajemen-galeri" enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="<?php echo $editData['id']; ?>">
 
                                 <div class="row">
@@ -128,7 +128,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-lg me-1"></i>Update
                                     </button>
-                                    <a href="data-manajemen-galeri.php" class="btn btn-secondary">Batal</a>
+                                    <a href="data-manajemen-galeri" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

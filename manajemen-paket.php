@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Tambah Paket Wisata';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -58,7 +58,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data paket wisata di bawah ini dengan benar</p>
 
-                                <form method="POST" action="src/api/submit-manajemen-paket.php" enctype="multipart/form-data">
+                                <form method="POST" action="src/api/submit-manajemen-paket" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label class="form-label">Nama Paket:</label>
                                     <input class="form-control" type="text" name="nama_paket" placeholder="Contoh: Bali Paradise Escape" required>
@@ -117,7 +117,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <button class="btn btn-primary" type="submit">
                                         <i class="bi bi-check-lg me-1"></i>Simpan
                                     </button>
-                                    <a href="data-manajemen-paket.php" class="btn btn-secondary">Batal</a>
+                                    <a href="data-manajemen-paket" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

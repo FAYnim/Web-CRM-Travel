@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Tambah Pembayaran';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -58,7 +58,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-pembayaran.php">
+                            <form method="POST" action="src/api/submit-manajemen-pembayaran">
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
@@ -112,7 +112,7 @@ Cash
 <button class="btn btn-success">
 <i class="fa-solid fa-floppy-disk"></i> Simpan Pembayaran
 </button>
-                                    <a href="data-manajemen-pembayaran.php" class="btn btn-secondary">Batal</a>
+                                    <a href="data-manajemen-pembayaran" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

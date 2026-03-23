@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Setting Profil';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
 // Ambil data profil dari database
 $query = "SELECT * FROM profil WHERE id = 1";
@@ -95,7 +95,7 @@ if(!$profil) {
                         <div class="card-body">
                             <p class="text-muted mb-4">Kelola informasi profil perusahaan Anda</p>
 
-                            <form method="POST" action="src/api/submit-setting-profil.php">
+                            <form method="POST" action="src/api/submit-setting-profil">
                                 <!-- Nav Tabs -->
                                 <ul class="nav nav-tabs mb-4" id="profilTab" role="tablist">
                                     <li class="nav-item" role="presentation">
@@ -184,7 +184,7 @@ if(!$profil) {
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-save me-1"></i>Simpan Perubahan
                                     </button>
-                                    <a href="index.php" class="btn btn-secondary">Batal</a>
+                                    <a href="index" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

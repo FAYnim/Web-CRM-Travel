@@ -2,24 +2,24 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 if(empty($id)) {
-    header("Location: data-manajemen-klien-korporasi.php");
+    header("Location: data-manajemen-klien-korporasi");
     exit;
 }
 
 $query = mysqli_query($koneksi, "SELECT * FROM klien_korporasi WHERE id='$id'");
 if(mysqli_num_rows($query) == 0) {
-    header("Location: data-manajemen-klien-korporasi.php?status=error&message=Data tidak ditemukan");
+    header("Location: data-manajemen-klien-korporasi?status=error&message=Data tidak ditemukan");
     exit;
 }
 $data = mysqli_fetch_array($query);
 
 $page_title = 'Edit Klien Korporasi';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -79,7 +79,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan edit data klien korporasi dengan benar</p>
 
-                            <form method="POST" action="src/api/update-manajemen-klien-korporasi.php">
+                            <form method="POST" action="src/api/update-manajemen-klien-korporasi">
                                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
                                 <!-- Informasi Perusahaan -->
@@ -158,7 +158,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-save me-2"></i>Update
                                     </button>
-                                    <a href="data-manajemen-klien-korporasi.php" class="btn btn-secondary">
+                                    <a href="data-manajemen-klien-korporasi" class="btn btn-secondary">
                                         <i class="bi bi-x-circle me-2"></i>Batal
                                     </a>
                                 </div>

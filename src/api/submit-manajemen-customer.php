@@ -14,7 +14,7 @@ $alamat = $_POST['alamat'];
 $submit = mysqli_query($koneksi,"INSERT INTO manajemen_customer (nama,email,handphone,alamat) VALUES ('$nama','$email','$handphone','$alamat')");
 
 if($submit == TRUE){
-    header("location: ../../data-manajemen-customer.php");
+    header("location: ../../data-manajemen-customer");
     // echo "Berhasil Tersimpan ke Database";
 }else{
     echo "Gagal Tersimpan";

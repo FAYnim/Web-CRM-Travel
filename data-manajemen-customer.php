@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Data Customer';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -52,7 +52,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-people me-2"></i>Data Customer</span>
-                    <a href="manajemen-customer.php" class="btn btn-primary btn-sm">
+                    <a href="manajemen-customer" class="btn btn-primary btn-sm">
                         <i class="bi bi-person-plus me-1"></i>Tambah Customer Baru
                     </a>
                 </div>
@@ -84,10 +84,10 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <td><?php echo htmlspecialchars($baris['handphone']); ?></td>
                                     <td><?php echo htmlspecialchars($baris['alamat']); ?></td>
                                     <td>
-                                        <a href="edit-manajemen-customer.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
+                                        <a href="edit-manajemen-customer?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
-                                        <a href="src/api/hapus-manajemen-customer.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                        <a href="src/api/hapus-manajemen-customer?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>

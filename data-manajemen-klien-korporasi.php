@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Data Klien Korporasi';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -65,7 +65,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-building me-2"></i>Data Klien Korporasi</span>
-                    <a href="manajemen-klien-korporasi.php" class="btn btn-primary btn-sm">
+                    <a href="manajemen-klien-korporasi" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus-circle me-1"></i>Tambah Klien Baru
                     </a>
                 </div>
@@ -108,10 +108,10 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <a href="edit-manajemen-klien-korporasi.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
+                                        <a href="edit-manajemen-klien-korporasi?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
-                                        <a href="src/api/hapus-manajemen-klien-korporasi.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus klien korporasi ini?')">
+                                        <a href="src/api/hapus-manajemen-klien-korporasi?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus klien korporasi ini?')">
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>

@@ -10,7 +10,7 @@ $submit = mysqli_query($koneksi,"INSERT INTO manajemen_pembayaran (booking,tangg
 
 if($submit == TRUE){
     // echo "Berhasil Tersimpan ke Database";
-	header("Location: ../../data-manajemen-pembayaran.php");
+	header("Location: ../../data-manajemen-pembayaran");
 }else{
     echo "Gagal Tersimpan";
 }

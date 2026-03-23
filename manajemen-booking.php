@@ -2,7 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 // Fetch customers from database
@@ -14,7 +14,7 @@ $query_paket = mysqli_query($koneksi, "SELECT id, nama_paket FROM manajemen_pake
 $pakets = mysqli_fetch_all($query_paket, MYSQLI_ASSOC);
 
 $page_title = 'Tambah Booking';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -66,7 +66,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silahkan isi data-dessous ini dengan benar.</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-booking.php">
+                            <form method="POST" action="src/api/submit-manajemen-booking">
                                 <div class="mb-3">
                                     <label class="form-label">Customer :</label>
                                     <select class="form-select" name="nama" required>
@@ -91,7 +91,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <button class="btn btn-primary" type="submit">
                                         <i class="bi bi-check-lg me-1"></i>Kirim
                                     </button>
-                                    <a href="data-manajemen-booking.php" class="btn btn-secondary">Batal</a>
+                                    <a href="data-manajemen-booking" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

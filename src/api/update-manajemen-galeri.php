@@ -40,8 +40,8 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
 $update = mysqli_query($koneksi, "UPDATE galeri SET judul = '$judul', deskripsi = '$deskripsi', gambar = '$gambar' WHERE id = $id");
 
 if ($update == TRUE) {
-    header("location: ../../data-manajemen-galeri.php?status=success&message=Foto berhasil diperbarui.");
+    header("location: ../../data-manajemen-galeri?status=success&message=Foto berhasil diperbarui.");
 } else {
-    header("location: ../../data-manajemen-galeri.php?status=error&message=Gagal memperbarui data.");
+    header("location: ../../data-manajemen-galeri?status=error&message=Gagal memperbarui data.");
 }
 ?>

@@ -17,7 +17,7 @@ if(isset($_POST['id'])){
         WHERE id='$id'");
 
     if($update){
-        header("Location: ../../data-manajemen-pembayaran.php");
+        header("Location: ../../data-manajemen-pembayaran");
         // echo "Berhasil Terupdate ke Database";
     }else{
         echo "Gagal Terupdate: " . mysqli_error($koneksi);

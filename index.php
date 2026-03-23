@@ -3,7 +3,7 @@ include 'config.php';
 
 // print_r($_SESSION);
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Dashboard';
@@ -28,7 +28,7 @@ $recent_bookings = mysqli_query($koneksi, "SELECT b.id, c.nama as customer, p.na
 $recent_payments = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran ORDER BY id DESC LIMIT 5");
 
 // Determine current page for active state highlighting
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -85,7 +85,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             </div>
                         </div>
                         <div class="mt-3">
-                            <a href="data-manajemen-customer.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
+                            <a href="data-manajemen-customer" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             </div>
                         </div>
                         <div class="mt-3">
-                            <a href="data-manajemen-booking.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
+                            <a href="data-manajemen-booking" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             </div>
                         </div>
                         <div class="mt-3">
-                            <a href="data-manajemen-paket.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
+                            <a href="data-manajemen-paket" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             </div>
                         </div>
                         <div class="mt-3">
-                            <a href="data-manajemen-pembayaran.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
+                            <a href="data-manajemen-pembayaran" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -148,16 +148,16 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap gap-2">
-                                <a href="manajemen-customer.php" class="btn btn-outline-primary btn-sm">
+                                <a href="manajemen-customer" class="btn btn-outline-primary btn-sm">
                                     <i class="bi bi-person-plus me-1"></i> Tambah Customer
                                 </a>
-                                <a href="manajemen-booking.php" class="btn btn-outline-success btn-sm">
+                                <a href="manajemen-booking" class="btn btn-outline-success btn-sm">
                                     <i class="bi bi-calendar-plus me-1"></i> Tambah Booking
                                 </a>
-                                <a href="manajemen-paket.php" class="btn btn-outline-warning btn-sm">
+                                <a href="manajemen-paket" class="btn btn-outline-warning btn-sm">
                                     <i class="bi bi-plus-circle me-1"></i> Tambah Paket
                                 </a>
-                                <a href="manajemen-pembayaran.php" class="btn btn-outline-info btn-sm">
+                                <a href="manajemen-pembayaran" class="btn btn-outline-info btn-sm">
                                     <i class="bi bi-cash-stack me-1"></i> Tambah Pembayaran
                                 </a>
                             </div>
@@ -173,7 +173,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     <div class="dashboard-card">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <span><i class="bi bi-calendar-check me-2"></i>Booking Terbaru</span>
-                            <a href="data-manajemen-booking.php" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
+                            <a href="data-manajemen-booking" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -218,7 +218,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     <div class="dashboard-card">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <span><i class="bi bi-credit-card me-2"></i>Pembayaran Terbaru</span>
-                            <a href="data-manajemen-pembayaran.php" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
+                            <a href="data-manajemen-pembayaran" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">

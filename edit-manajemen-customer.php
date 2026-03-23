@@ -2,7 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $id = $_GET['id'];
@@ -10,7 +10,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM manajemen_customer WHERE id='$id'
 $data = mysqli_fetch_array($query);
 
 $page_title = 'Edit Customer';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -61,7 +61,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     <div class="card-body">
                         <p class="text-muted mb-4">Silakan edit data ini dengan benar</p>
 
-                        <form method="POST" action="src/api/update-manajemen-customer.php">
+                        <form method="POST" action="src/api/update-manajemen-customer">
                             <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
                             <div class="mb-3">
@@ -88,7 +88,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 <button class="btn btn-primary" type="submit">
                                     <i class="bi bi-check-lg me-1"></i>Simpan
                                 </button>
-                                <a href="data-manajemen-customer.php" class="btn btn-secondary">Batal</a>
+                                <a href="data-manajemen-customer" class="btn btn-secondary">Batal</a>
                             </div>
                         </form>
                     </div>

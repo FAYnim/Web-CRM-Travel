@@ -2,7 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 // Ambil semua data paket
@@ -17,7 +17,7 @@ if ($result) {
 $successMsg = $_GET['success'] ?? '';
 
 $page_title = 'Data Paket Wisata';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -75,7 +75,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             <div class="card-body text-center text-muted py-5">
                                 <i class="bi bi-suitcase-lg" style="font-size: 3rem;"></i>
                                 <p class="mt-3">Belum ada paket yang ditambahkan.</p>
-                                <a href="manajemen-paket.php" class="btn btn-primary btn-sm">Tambah Paket Pertama</a>
+                                <a href="manajemen-paket" class="btn btn-primary btn-sm">Tambah Paket Pertama</a>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-gear me-2"></i>Panel Admin - Daftar Paket</span>
-                    <a href="manajemen-paket.php" class="btn btn-primary btn-sm">
+                    <a href="manajemen-paket" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus-circle me-1"></i>Tambah Paket Baru
                     </a>
                 </div>
@@ -162,10 +162,10 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                             <td><?php echo htmlspecialchars($p['lokasi']); ?></td>
                                             <td>Rp <?php echo number_format((int)$p['harga'], 0, ',', '.'); ?></td>
                                             <td>
-                                                <a href="edit-manajemen-paket.php?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-warning">
+                                                <a href="edit-manajemen-paket?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-warning">
                                                     <i class="bi bi-pencil"></i> Edit
                                                 </a>
-                                                <a href="src/api/hapus-manajemen-paket.php?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                <a href="src/api/hapus-manajemen-paket?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                     <i class="bi bi-trash"></i> Hapus
                                                 </a>
                                             </td>

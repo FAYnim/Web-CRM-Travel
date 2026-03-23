@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Tambah Galeri';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -71,7 +71,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan upload foto dengan mengisi form di bawah ini</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-galeri.php" enctype="multipart/form-data">
+                            <form method="POST" action="src/api/submit-manajemen-galeri" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <label for="judul" class="form-label">Judul Foto <span class="text-danger">*</span></label>
@@ -93,7 +93,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-lg me-1"></i>Simpan
                                     </button>
-                                    <a href="data-manajemen-galeri.php" class="btn btn-secondary">Batal</a>
+                                    <a href="data-manajemen-galeri" class="btn btn-secondary">Batal</a>
                                 </div>
                             </form>
                         </div>

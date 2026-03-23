@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Data Galeri';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -136,7 +136,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-images me-2"></i>Data Galeri</span>
-                    <a href="manajemen-galeri.php" class="btn btn-primary btn-sm">
+                    <a href="manajemen-galeri" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus-circle me-1"></i>Tambah Foto Baru
                     </a>
                 </div>
@@ -166,11 +166,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 <div class="col-sm-6 col-md-4 col-lg-3">
                                     <div class="gallery-card h-100">
                                         <div class="card-actions">
-                                            <a href="edit-manajemen-galeri.php?id=<?php echo $item['id']; ?>" 
+                                            <a href="edit-manajemen-galeri?id=<?php echo $item['id']; ?>"
                                                class="btn btn-warning btn-sm" title="Edit">
                                                 <i class="bi bi-pencil-fill text-white"></i>
                                             </a>
-                                            <a href="src/api/hapus-manajemen-galeri.php?id=<?php echo $item['id']; ?>" 
+                                            <a href="src/api/hapus-manajemen-galeri?id=<?php echo $item['id']; ?>"
                                                class="btn btn-danger btn-sm" title="Hapus"
                                                onclick="return confirm('Apakah Anda yakin ingin menghapus foto ini?')">
                                                 <i class="bi bi-trash-fill"></i>

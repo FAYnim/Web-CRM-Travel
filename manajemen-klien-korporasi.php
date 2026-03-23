@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Tambah Klien Korporasi';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -66,7 +66,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data klien korporasi dengan benar</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-klien-korporasi.php">
+                            <form method="POST" action="src/api/submit-manajemen-klien-korporasi">
                                 <!-- Informasi Perusahaan -->
                                 <h6 class="text-primary mb-3"><i class="bi bi-building me-2"></i>Informasi Perusahaan</h6>
                                 <div class="mb-3">
@@ -143,7 +143,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-save me-2"></i>Simpan
                                     </button>
-                                    <a href="data-manajemen-klien-korporasi.php" class="btn btn-secondary">
+                                    <a href="data-manajemen-klien-korporasi" class="btn btn-secondary">
                                         <i class="bi bi-x-circle me-2"></i>Batal
                                     </a>
                                 </div>

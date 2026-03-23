@@ -2,11 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $page_title = 'Data Kategori';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -65,7 +65,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-tags me-2"></i>Data Kategori</span>
-                    <a href="manajemen-kategori.php" class="btn btn-primary btn-sm">
+                    <a href="manajemen-kategori" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus-circle me-1"></i>Tambah Kategori Baru
                     </a>
                 </div>
@@ -102,10 +102,10 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <a href="edit-manajemen-kategori.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
+                                        <a href="edit-manajemen-kategori?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
-                                        <a href="src/api/hapus-manajemen-kategori.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
+                                        <a href="src/api/hapus-manajemen-kategori?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>

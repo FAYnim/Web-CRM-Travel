@@ -3,7 +3,7 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
-    header("Location: ../../login.php");
+    header("Location: ../../login");
     exit;
 }
 
@@ -20,10 +20,10 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
-    header("Location: ../../data-manajemen-testimoni.php?status=success&message=Testimoni berhasil ditambahkan");
+    header("Location: ../../data-manajemen-testimoni?status=success&message=Testimoni berhasil ditambahkan");
 } else {
     // Redirect dengan pesan error
-    header("Location: ../../manajemen-testimoni.php?status=error&message=Gagal menambahkan testimoni");
+    header("Location: ../../manajemen-testimoni?status=error&message=Gagal menambahkan testimoni");
 }
 exit;
 ?>

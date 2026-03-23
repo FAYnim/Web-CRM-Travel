@@ -3,7 +3,7 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
-    header("Location: ../../login.php");
+    header("Location: ../../login");
     exit;
 }
 
@@ -49,10 +49,10 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman setting profil dengan pesan sukses
-    header("Location: ../../setting-profil.php?status=success");
+    header("Location: ../../setting-profil?status=success");
 } else {
     // Redirect dengan pesan error
-    header("Location: ../../setting-profil.php?status=error&message=Gagal menyimpan data profil");
+    header("Location: ../../setting-profil?status=error&message=Gagal menyimpan data profil");
 }
 exit;
 ?>

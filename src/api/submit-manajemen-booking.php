@@ -30,7 +30,7 @@ if(mysqli_num_rows($cek_paket) > 0){
 $submit = mysqli_query($koneksi, "INSERT INTO manajemen_booking (customer_id, paket_id) VALUES ('$customer_id', '$paket_id')");
 
 if($submit == TRUE){
-    header("Location: ../../data-manajemen-booking.php");
+    header("Location: ../../data-manajemen-booking");
 }else{
     echo "Gagal Tersimpan";
 }

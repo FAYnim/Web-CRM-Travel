@@ -3,7 +3,7 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
-    header("Location: ../../login.php");
+    header("Location: ../../login");
     exit;
 }
 
@@ -20,10 +20,10 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
-    header("Location: ../../data-manajemen-partner.php?status=success&message=Partner maskapai berhasil ditambahkan");
+    header("Location: ../../data-manajemen-partner?status=success&message=Partner maskapai berhasil ditambahkan");
 } else {
     // Redirect dengan pesan error
-    header("Location: ../../manajemen-partner.php?status=error&message=Gagal menambahkan partner maskapai");
+    header("Location: ../../manajemen-partner?status=error&message=Gagal menambahkan partner maskapai");
 }
 exit;
 ?>

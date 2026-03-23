@@ -3,7 +3,7 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
-    header("Location: ../../login.php");
+    header("Location: ../../login");
     exit;
 }
 
@@ -18,10 +18,10 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
-    header("Location: ../../data-manajemen-kategori.php?status=success&message=Kategori berhasil ditambahkan");
+    header("Location: ../../data-manajemen-kategori?status=success&message=Kategori berhasil ditambahkan");
 } else {
     // Redirect dengan pesan error
-    header("Location: ../../manajemen-kategori.php?status=error&message=Gagal menambahkan kategori");
+    header("Location: ../../manajemen-kategori?status=error&message=Gagal menambahkan kategori");
 }
 exit;
 ?>

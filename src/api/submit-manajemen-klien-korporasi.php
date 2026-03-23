@@ -3,7 +3,7 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
-    header("Location: ../../login.php");
+    header("Location: ../../login");
     exit;
 }
 
@@ -28,10 +28,10 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
-    header("Location: ../../data-manajemen-klien-korporasi.php?status=success&message=Klien korporasi berhasil ditambahkan");
+    header("Location: ../../data-manajemen-klien-korporasi?status=success&message=Klien korporasi berhasil ditambahkan");
 } else {
     // Redirect dengan pesan error
-    header("Location: ../../manajemen-klien-korporasi.php?status=error&message=Gagal menambahkan klien korporasi");
+    header("Location: ../../manajemen-klien-korporasi?status=error&message=Gagal menambahkan klien korporasi");
 }
 exit;
 ?>

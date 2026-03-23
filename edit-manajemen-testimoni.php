@@ -2,7 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-    header("Location: login.php");
+    header("Location: login");
 }
 
 $id = $_GET['id'];
@@ -10,7 +10,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM testimoni WHERE id='$id'");
 $data = mysqli_fetch_array($query);
 
 $page_title = 'Edit Testimoni';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -69,7 +69,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     <div class="card-body">
                         <p class="text-muted mb-4">Silakan edit data testimoni dengan benar</p>
 
-                        <form method="POST" action="src/api/update-manajemen-testimoni.php">
+                        <form method="POST" action="src/api/update-manajemen-testimoni">
                             <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
                             <div class="row">
@@ -112,7 +112,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 <button class="btn btn-primary" type="submit">
                                     <i class="bi bi-check-lg me-1"></i>Simpan
                                 </button>
-                                <a href="data-manajemen-testimoni.php" class="btn btn-secondary">Batal</a>
+                                <a href="data-manajemen-testimoni" class="btn btn-secondary">Batal</a>
                             </div>
                         </form>
                     </div>
