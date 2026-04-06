@@ -29,7 +29,11 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
 $submit = mysqli_query($koneksi, "INSERT INTO manajemen_paket (nama_paket, durasi, lokasi, harga, gambar, label, rating) VALUES ('$nama', '$durasi', '$lokasi', $harga, '$gambar', '$label', $rating)");
 
 if ($submit == TRUE) {
+<<<<<<< HEAD
     header("location: ../../data-manajemen-paket.php?success=Data berhasil ditambahkan.");
+=======
+    header("location: ../../data-manajemen-paket?success=Data berhasil ditambahkan.");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 } else {
     echo "Gagal Tersimpan";
 }

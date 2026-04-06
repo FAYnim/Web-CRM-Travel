@@ -2,7 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: login.php");
+=======
+    header("Location: login");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 
 $id = $_GET['id'];
@@ -10,7 +14,11 @@ $query = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran WHERE id='$i
 $data = mysqli_fetch_array($query);
 
 $page_title = 'Edit Pembayaran';
+<<<<<<< HEAD
 $current_page = basename($_SERVER['SCRIPT_NAME']);
+=======
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -61,6 +69,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     <div class="card-body">
                         <p class="text-muted mb-4">Silakan edit data pembayaran dengan benar</p>
 
+<<<<<<< HEAD
                         <form method="POST" action="src/api/update-manajemen-pembayaran.php">
                             <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
@@ -68,6 +77,15 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 <label class="form-label">Booking:</label>
                                 <input class="form-control" type="text" name="booking" value="<?php echo htmlspecialchars($data['booking']); ?>">
                             </div>
+=======
+                        <form method="POST" action="src/api/update-manajemen-pembayaran">
+                            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+
+                            <div class="mb-3">
+                                    <label class="form-label">Kode Booking</label>
+                                    <input type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
+                                </div>
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 
                             <div class="mb-3">
                                 <label class="form-label">Tanggal:</label>
@@ -80,6 +98,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 							</div>
 
 							<div class="mb-3">
+<<<<<<< HEAD
 							  <label class="form-label d-block">Metode:</label>
 
 							  <div class="form-check">
@@ -103,6 +122,45 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <i class="bi bi-check-lg me-1"></i>Simpan
                                 </button>
                                 <a href="data-manajemen-pembayaran.php" class="btn btn-secondary">Batal</a>
+=======
+<label class="form-label">Metode Pembayaran</label>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="transfer bank" required>
+<label class="form-check-label">
+<i class="fa-solid fa-building-columns text-primary"></i>
+Transfer Bank
+</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="qris">
+<label class="form-check-label">
+<i class="fa-solid fa-qrcode text-success"></i>
+QRIS
+</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="cash">
+<label class="form-check-label">
+<i class="fa-solid fa-money-bill text-warning"></i>
+Cash
+</label>
+</div>
+
+</div>
+
+<div class="mb-3">
+<label class="form-label">Upload Bukti Transfer</label>
+<input type="file" name="bukti_transfer" class="form-control">
+</div>
+
+<button class="btn btn-success">
+<i class="fa-solid fa-floppy-disk"></i> Simpan Pembayaran
+</button>
+                                <a href="data-manajemen-pembayaran" class="btn btn-secondary">Batal</a>
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                             </div>
                         </form>
                     </div>

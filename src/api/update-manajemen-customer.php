@@ -17,7 +17,11 @@ if(isset($_POST['id'])){
         WHERE id='$id'");
 
     if($update){
+<<<<<<< HEAD
         header("Location: ../../data-manajemen-customer.php");
+=======
+        header("Location: ../../data-manajemen-customer");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
         // echo "Berhasil Terupdate ke Database";
     }else{
         echo "Gagal Terupdate: " . mysqli_error($koneksi);

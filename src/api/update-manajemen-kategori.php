@@ -3,7 +3,11 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: ../../login.php");
+=======
+    header("Location: ../../login");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
@@ -19,6 +23,7 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
+<<<<<<< HEAD
     header("Location: ../../data-manajemen-kategori.php?status=success&message=Kategori berhasil diupdate");
 } else {
     // Redirect dengan pesan error
@@ -26,3 +31,12 @@ if($submit) {
 }
 exit;
 ?>
+=======
+    header("Location: ../../data-manajemen-kategori?status=success&message=Kategori berhasil diupdate");
+} else {
+    // Redirect dengan pesan error
+    header("Location: ../../edit-manajemen-kategori?id=$id&status=error&message=Gagal mengupdate kategori");
+}
+exit;
+?>
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5

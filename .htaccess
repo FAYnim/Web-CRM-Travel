@@ -1,0 +1,18 @@
+# Mematikan MultiViews agar tidak bentrok dengan pencarian file .php
+Options -MultiViews
+
+RewriteEngine On
+
+# Abaikan file/folder fisik (seperti css, js, gambar) agar tidak terpengaruh aturan di bawahnya
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 1. Redirect URL yang mengandung .php ke versi tanpa ekstensi
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
+RewriteRule ^ /%1 [L,R=301]
+
+# 2. Proses URL tanpa ekstensi agar membaca file .php di server
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]

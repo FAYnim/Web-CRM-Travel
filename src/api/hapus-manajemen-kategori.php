@@ -3,7 +3,11 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: ../../login.php");
+=======
+    header("Location: ../../login");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
@@ -16,6 +20,7 @@ $submit = mysqli_query($koneksi, $query);
 
 if(mysqli_query($koneksi, $query)) {
     // Redirect ke halaman data dengan pesan sukses
+<<<<<<< HEAD
     header("Location: ../../data-manajemen-kategori.php?status=success&message=Kategori berhasil dihapus");
 } else {
     // Redirect dengan pesan error
@@ -23,3 +28,12 @@ if(mysqli_query($koneksi, $query)) {
 }
 exit;
 ?>
+=======
+    header("Location: ../../data-manajemen-kategori?status=success&message=Kategori berhasil dihapus");
+} else {
+    // Redirect dengan pesan error
+    header("Location: ../../data-manajemen-kategori?status=error&message=Gagal menghapus kategori");
+}
+exit;
+?>
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5

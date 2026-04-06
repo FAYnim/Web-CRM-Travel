@@ -3,7 +3,11 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: ../../login.php");
+=======
+    header("Location: ../../login");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
@@ -15,10 +19,17 @@ $query = "DELETE FROM partner_maskapai WHERE id = '$id'";
 
 if(mysqli_query($koneksi, $query)) {
     // Redirect ke halaman data dengan pesan sukses
+<<<<<<< HEAD
     header("Location: ../../data-manajemen-partner.php?status=success&message=Partner maskapai berhasil dihapus");
 } else {
     // Redirect dengan pesan error
     header("Location: ../../data-manajemen-partner.php?status=error&message=Gagal menghapus partner maskapai");
+=======
+    header("Location: ../../data-manajemen-partner?status=success&message=Partner maskapai berhasil dihapus");
+} else {
+    // Redirect dengan pesan error
+    header("Location: ../../data-manajemen-partner?status=error&message=Gagal menghapus partner maskapai");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 exit;
 ?>

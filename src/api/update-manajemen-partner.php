@@ -3,7 +3,11 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: ../../login.php");
+=======
+    header("Location: ../../login");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
@@ -21,10 +25,17 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
+<<<<<<< HEAD
     header("Location: ../../data-manajemen-partner.php?status=success&message=Partner maskapai berhasil diupdate");
 } else {
     // Redirect dengan pesan error
     header("Location: ../../edit-manajemen-partner.php?id=$id&status=error&message=Gagal mengupdate partner maskapai");
+=======
+    header("Location: ../../data-manajemen-partner?status=success&message=Partner maskapai berhasil diupdate");
+} else {
+    // Redirect dengan pesan error
+    header("Location: ../../edit-manajemen-partner?id=$id&status=error&message=Gagal mengupdate partner maskapai");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 exit;
 ?>

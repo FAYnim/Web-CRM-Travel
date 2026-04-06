@@ -2,11 +2,19 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: login.php");
 }
 
 $page_title = 'Data Pembayaran';
 $current_page = basename($_SERVER['SCRIPT_NAME']);
+=======
+    header("Location: login");
+}
+
+$page_title = 'Data Pembayaran';
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -52,7 +60,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-credit-card me-2"></i>Data Pembayaran</span>
+<<<<<<< HEAD
                     <a href="manajemen-pembayaran.php" class="btn btn-primary btn-sm">
+=======
+                    <a href="manajemen-pembayaran" class="btn btn-primary btn-sm">
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         <i class="bi bi-cash-stack me-1"></i>Tambah Pembayaran Baru
                     </a>
                 </div>
@@ -92,10 +104,17 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     </td>
                                     <td><?php echo $baris['tanggal'] ? date('d M Y', strtotime($baris['tanggal'])) : '-'; ?></td>
                                     <td>
+<<<<<<< HEAD
                                         <a href="edit-manajemen-pembayaran.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
                                         <a href="src/api/hapus-manajemen-pembayaran.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+=======
+                                        <a href="edit-manajemen-pembayaran?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </a>
+                                        <a href="src/api/hapus-manajemen-pembayaran?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>

@@ -3,7 +3,11 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: ../../login.php");
+=======
+    header("Location: ../../login");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
@@ -49,10 +53,17 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman setting profil dengan pesan sukses
+<<<<<<< HEAD
     header("Location: ../../setting-profil.php?status=success");
 } else {
     // Redirect dengan pesan error
     header("Location: ../../setting-profil.php?status=error&message=Gagal menyimpan data profil");
+=======
+    header("Location: ../../setting-profil?status=success");
+} else {
+    // Redirect dengan pesan error
+    header("Location: ../../setting-profil?status=error&message=Gagal menyimpan data profil");
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 exit;
 ?>

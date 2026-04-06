@@ -2,11 +2,19 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: login.php");
 }
 
 $page_title = 'Tambah Pembayaran';
 $current_page = basename($_SERVER['SCRIPT_NAME']);
+=======
+    header("Location: login");
+}
+
+$page_title = 'Tambah Pembayaran';
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -58,6 +66,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
 
+<<<<<<< HEAD
                             <form method="POST" action="src/api/submit-manajemen-pembayaran.php">
                                 <div class="mb-3">
                                     <label class="form-label">Nomer:</label>
@@ -67,6 +76,13 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                 <div class="mb-3">
                                     <label class="form-label">Booking:</label>
                                     <input class="form-control" type="text" name="booking" placeholder="Isi Dengan Booking..." required>
+=======
+                            <form method="POST" action="src/api/submit-manajemen-pembayaran">
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Kode Booking</label>
+                                    <input type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
 
                                 <div class="mb-3">
@@ -79,6 +95,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                     <input class="form-control" type="number" min="0" name="jumlah" placeholder="Isi Dengan Jumlah..." required>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="mb-3">                                    
 								  <label class="form-label d-block">Metode:</label>
 
@@ -103,6 +120,46 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                         <i class="bi bi-check-lg me-1"></i>Submit
                                     </button>
                                     <a href="data-manajemen-pembayaran.php" class="btn btn-secondary">Batal</a>
+=======
+                                <div class="mb-3">
+<label class="form-label">Metode Pembayaran</label>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="transfer bank" required>
+<label class="form-check-label">
+<i class="fa-solid fa-building-columns text-primary"></i>
+Transfer Bank
+</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="qris">
+<label class="form-check-label">
+<i class="fa-solid fa-qrcode text-success"></i>
+QRIS
+</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="metode" value="cash">
+<label class="form-check-label">
+<i class="fa-solid fa-money-bill text-warning"></i>
+Cash
+</label>
+</div>
+
+</div>
+
+<div class="mb-3">
+<label class="form-label">Upload Bukti Transfer</label>
+<input type="file" name="bukti_transfer" class="form-control">
+</div>
+
+<button class="btn btn-success">
+<i class="fa-solid fa-floppy-disk"></i> Simpan Pembayaran
+</button>
+                                    <a href="data-manajemen-pembayaran" class="btn btn-secondary">Batal</a>
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>
@@ -136,3 +193,10 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
     </script>
 </body>
 </html>
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5

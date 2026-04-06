@@ -2,11 +2,19 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: login.php");
 }
 
 $page_title = 'Data Klien Korporasi';
 $current_page = basename($_SERVER['SCRIPT_NAME']);
+=======
+    header("Location: login");
+}
+
+$page_title = 'Data Klien Korporasi';
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -65,7 +73,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-building me-2"></i>Data Klien Korporasi</span>
+<<<<<<< HEAD
                     <a href="manajemen-klien-korporasi.php" class="btn btn-primary btn-sm">
+=======
+                    <a href="manajemen-klien-korporasi" class="btn btn-primary btn-sm">
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         <i class="bi bi-plus-circle me-1"></i>Tambah Klien Baru
                     </a>
                 </div>
@@ -108,10 +120,17 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                         <?php endif; ?>
                                     </td>
                                     <td>
+<<<<<<< HEAD
                                         <a href="edit-manajemen-klien-korporasi.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
                                         <a href="src/api/hapus-manajemen-klien-korporasi.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus klien korporasi ini?')">
+=======
+                                        <a href="edit-manajemen-klien-korporasi?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </a>
+                                        <a href="src/api/hapus-manajemen-klien-korporasi?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus klien korporasi ini?')">
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>

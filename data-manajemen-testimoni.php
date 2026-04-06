@@ -2,11 +2,19 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
+<<<<<<< HEAD
     header("Location: login.php");
 }
 
 $page_title = 'Data Testimoni';
 $current_page = basename($_SERVER['SCRIPT_NAME']);
+=======
+    header("Location: login");
+}
+
+$page_title = 'Data Testimoni';
+$current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -65,7 +73,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-chat-quote me-2"></i>Data Testimoni</span>
+<<<<<<< HEAD
                     <a href="manajemen-testimoni.php" class="btn btn-primary btn-sm">
+=======
+                    <a href="manajemen-testimoni" class="btn btn-primary btn-sm">
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         <i class="bi bi-plus-circle me-1"></i>Tambah Testimoni Baru
                     </a>
                 </div>
@@ -106,10 +118,17 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                                         <?php endif; ?>
                                     </td>
                                     <td>
+<<<<<<< HEAD
                                         <a href="edit-manajemen-testimoni.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
                                         <a href="src/api/hapus-manajemen-testimoni.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')">
+=======
+                                        <a href="edit-manajemen-testimoni?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </a>
+                                        <a href="src/api/hapus-manajemen-testimoni?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')">
+>>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>
