@@ -11,11 +11,7 @@
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="col-12 col-sm-10 col-md-6 col-lg-4 border rounded p-4 bg-light">
             <h1>Login</h1>
-<<<<<<< HEAD
-            <form action="src/api/process-login.php" method="POST">
-=======
             <form action="src/api/process-login" method="POST">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="email" class="form-control border-2" id="inp-email" name="inp-email">
@@ -30,8 +26,4 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
