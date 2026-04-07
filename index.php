@@ -85,11 +85,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             </div>
                         </div>
                         <div class="mt-3">
-<<<<<<< HEAD
-                            <a href="data-manajemen-customer.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
-=======
                             <a href="data-manajemen-customer" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         </div>
                     </div>
                 </div>
@@ -105,11 +101,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             </div>
                         </div>
                         <div class="mt-3">
-<<<<<<< HEAD
-                            <a href="data-manajemen-booking.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
-=======
                             <a href="data-manajemen-booking" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         </div>
                     </div>
                 </div>
@@ -125,11 +117,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             </div>
                         </div>
                         <div class="mt-3">
-<<<<<<< HEAD
-                            <a href="data-manajemen-paket.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
-=======
                             <a href="data-manajemen-paket" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         </div>
                     </div>
                 </div>
@@ -145,11 +133,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             </div>
                         </div>
                         <div class="mt-3">
-<<<<<<< HEAD
-                            <a href="data-manajemen-pembayaran.php" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
-=======
                             <a href="data-manajemen-pembayaran" class="text-decoration-none small">Lihat semua <i class="bi bi-arrow-right"></i></a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         </div>
                     </div>
                 </div>
@@ -164,18 +148,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-wrap gap-2">
-<<<<<<< HEAD
-                                <a href="manajemen-customer.php" class="btn btn-outline-primary btn-sm">
-                                    <i class="bi bi-person-plus me-1"></i> Tambah Customer
-                                </a>
-                                <a href="manajemen-booking.php" class="btn btn-outline-success btn-sm">
-                                    <i class="bi bi-calendar-plus me-1"></i> Tambah Booking
-                                </a>
-                                <a href="manajemen-paket.php" class="btn btn-outline-warning btn-sm">
-                                    <i class="bi bi-plus-circle me-1"></i> Tambah Paket
-                                </a>
-                                <a href="manajemen-pembayaran.php" class="btn btn-outline-info btn-sm">
-=======
                                 <a href="manajemen-customer" class="btn btn-outline-primary btn-sm">
                                     <i class="bi bi-person-plus me-1"></i> Tambah Customer
                                 </a>
@@ -186,7 +158,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <i class="bi bi-plus-circle me-1"></i> Tambah Paket
                                 </a>
                                 <a href="manajemen-pembayaran" class="btn btn-outline-info btn-sm">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                     <i class="bi bi-cash-stack me-1"></i> Tambah Pembayaran
                                 </a>
                             </div>
@@ -202,11 +173,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                     <div class="dashboard-card">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <span><i class="bi bi-calendar-check me-2"></i>Booking Terbaru</span>
-<<<<<<< HEAD
-                            <a href="data-manajemen-booking.php" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
-=======
                             <a href="data-manajemen-booking" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -251,11 +218,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                     <div class="dashboard-card">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <span><i class="bi bi-credit-card me-2"></i>Pembayaran Terbaru</span>
-<<<<<<< HEAD
-                            <a href="data-manajemen-pembayaran.php" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
-=======
                             <a href="data-manajemen-pembayaran" class="btn btn-sm btn-outline-secondary">Lihat Semua</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
