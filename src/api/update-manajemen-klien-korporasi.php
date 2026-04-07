@@ -3,11 +3,7 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: ../../login.php");
-=======
     header("Location: ../../login");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
@@ -44,17 +40,10 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
-<<<<<<< HEAD
-    header("Location: ../../data-manajemen-klien-korporasi.php?status=success&message=Klien korporasi berhasil diupdate");
-} else {
-    // Redirect dengan pesan error
-    header("Location: ../../edit-manajemen-klien-korporasi.php?id=$id&status=error&message=Gagal mengupdate klien korporasi");
-=======
     header("Location: ../../data-manajemen-klien-korporasi?status=success&message=Klien korporasi berhasil diupdate");
 } else {
     // Redirect dengan pesan error
     header("Location: ../../edit-manajemen-klien-korporasi?id=$id&status=error&message=Gagal mengupdate klien korporasi");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 exit;
 ?>

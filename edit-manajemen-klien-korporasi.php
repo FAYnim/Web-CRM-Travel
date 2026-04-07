@@ -2,40 +2,24 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: login.php");
-=======
     header("Location: login");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 if(empty($id)) {
-<<<<<<< HEAD
-    header("Location: data-manajemen-klien-korporasi.php");
-=======
     header("Location: data-manajemen-klien-korporasi");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
 $query = mysqli_query($koneksi, "SELECT * FROM klien_korporasi WHERE id='$id'");
 if(mysqli_num_rows($query) == 0) {
-<<<<<<< HEAD
-    header("Location: data-manajemen-klien-korporasi.php?status=error&message=Data tidak ditemukan");
-=======
     header("Location: data-manajemen-klien-korporasi?status=error&message=Data tidak ditemukan");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 $data = mysqli_fetch_array($query);
 
 $page_title = 'Edit Klien Korporasi';
-<<<<<<< HEAD
-$current_page = basename($_SERVER['SCRIPT_NAME']);
-=======
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">

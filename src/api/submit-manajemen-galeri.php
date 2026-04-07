@@ -4,14 +4,6 @@ include('../../config.php');
 $judul = $_POST['judul'];
 $deskripsi = $_POST['deskripsi'] ?? '';
 
-<<<<<<< HEAD
-if (mb_strlen($deskripsi) > 250) {
-    header("location: ../../manajemen-galeri.php?status=error&message=Deskripsi maksimal 250 karakter");
-    exit;
-}
-
-=======
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 // handle upload gambar
 $gambar = "";
 if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
@@ -33,19 +25,6 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
 }
 
 if ($gambar == "") {
-<<<<<<< HEAD
-    header("location: ../../manajemen-galeri.php?status=error&message=Gagal mengupload gambar.");
-    exit;
-}
-
-$query = "INSERT INTO galeri (judul, deskripsi, gambar) VALUES ('$judul', '$deskripsi', '$gambar')";
-$submit = mysqli_query($koneksi, $query);
-
-if ($submit == TRUE) {
-    header("location: ../../data-manajemen-galeri.php?status=success&message=Foto berhasil ditambahkan ke galeri.");
-} else {
-    header("location: ../../data-manajemen-galeri.php?status=error&message=Gagal menyimpan data.");
-=======
     header("location: ../../manajemen-galeri?status=error&message=Gagal mengupload gambar.");
     exit;
 }
@@ -56,6 +35,5 @@ if ($submit == TRUE) {
     header("location: ../../data-manajemen-galeri?status=success&message=Foto berhasil ditambahkan ke galeri.");
 } else {
     header("location: ../../data-manajemen-galeri?status=error&message=Gagal menyimpan data.");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 ?>

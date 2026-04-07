@@ -2,11 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: login.php");
-=======
     header("Location: login");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 
 // Ambil data galeri berdasarkan ID
@@ -21,20 +17,12 @@ if (isset($_GET["id"]) && $_GET["id"]) {
 
 // Jika data tidak ditemukan, redirect ke data galeri
 if (!$editData) {
-<<<<<<< HEAD
-    header("Location: data-manajemen-galeri.php?status=error&message=Data tidak ditemukan");
-=======
     header("Location: data-manajemen-galeri?status=error&message=Data tidak ditemukan");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
 $page_title = 'Edit Galeri';
-<<<<<<< HEAD
-$current_page = basename($_SERVER['SCRIPT_NAME']);
-=======
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">

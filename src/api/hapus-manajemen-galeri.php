@@ -19,14 +19,8 @@ if ($data && !empty($data['gambar'])) {
 $delete = mysqli_query($koneksi, "DELETE FROM galeri WHERE id = $id");
 
 if ($delete == TRUE) {
-<<<<<<< HEAD
-    header("location: ../../data-manajemen-galeri.php?status=success&message=Foto berhasil dihapus dari galeri.");
-} else {
-    header("location: ../../data-manajemen-galeri.php?status=error&message=Gagal menghapus foto.");
-=======
     header("location: ../../data-manajemen-galeri?status=success&message=Foto berhasil dihapus dari galeri.");
 } else {
     header("location: ../../data-manajemen-galeri?status=error&message=Gagal menghapus foto.");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 ?>

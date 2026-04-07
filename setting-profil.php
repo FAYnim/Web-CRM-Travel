@@ -2,19 +2,11 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: login.php");
-}
-
-$page_title = 'Setting Profil';
-$current_page = basename($_SERVER['SCRIPT_NAME']);
-=======
     header("Location: login");
 }
 
 $page_title = 'Setting Profil';
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 
 // Ambil data profil dari database
 $query = "SELECT * FROM profil WHERE id = 1";

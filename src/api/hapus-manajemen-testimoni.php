@@ -3,11 +3,7 @@ include '../../config.php';
 
 // Cek login
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: ../../login.php");
-=======
     header("Location: ../../login");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
     exit;
 }
 
@@ -20,17 +16,10 @@ $submit = mysqli_query($koneksi, $query);
 
 if($submit) {
     // Redirect ke halaman data dengan pesan sukses
-<<<<<<< HEAD
-    header("Location: ../../data-manajemen-testimoni.php?status=success&message=Testimoni berhasil dihapus");
-} else {
-    // Redirect dengan pesan error
-    header("Location: ../../data-manajemen-testimoni.php?status=error&message=Gagal menghapus testimoni");
-=======
     header("Location: ../../data-manajemen-testimoni?status=success&message=Testimoni berhasil dihapus");
 } else {
     // Redirect dengan pesan error
     header("Location: ../../data-manajemen-testimoni?status=error&message=Gagal menghapus testimoni");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 exit;
 ?>

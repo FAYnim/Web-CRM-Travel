@@ -2,11 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: login.php");
-=======
     header("Location: login");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 
 $id = $_GET['id'];
@@ -14,11 +10,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM partner_maskapai WHERE id='$id'")
 $data = mysqli_fetch_array($query);
 
 $page_title = 'Edit Partner Maskapai';
-<<<<<<< HEAD
-$current_page = basename($_SERVER['SCRIPT_NAME']);
-=======
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">

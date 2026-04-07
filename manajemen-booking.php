@@ -2,11 +2,7 @@
 include 'config.php';
 
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: login.php");
-=======
     header("Location: login");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 
 // Fetch customers from database
@@ -18,11 +14,7 @@ $query_paket = mysqli_query($koneksi, "SELECT id, nama_paket FROM manajemen_pake
 $pakets = mysqli_fetch_all($query_paket, MYSQLI_ASSOC);
 
 $page_title = 'Tambah Booking';
-<<<<<<< HEAD
-$current_page = basename($_SERVER['SCRIPT_NAME']);
-=======
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">

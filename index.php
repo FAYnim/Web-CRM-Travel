@@ -3,11 +3,7 @@ include 'config.php';
 
 // print_r($_SESSION);
 if($_SESSION['login'] != true) {
-<<<<<<< HEAD
-    header("Location: login.php");
-=======
     header("Location: login");
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 }
 
 $page_title = 'Dashboard';
@@ -32,11 +28,7 @@ $recent_bookings = mysqli_query($koneksi, "SELECT b.id, c.nama as customer, p.na
 $recent_payments = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran ORDER BY id DESC LIMIT 5");
 
 // Determine current page for active state highlighting
-<<<<<<< HEAD
-$current_page = basename($_SERVER['SCRIPT_NAME']);
-=======
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 ?>
 <!DOCTYPE html>
 <html lang="id">

@@ -1,13 +1,8 @@
 <?php
     include '../../config.php';
 
-<<<<<<< HEAD
-    $redir_failed = "../../login.php";
-    $redir_success = "../../index.php";
-=======
     $redir_failed = "../../login";
     $redir_success = "../../index";
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 
     $email = $_POST['inp-email'];
     $password = $_POST['inp-password'];
@@ -33,8 +28,4 @@
     } else {
         header("Location: $redir_failed");
     }
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
