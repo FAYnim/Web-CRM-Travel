@@ -65,11 +65,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-tags me-2"></i>Data Kategori</span>
-<<<<<<< HEAD
-                    <a href="manajemen-kategori.php" class="btn btn-primary btn-sm">
-=======
                     <a href="manajemen-kategori" class="btn btn-primary btn-sm">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         <i class="bi bi-plus-circle me-1"></i>Tambah Kategori Baru
                     </a>
                 </div>
@@ -106,17 +102,10 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                         <?php endif; ?>
                                     </td>
                                     <td>
-<<<<<<< HEAD
-                                        <a href="edit-manajemen-kategori.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil"></i> Edit
-                                        </a>
-                                        <a href="src/api/hapus-manajemen-kategori.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
-=======
                                         <a href="edit-manajemen-kategori?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
                                         <a href="src/api/hapus-manajemen-kategori?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>
@@ -153,8 +142,4 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
         });
     </script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5

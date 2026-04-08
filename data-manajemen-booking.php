@@ -52,11 +52,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <span><i class="bi bi-calendar-check me-2"></i>Data Booking</span>
-<<<<<<< HEAD
-                    <a href="manajemen-booking.php" class="btn btn-primary btn-sm">
-=======
                     <a href="manajemen-booking" class="btn btn-primary btn-sm">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                         <i class="bi bi-calendar-plus me-1"></i>Tambah Booking Baru
                     </a>
                 </div>
@@ -89,11 +85,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <td><?php echo htmlspecialchars($baris['paket'] ?? '-'); ?></td>
                                     <td><?php echo $baris['tanggal'] ? date('d M Y H:i', strtotime($baris['tanggal'])) : '-'; ?></td>
                                     <td>
-<<<<<<< HEAD
-                                        <a href="src/api/hapus-manajemen-booking.php?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-=======
                                         <a href="src/api/hapus-manajemen-booking?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
                                     </td>
