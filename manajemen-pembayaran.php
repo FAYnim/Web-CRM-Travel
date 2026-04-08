@@ -58,23 +58,11 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/submit-manajemen-pembayaran.php">
-                                <div class="mb-3">
-                                    <label class="form-label">Nomer:</label>
-                                    <input class="form-control" type="text" name="nomer" placeholder="Isi Dengan Nomer..." required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Booking:</label>
-                                    <input class="form-control" type="text" name="booking" placeholder="Isi Dengan Booking..." required>
-=======
                             <form method="POST" action="src/api/submit-manajemen-pembayaran">
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
                                     <input type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
 
                                 <div class="mb-3">
@@ -87,32 +75,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <input class="form-control" type="number" min="0" name="jumlah" placeholder="Isi Dengan Jumlah..." required>
                                 </div>
 
-<<<<<<< HEAD
-                                <div class="mb-3">                                    
-								  <label class="form-label d-block">Metode:</label>
-
-								  <div class="form-check">
-									<input class="form-check-input" type="radio" name="metode" value="Transfer Bank" required>
-									<label class="form-check-label">Transfer Bank</label>
-								  </div>
-
-								  <div class="form-check">
-									<input class="form-check-input" type="radio" name="metode" value="QRIS">
-									<label class="form-check-label">QRIS</label>
-								  </div>
-
-								  <div class="form-check">
-									<input class="form-check-input" type="radio" name="metode" value="Cash">
-									<label class="form-check-label">Cash</label>
-								  </div>
-								</div>
-
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="bi bi-check-lg me-1"></i>Submit
-                                    </button>
-                                    <a href="data-manajemen-pembayaran.php" class="btn btn-secondary">Batal</a>
-=======
                                 <div class="mb-3">
 <label class="form-label">Metode Pembayaran</label>
 
@@ -151,7 +113,6 @@ Cash
 <i class="fa-solid fa-floppy-disk"></i> Simpan Pembayaran
 </button>
                                     <a href="data-manajemen-pembayaran" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>
@@ -185,10 +146,7 @@ Cash
     </script>
 </body>
 </html>
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5

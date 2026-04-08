@@ -66,11 +66,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data klien korporasi dengan benar</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/submit-manajemen-klien-korporasi.php">
-=======
                             <form method="POST" action="src/api/submit-manajemen-klien-korporasi">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <!-- Informasi Perusahaan -->
                                 <h6 class="text-primary mb-3"><i class="bi bi-building me-2"></i>Informasi Perusahaan</h6>
                                 <div class="mb-3">
@@ -147,11 +143,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-save me-2"></i>Simpan
                                     </button>
-<<<<<<< HEAD
-                                    <a href="data-manajemen-klien-korporasi.php" class="btn btn-secondary">
-=======
                                     <a href="data-manajemen-klien-korporasi" class="btn btn-secondary">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                         <i class="bi bi-x-circle me-2"></i>Batal
                                     </a>
                                 </div>

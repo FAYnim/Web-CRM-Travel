@@ -58,11 +58,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/submit-manajemen-customer.php">
-=======
                             <form method="POST" action="src/api/submit-manajemen-customer">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <div class="mb-3">
                                     <label class="form-label">Nama:</label>
                                     <input class="form-control" type="text" name="nama" placeholder="Isi Dengan Nama..." required>
@@ -87,11 +83,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <button class="btn btn-primary" type="submit">
                                         <i class="bi bi-check-lg me-1"></i>Submit
                                     </button>
-<<<<<<< HEAD
-                                    <a href="data-manajemen-customer.php" class="btn btn-secondary">Batal</a>
-=======
                                     <a href="data-manajemen-customer" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>

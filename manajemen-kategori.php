@@ -66,11 +66,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data kategori dengan benar</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/submit-manajemen-kategori.php">
-=======
                             <form method="POST" action="src/api/submit-manajemen-kategori">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_kategori" class="form-label">Nama Kategori <span class="text-danger">*</span></label>
@@ -92,11 +88,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-lg me-1"></i>Submit
                                     </button>
-<<<<<<< HEAD
-                                    <a href="data-manajemen-kategori.php" class="btn btn-secondary">Batal</a>
-=======
                                     <a href="data-manajemen-kategori" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>

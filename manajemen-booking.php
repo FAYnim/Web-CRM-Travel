@@ -66,11 +66,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silahkan isi data-dessous ini dengan benar.</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/submit-manajemen-booking.php">
-=======
                             <form method="POST" action="src/api/submit-manajemen-booking">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <div class="mb-3">
                                     <label class="form-label">Customer :</label>
                                     <select class="form-select" name="nama" required>
@@ -95,11 +91,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <button class="btn btn-primary" type="submit">
                                         <i class="bi bi-check-lg me-1"></i>Kirim
                                     </button>
-<<<<<<< HEAD
-                                    <a href="data-manajemen-booking.php" class="btn btn-secondary">Batal</a>
-=======
                                     <a href="data-manajemen-booking" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>

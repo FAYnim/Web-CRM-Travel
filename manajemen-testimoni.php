@@ -66,11 +66,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data testimoni pelanggan dengan benar</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/submit-manajemen-testimoni.php">
-=======
                             <form method="POST" action="src/api/submit-manajemen-testimoni">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_pelanggan" class="form-label">Nama Pelanggan <span class="text-danger">*</span></label>
@@ -108,11 +104,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-lg me-1"></i>Submit
                                     </button>
-<<<<<<< HEAD
-                                    <a href="data-manajemen-testimoni.php" class="btn btn-secondary">Batal</a>
-=======
                                     <a href="data-manajemen-testimoni" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>
