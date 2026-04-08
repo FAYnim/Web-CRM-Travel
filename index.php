@@ -31,10 +31,10 @@ function lp_resolve_gambar($gambar)
   }
 
   if (strpos($gambar, 'uploads/') === 0) {
-    return '../' . $gambar;
+    return 'dashboard/'.$gambar;
   }
 
-  return '../uploads/' . ltrim($gambar, '/');
+  return 'dashboard/uploads/' . ltrim($gambar, '/');
 }
 ?>
 <!DOCTYPE html>
