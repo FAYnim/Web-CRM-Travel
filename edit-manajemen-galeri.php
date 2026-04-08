@@ -89,11 +89,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan edit data foto dengan mengisi form di bawah ini</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/update-manajemen-galeri.php" enctype="multipart/form-data">
-=======
                             <form method="POST" action="src/api/update-manajemen-galeri" enctype="multipart/form-data">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <input type="hidden" name="id" value="<?php echo $editData['id']; ?>">
 
                                 <div class="row">
@@ -132,11 +128,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-check-lg me-1"></i>Update
                                     </button>
-<<<<<<< HEAD
-                                    <a href="data-manajemen-galeri.php" class="btn btn-secondary">Batal</a>
-=======
                                     <a href="data-manajemen-galeri" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>

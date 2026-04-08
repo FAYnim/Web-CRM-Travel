@@ -71,11 +71,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <?php echo $editData ? 'Edit' : 'Tambah'; ?> Paket Wifi
                     </div>
                     <div class="card-body">
-<<<<<<< HEAD
-                        <form method="POST" action="src/api/<?php echo $editData ? 'update-manajemen-paket.php' : 'submit-manajemen-paket.php'; ?>" enctype="multipart/form-data">
-=======
                         <form method="POST" action="src/api/<?php echo $editData ? 'update-manajemen-paket' : 'submit-manajemen-paket'; ?>" enctype="multipart/form-data">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                             <?php if ($editData): ?>
                                 <input type="hidden" name="id" value="<?php echo $editData['id']; ?>">
                             <?php endif; ?>
@@ -143,11 +139,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <button type="submit" class="btn btn-primary">
                                     <i class="bi bi-check-lg me-1"></i><?php echo $editData ? 'Perbarui' : 'Simpan'; ?>
                                 </button>
-<<<<<<< HEAD
-                                <a href="data-manajemen-paket.php" class="btn btn-secondary">Batal</a>
-=======
                                 <a href="data-manajemen-paket" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                             </div>
                         </form>
                     </div>

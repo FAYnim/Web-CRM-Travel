@@ -61,15 +61,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                     <div class="card-body">
                         <p class="text-muted mb-4">Silakan edit data pembayaran dengan benar</p>
 
-<<<<<<< HEAD
-                        <form method="POST" action="src/api/update-manajemen-pembayaran.php">
-                            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-
-                            <div class="mb-3">
-                                <label class="form-label">Booking:</label>
-                                <input class="form-control" type="text" name="booking" value="<?php echo htmlspecialchars($data['booking']); ?>">
-                            </div>
-=======
                         <form method="POST" action="src/api/update-manajemen-pembayaran">
                             <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
@@ -77,7 +68,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <label class="form-label">Kode Booking</label>
                                     <input type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
                                 </div>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
 
                             <div class="mb-3">
                                 <label class="form-label">Tanggal:</label>
@@ -90,31 +80,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 							</div>
 
 							<div class="mb-3">
-<<<<<<< HEAD
-							  <label class="form-label d-block">Metode:</label>
-
-							  <div class="form-check">
-								<input class="form-check-input" type="radio" name="metode" value="Transfer Bank" required>
-								<label class="form-check-label">Transfer Bank</label>
-							  </div>
-
-							  <div class="form-check">
-								<input class="form-check-input" type="radio" name="metode" value="QRIS">
-								<label class="form-check-label">QRIS</label>
-							  </div>
-
-							  <div class="form-check">
-								<input class="form-check-input" type="radio" name="metode" value="Cash">
-								<label class="form-check-label">Cash</label>
-							  </div>
-							</div>
-
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="bi bi-check-lg me-1"></i>Simpan
-                                </button>
-                                <a href="data-manajemen-pembayaran.php" class="btn btn-secondary">Batal</a>
-=======
 <label class="form-label">Metode Pembayaran</label>
 
 <div class="form-check">
@@ -152,7 +117,6 @@ Cash
 <i class="fa-solid fa-floppy-disk"></i> Simpan Pembayaran
 </button>
                                 <a href="data-manajemen-pembayaran" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                             </div>
                         </form>
                     </div>

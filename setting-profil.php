@@ -95,11 +95,7 @@ if(!$profil) {
                         <div class="card-body">
                             <p class="text-muted mb-4">Kelola informasi profil perusahaan Anda</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/submit-setting-profil.php">
-=======
                             <form method="POST" action="src/api/submit-setting-profil">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <!-- Nav Tabs -->
                                 <ul class="nav nav-tabs mb-4" id="profilTab" role="tablist">
                                     <li class="nav-item" role="presentation">
@@ -188,11 +184,7 @@ if(!$profil) {
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-save me-1"></i>Simpan Perubahan
                                     </button>
-<<<<<<< HEAD
-                                    <a href="index.php" class="btn btn-secondary">Batal</a>
-=======
                                     <a href="index" class="btn btn-secondary">Batal</a>
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 </div>
                             </form>
                         </div>

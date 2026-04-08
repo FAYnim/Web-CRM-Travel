@@ -79,11 +79,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan edit data klien korporasi dengan benar</p>
 
-<<<<<<< HEAD
-                            <form method="POST" action="src/api/update-manajemen-klien-korporasi.php">
-=======
                             <form method="POST" action="src/api/update-manajemen-klien-korporasi">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                 <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
                                 <!-- Informasi Perusahaan -->
@@ -162,11 +158,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-save me-2"></i>Update
                                     </button>
-<<<<<<< HEAD
-                                    <a href="data-manajemen-klien-korporasi.php" class="btn btn-secondary">
-=======
                                     <a href="data-manajemen-klien-korporasi" class="btn btn-secondary">
->>>>>>> 06752c650dbc56340aebe3dd4093532eaa753ef5
                                         <i class="bi bi-x-circle me-2"></i>Batal
                                     </a>
                                 </div>
