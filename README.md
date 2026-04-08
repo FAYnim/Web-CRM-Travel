@@ -1,170 +1,99 @@
-# SnD Tour Travel — Website Resmi
+# Web CRM Travel
 
-> **Liburan Pasti Berangkat** — Website profil dan katalog layanan untuk SnD Tour Travel, travel agent terpercaya di Surabaya sejak 2017.
+CRM dan Sistem Manajemen Konten (CMS) yang lengkap dan siap pakai untuk Agen Perjalanan, dibangun dengan PHP native dan MySQL. Menyediakan situs utama publik bagi pelanggan untuk menelusuri paket wisata, membaca artikel blog, dan melihat galeri, beserta dasbor administratif yang aman untuk mengelola konten, pemesanan, pelanggan, dan pembayaran.
 
----
+## ✨ Fitur
 
-## Daftar Isi
+### Situs Web Publik
+- **Katalog Paket Wisata**: Jelajahi paket wisata, aktivitas outbound, dan layanan katering yang tersedia.
+- **Blog & Artikel**: Baca pembaruan terbaru dan panduan perjalanan.
+- **Profil Perusahaan & Kontak**: Informasi tentang agen perjalanan dan formulir kontak.
+- **Desain Responsif**: CSS kustom dan Vanilla JS untuk pengalaman yang lancar di berbagai perangkat.
 
-- [Tentang Proyek](#tentang-proyek)
-- [Fitur](#fitur)
-- [Struktur Halaman](#struktur-halaman)
-- [Teknologi](#teknologi)
-- [Instalasi & Menjalankan Lokal](#instalasi--menjalankan-lokal)
-- [Konfigurasi Database](#konfigurasi-database)
-- [Struktur Folder](#struktur-folder)
-- [Kontak Bisnis](#kontak-bisnis)
+### Dasbor Admin
+- **Manajemen Konten**: Kelola paket wisata, postingan blog, galeri, testimoni, dan mitra maskapai/perusahaan.
+- **CRM Pemesanan & Pelanggan**: Lacak pemesanan pelanggan, kelola data pelanggan, dan catat pembayaran.
+- **Pengaturan Perusahaan**: Perbarui informasi profil perusahaan dan branding langsung dari dasbor.
+- **Analitik Dasbor**: Lihat statistik utama seperti total pemesanan, pendapatan, dan aktivitas terbaru secara ringkas.
 
----
+## 🚀 Tech Stack (Teknologi yang Digunakan)
 
-## Tentang Proyek
+- **Backend**: PHP 8.x
+- **Database**: MySQL / MariaDB
+- **Frontend (Publik)**: HTML5, CSS Kustom, Vanilla JS
+- **Frontend (Admin)**: Bootstrap 5, Bootstrap Icons
+- **Arsitektur**: Skrip PHP native dengan endpoint API kustom untuk operasi CRUD. Tanpa framework berat (Tidak menggunakan Node.js, Laravel, atau Symfony).
 
-Website ini adalah company profile sekaligus katalog layanan untuk **SnD Tour Travel**, sebuah travel agent yang berdiri sejak 2017 dan berdomisili di Surabaya, Jawa Timur. Website dibangun menggunakan PHP native dengan koneksi MySQL melalui XAMPP, tanpa framework tambahan.
+## 📋 Prasyarat
 
-Website menampilkan seluruh layanan utama perusahaan: paket wisata domestik & Asia, program outbond, layanan catering & event, galeri dokumentasi, dan blog tips perjalanan.
+Untuk menjalankan proyek ini secara lokal, Anda memerlukan:
+- Stack server web lokal seperti **XAMPP**, WAMP, atau MAMP (Apache/Nginx + PHP 8.x + MySQL/MariaDB).
+- Pengetahuan dasar tentang phpMyAdmin atau MySQL CLI.
 
----
+## 🛠️ Persiapan & Instalasi Lokal
 
-## Fitur
+1. **Klon atau Ekstrak Proyek**
+   Tempatkan folder proyek di dalam document root server web Anda.
+   - Untuk XAMPP (Windows): `C:\xampp\htdocs\sekolah\web-crm-travel`
+   - Untuk Linux/Mac: `/var/www/html/web-crm-travel`
 
-| Fitur | Keterangan |
-|---|---|
-| **Hero Slider** | Slideshow gambar otomatis dengan dot navigation |
-| **Search & Filter** | Pencarian paket berdasarkan kategori dan kata kunci |
-| **Katalog Paket Wisata** | Filter tab: Semua / Domestik / Asia |
-| **Paket Spesial Liburan** | Tahun Baru, Natal, Idul Fitri, Libur Sekolah, Imlek |
-| **Kategori Wisata** | Religi, Edukasi, Bulan Madu, Keluarga, Perusahaan, Adventure |
-| **Program Outbond** | Team Building, Leadership Training, Fun Games, Adventure Challenge |
-| **Layanan Catering** | Nasi Box, Paket Buffet, Coffee Break, Event Organizer |
-| **Galeri Foto** | Grid foto dengan lightbox & filter kategori |
-| **Blog / Artikel** | Tips Traveling, Fun Facts Destinasi, Panduan Wisata |
-| **Testimoni Slider** | Carousel ulasan pelanggan |
-| **Formulir Kontak** | Form pesan + info kontak lengkap + peta lokasi |
-| **Sticky Header** | Navbar sticky dengan efek scroll + hamburger mobile |
-| **Responsive Design** | Tampilan optimal di desktop, tablet, dan mobile |
-| **SEO Optimized** | Meta tags lengkap, Open Graph, Twitter Card, Schema.org JSON-LD |
-| **Scroll Reveal** | Animasi muncul saat elemen masuk viewport |
-| **Counter Animasi** | Angka statistik perusahaan yang dianimasikan saat di-scroll |
+2. **Persiapan Database**
+   - Buka alat manajemen MySQL Anda (misalnya, phpMyAdmin atau CLI).
+   - Buat database baru bernama `web_crm_travel`.
+   - Impor skema SQL dan data dummy yang disediakan dari:
+     ```text
+     dashboard/data/schema.sql
+     ```
 
----
-
-## Struktur Halaman
-
-```
-index.php          → Beranda (Hero, Search, Keunggulan, Paket Terbaru, Blog, Testimoni)
-profil.php         → Tentang Kami (Visi, Misi, Tim, Nilai Perusahaan)
-paket-wisata.php   → Katalog Paket Wisata (filter Domestik / Asia)
-detail-paket.php   → Detail Paket Wisata (itinerary, harga, fasilitas)
-outbond.php        → Program Outbond & Team Building
-catering.php       → Layanan Catering & Event Organizer
-galeri.php         → Galeri Foto Perjalanan
-blog.php           → Daftar Artikel & Tips Traveling
-blog-detail.php    → Detail Artikel Blog
-kontak.php         → Hubungi Kami (form, lokasi, info kontak)
-```
-
----
-
-## Teknologi
-
-| Layer | Teknologi |
-|---|---|
-| **Backend** | PHP 7+ (native, tanpa framework) |
-| **Database** | MySQL via MySQLi |
-| **Frontend** | HTML5, CSS3 (custom properties / CSS variables), Vanilla JavaScript (ES6+) |
-| **Server** | XAMPP (Apache + MySQL) |
-| **Font** | Google Fonts (via preconnect) |
-| **Gambar** | Unsplash CDN (untuk demo) |
-| **SEO** | Schema.org JSON-LD (TravelAgency, LocalBusiness, ItemList, TouristTrip) |
-
----
-
-## Instalasi & Menjalankan Lokal
-
-### Prasyarat
-
-- [XAMPP](https://www.apachefriends.org/) versi 7.x atau lebih baru
-- PHP 7.4+
-- MySQL 5.7+ / MariaDB 10.x
-
-### Langkah-langkah
-
-1. **Clone / salin proyek** ke folder htdocs XAMPP:
-   ```
-   C:\xampp\htdocs\sekolah\snd-tour\
+3. **Konfigurasi Koneksi Database**
+   Buka `config.php` di root proyek dan perbarui kredensial jika berbeda dengan pengaturan lokal Anda:
+   ```php
+   $server = "localhost";
+   $user = "root";
+   $password = ""; // Kata sandi MySQL Anda
+   $database = "web_crm_travel";
    ```
 
-2. **Jalankan XAMPP** — aktifkan modul **Apache** dan **MySQL**.
+4. **Izin Direktori (Permissions)**
+   Pastikan direktori `dashboard/uploads/` dapat ditulis (writable) oleh server web Anda agar upload gambar berfungsi dengan baik.
 
-3. **Buat database** di phpMyAdmin:
-   - Buka `http://localhost/phpmyadmin`
-   - Buat database baru dengan nama: `web_crm_travel`
+5. **Jalankan Aplikasi**
+   Jalankan server web dan layanan MySQL Anda, lalu buka browser:
+   - **Situs Publik**: `http://localhost/sekolah/web-crm-travel/index.php`
+   - **Dasbor Admin**: `http://localhost/sekolah/web-crm-travel/dashboard/login.php`
 
-4. **Import skema** (jika tersedia file `.sql`):
-   - Pilih database `web_crm_travel`
-   - Klik tab **Import**, pilih file SQL, lalu jalankan
+## 🔐 Kredensial Admin Default
 
-5. **Buka website** di browser:
-   ```
-   http://localhost/sekolah/snd-tour/
-   ```
+Gunakan kredensial berikut untuk mengakses dasbor admin (diimpor dari dump SQL):
 
----
+- **Email**: `admin@gmail.com`
+- **Kata Sandi**: `123`
 
-## Konfigurasi Database
+> [!WARNING]
+> **Catatan Keamanan**: Ini adalah kredensial default dengan kata sandi teks biasa (plain-text). Pastikan Anda mengubah kata sandi dan menerapkan hashing kata sandi yang tepat (misalnya, `password_hash()` dan `password_verify()`) sebelum melakukan deployment ke lingkungan produksi.
 
-File konfigurasi koneksi database: **`config.php`**
+## 📁 Struktur Direktori
 
-```php
-<?php
-session_start();
-$server   = "localhost";
-$user     = "root";
-$password = "";         // Sesuaikan jika MySQL Anda menggunakan password
-$nama_db  = "web_crm_travel";
-
-$koneksi = mysqli_connect($server, $user, $password, $nama_db);
+```text
+web-crm-travel/
+├── config.php                # Koneksi database dan konfigurasi sesi
+├── index.php                 # Halaman utama situs publik (landing page)
+├── css/ & js/                # Aset frontend publik (CSS Kustom & Vanilla JS)
+├── *.php                     # Halaman publik lainnya (detail-paket.php, blog.php, dll.)
+└── dashboard/                # Panel Admin
+    ├── index.php             # Halaman utama dasbor admin
+    ├── login.php             # Autentikasi admin
+    ├── sidebar.php           # Menu navigasi admin
+    ├── data/                 # Berisi schema.sql (Ekspor database)
+    ├── src/                  # Aset admin dan API
+    │   ├── css/              # Styling admin (berbasis Bootstrap)
+    │   └── api/              # Skrip PHP yang menangani operasi CRUD (submit-*, process-login.php)
+    └── uploads/              # Direktori untuk gambar/media yang diunggah pengguna
 ```
 
-> **Catatan:** Ubah nilai `$password` jika instalasi MySQL Anda menggunakan kata sandi.
+## ⚠️ Catatan Penting untuk Produksi
 
----
-
-## Struktur Folder
-
-```
-snd-tour/
-├── index.php           # Beranda
-├── profil.php          # Tentang Kami
-├── paket-wisata.php    # Katalog paket wisata
-├── detail-paket.php    # Detail satu paket
-├── outbond.php         # Program outbond
-├── catering.php        # Layanan catering & event
-├── galeri.php          # Galeri foto
-├── blog.php            # Daftar artikel blog
-├── blog-detail.php     # Detail artikel
-├── kontak.php          # Halaman kontak
-├── config.php          # Konfigurasi koneksi database
-├── css/
-│   └── style.css       # Stylesheet utama (CSS variables, BEM)
-├── js/
-│   └── main.js         # JavaScript utama (slider, filter, animasi)
-└── images/             # Folder aset gambar lokal
-```
-
----
-
-## Kontak Bisnis
-
-| Info | Detail |
-|---|---|
-| **Perusahaan** | SnD Tour Travel |
-| **Slogan** | Liburan Pasti Berangkat |
-| **Berdiri** | 2017 |
-| **Alamat** | Jl. Raya Darmo No. 123, Surabaya, Jawa Timur 60241 |
-| **Telepon / WhatsApp** | +62 812-3456-7890 |
-| **Email** | info@sndtour.co.id |
-| **Website** | https://sndtour.com |
-| **Instagram** | [@sndtour](https://instagram.com/sndtour) |
-| **Facebook** | [sndtour](https://facebook.com/sndtour) |
-| **Jam Operasional** | Senin–Sabtu, 09.00–17.00 WIB |
+Jika Anda berencana untuk men-deploy aplikasi ini ke server publik (live), harap pertimbangkan peningkatan keamanan berikut:
+1. **Hashing Kata Sandi**: Saat ini, kata sandi disimpan dalam teks biasa. Perbarui tabel `user` dan `process-login.php` untuk menggunakan hashing kata sandi PHP yang aman.
+2. **Pencegahan SQL Injection**: Skrip API saat ini mungkin menggabungkan input pengguna secara langsung ke dalam query SQL. Refactor bagian ini untuk menggunakan **Prepared Statements** (via `mysqli_prepare` atau PDO).
+3. **Keamanan Upload**: Validasi ekstensi file dan tipe MIME pada skrip upload (misalnya, `submit-manajemen-galeri.php`) untuk mencegah eksekusi file berbahaya.

@@ -1,106 +1,136 @@
-# Web CRM Travel
+# CRM Travel Dashboard
 
-Aplikasi CRM (Customer Relationship Management) untuk agen perjalanan travel berbasis PHP dan MySQL.
+Panel admin CRM berbasis PHP + MySQL untuk operasional travel: kelola customer, booking, paket wisata, pembayaran, konten landing page, partner, dan klien korporasi dalam satu dashboard.
 
-## Deskripsi
+> [!NOTE]
+> Proyek ini menggunakan URL tanpa ekstensi `.php` via aturan Apache rewrite di `.htaccess`.
 
-Web CRM Travel adalah sistem manajemen perjalanan yang memungkinkan admin untuk mengelola data customer, booking, pembayaran, dan paket wisata. Aplikasi ini dibangun menggunakan PHP native dengan Bootstrap 5 untuk tampilan responsif.
+## Fitur Utama
 
-## Fitur
+- Dashboard ringkasan (total customer, booking, paket, pendapatan, data terbaru)
+- Manajemen data customer, booking, paket wisata, dan pembayaran
+- Manajemen konten landing page: kategori, galeri, testimoni
+- Manajemen relasi bisnis: partner maskapai dan klien korporasi
+- Pengaturan profil perusahaan (kontak, deskripsi, media sosial)
+- Upload gambar untuk paket wisata dan galeri ke folder `uploads/`
+- Login admin berbasis session
 
-- **Login System** - Autentikasi pengguna admin
-- **Manajemen Customer** - Tambah, edit, hapus data customer
-- **Manajemen Booking** - Proses pemesanan paket wisata
-- **Manajemen Pembayaran** - Pencatatan pembayaran customer
-- **Manajemen Paket** - Kelola paket wisata
-- **Manajemen Kategori** - Kelola kategori paket wisata
-- **Manajemen Klien Korporasi** - Kelola klien korporasi
-- **Manajemen Partner/Maskapai** - Kelola partner dan maskapai
-- **Manajemen Testimoni** - Kelola testimoni customer
+## Tech Stack
 
-## Teknologi
+- PHP (native)
+- MySQL / MariaDB
+- Apache (`mod_rewrite`)
+- Bootstrap 5 + Bootstrap Icons
+- CSS kustom (`src/css/dashboard.css`, `src/css/login.css`)
 
-- **Backend**: PHP 8.x
-- **Database**: MySQL
-- **Frontend**: Bootstrap 5, Tailwind CSS (untuk halaman paket)
-- **Server**: XAMPP / Apache
+## Struktur Proyek
 
-## Struktur Folder
-
-```
-web-crm-travel/
-├── config.php              # Konfigurasi database
-├── login.php               # Halaman login
-├── navbar.php              # Komponen navigasi
-├── sidebar.php             # Komponen sidebar
-├── index.php               # Halaman utama
-├── manajemen-customer.php  # Form input customer
-├── data-manajemen-customer.php  # Data customer
-├── edit-manajemen-customer.php  # Edit customer
-├── manajemen-booking.php   # Form booking
-├── data-manajemen-booking.php   # Data booking
-├── manajemen-pembayaran.php # Form pembayaran
-├── data-manajemen-pembayaran.php # Data pembayaran
-├── manajemen-paket.php     # Kelola paket wisata
-├── data-manajemen-paket.php # Data paket
-├── edit-manajemen-paket.php # Edit paket
-├── manajemen-kategori.php  # Kelola kategori
-├── data-manajemen-kategori.php # Data kategori
-├── edit-manajemen-kategori.php # Edit kategori
-├── manajemen-klien-korporasi.php # Kelola klien korporasi
-├── data-manajemen-klien-korporasi.php # Data klien
-├── edit-manajemen-klien-korporasi.php # Edit klien
-├── manajemen-partner.php   # Kelola partner/maskapai
-├── data-manajemen-partner.php # Data partner
-├── edit-manajemen-partner.php # Edit partner
-├── manajemen-testimoni.php # Kelola testimoni
-├── data-manajemen-testimoni.php # Data testimoni
-├── edit-manajemen-testimoni.php # Edit testimoni
-├── src/
-│   ├── css/
-│   │   └── login.css       # Styling login
-│   └── api/                # API processing files
-│       ├── process-login.php
-│       ├── submit-manajemen-*.php
-│       ├── update-manajemen-*.php
-│       └── hapus-manajemen-*.php
-└── data/
-    ├── schema.sql
-    ├── manajemen_customer.sql
-    ├── manajemen_booking.sql
-    ├── manajemen_paket.sql
-    ├── manajemen_pembayaran.sql
-    ├── kategori.sql
-    ├── klien_korporasi.sql
-    ├── partner_maskapai.sql
-    └── testimoni.sql
+```text
+.
+|-- index.php
+|-- login.php
+|-- sidebar.php
+|-- manajemen-*.php
+|-- data-manajemen-*.php
+|-- edit-manajemen-*.php
+|-- setting-profil.php
+|-- config.php
+|-- .htaccess
+|-- data/
+|   `-- schema.sql
+|-- src/
+|   |-- api/
+|   |   |-- process-login.php
+|   |   |-- submit-*.php
+|   |   |-- update-*.php
+|   |   `-- hapus-*.php
+|   `-- css/
+|       |-- dashboard.css
+|       `-- login.css
+`-- uploads/
 ```
 
-## Instalasi
+## Prasyarat
 
-1. Pastikan sudah terinstall XAMPP atau server PHP lainnya
-2. Clone atau copy project ke folder `htdocs`
-3. Buat database baru dengan nama `web_crm_travel`
-4. Import file SQL dari folder `data/`
-5. Sesuaikan konfigurasi database di `config.php`
-6. Akses aplikasi melalui browser: `http://localhost/web-crm-travel`
+- XAMPP (Apache + MySQL/MariaDB)
+- PHP 8.x direkomendasikan
+- Browser modern
 
-## Database Tables
+> [!IMPORTANT]
+> Pastikan Apache mengizinkan `.htaccess` (`AllowOverride All`) dan modul `rewrite` aktif.
 
-- `manajemen_customer` - Data customer
-- `manajemen_booking` - Data booking
-- `manajemen_paket` - Data paket wisata
-- `manajemen_pembayaran` - Data pembayaran
-- `manajemen_kategori` - Data kategori paket
-- `manajemen_klien_korporasi` - Data klien korporasi
-- `manajemen_partner` - Data partner/maskapai
-- `manajemen_testimoni` - Data testimoni
+## Menjalankan Secara Lokal
 
-## Akses Aplikasi
+1. Letakkan proyek di direktori web server (contoh: `c:/xampp/htdocs/sekolah/web-crm-travel/dashboard`).
+2. Jalankan `Apache` dan `MySQL` dari XAMPP.
+3. Buat database baru dengan nama `web_crm_travel`.
+4. Import file `data/schema.sql` ke database tersebut.
+5. Sesuaikan koneksi DB di `config.php` bila diperlukan.
+6. Akses aplikasi melalui browser:
+   - `http://localhost/sekolah/web-crm-travel/dashboard/login`
 
-1. Buka browser dan akses `http://localhost/web-crm-travel/`
-2. Login dengan kredensial yang sesuai
+## Konfigurasi Database
 
-## Lisensi
+Default konfigurasi ada di `config.php`:
 
-[Tidak ditentukan]
+- Host: `localhost`
+- User: `root`
+- Password: *(kosong)*
+- Database: `web_crm_travel`
+
+Jika environment Anda berbeda, ubah nilainya sesuai konfigurasi lokal.
+
+## Akun Login Default
+
+Data awal pada `data/schema.sql` menyertakan user admin berikut:
+
+- Email: `admin@gmail.com`
+- Password: `123`
+
+> [!WARNING]
+> Kredensial default ini hanya untuk pengembangan lokal. Ganti segera sebelum dipakai di lingkungan publik.
+
+## Modul yang Tersedia
+
+- Dashboard
+- Customer
+- Booking
+- Paket Wisata
+- Pembayaran
+- Kategori
+- Galeri
+- Testimoni
+- Partner Maskapai
+- Klien Korporasi
+- Setting Profil
+
+## Catatan URL & Routing
+
+- URL seperti `/login` atau `/data-manajemen-customer` akan diarahkan ke file `.php` terkait.
+- URL yang masih menggunakan `.php` akan di-redirect ke versi tanpa ekstensi.
+
+Jika route tidak bekerja, cek kembali:
+
+- `mod_rewrite` Apache aktif
+- `.htaccess` terbaca oleh Apache
+- Lokasi proyek sesuai URL yang diakses
+
+## Troubleshooting Cepat
+
+- Gagal konek database
+  - Cek host/user/password/database di `config.php`
+  - Pastikan service MySQL aktif
+- Halaman redirect terus ke login
+  - Pastikan session PHP aktif
+  - Login ulang dan cek tabel `user`
+- Upload gambar gagal
+  - Pastikan folder `uploads/` ada dan bisa ditulis
+  - Pastikan format file sesuai (khusus galeri: `jpg`, `jpeg`, `png`, `gif`, `webp`)
+
+## Roadmap Singkat
+
+- Hash password user
+- Prepared statement untuk query SQL
+- Validasi upload file yang lebih ketat
+- Pagination & pencarian pada halaman data
+- Audit logging aktivitas admin
