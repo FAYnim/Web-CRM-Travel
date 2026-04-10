@@ -56,7 +56,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <i class="bi bi-person-plus me-2"></i>Tambah Customer Baru
                         </div>
                         <div class="card-body">
-                            <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
+                            <p class="text-muted mb-4">Silakan isi data ini dengan benar</p>
 
                             <form method="POST" action="src/api/submit-manajemen-customer">
                                 <div class="mb-3">
