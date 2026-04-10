@@ -14,7 +14,7 @@
             <form action="src/api/process-login" method="POST">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control border-2" id="inp-email" name="inp-email">
+                    <input type="email" class="form-control border-2" id="inp-email" name="inp-email" autofocus>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
