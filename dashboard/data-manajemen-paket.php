@@ -67,64 +67,10 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                 </div>
             <?php endif; ?>
 
-            <!-- Package Cards Grid -->
-            <div class="row g-3 mb-4">
-                <?php if (!$paketList): ?>
-                    <div class="col-12">
-                        <div class="dashboard-card">
-                            <div class="card-body text-center text-muted py-5">
-                                <i class="bi bi-suitcase-lg" style="font-size: 3rem;"></i>
-                                <p class="mt-3">Belum ada paket yang ditambahkan.</p>
-                                <a href="manajemen-paket" class="btn btn-primary btn-sm">Tambah Paket Pertama</a>
-                            </div>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <?php foreach ($paketList as $p): ?>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="dashboard-card h-100">
-                                <div style="height: 200px; overflow: hidden;">
-                                    <img src="<?php echo htmlspecialchars($p['gambar']); ?>"
-                                         alt="<?php echo htmlspecialchars($p['nama_paket']); ?>"
-                                         class="w-100 h-100" style="object-fit: cover;">
-                                </div>
-                                <?php if (!empty($p['label'])): ?>
-                                    <span class="badge bg-success position-absolute" style="top: 12px; right: 12px;">
-                                        <?php echo htmlspecialchars($p['label']); ?>
-                                    </span>
-                                <?php endif; ?>
-                                <div class="card-body p-3">
-                                    <h6 class="fw-bold mb-2"><?php echo htmlspecialchars($p['nama_paket']); ?></h6>
-                                    <div class="d-flex align-items-center gap-2 text-muted small mb-1">
-                                        <i class="bi bi-calendar3"></i>
-                                        <span><?php echo htmlspecialchars($p['durasi']); ?></span>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 text-muted small mb-3">
-                                        <i class="bi bi-geo-alt"></i>
-                                        <span><?php echo htmlspecialchars($p['lokasi']); ?></span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-2 border-top">
-                                        <div>
-                                            <small class="text-muted d-block">Mulai dari</small>
-                                            <span class="fw-bold text-success">Rp <?php echo number_format((int)$p['harga'], 0, ',', '.'); ?></span>
-                                        </div>
-                                        <div>
-                                            <?php for ($i = 1; $i <= 5; $i++): ?>
-                                                <i class="bi bi-star-fill small <?php echo ($i <= (int)$p['rating']) ? 'text-warning' : 'text-secondary opacity-25'; ?>"></i>
-                                            <?php endfor; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-
             <!-- Admin Panel Table -->
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <span><i class="bi bi-gear me-2"></i>Panel Admin - Daftar Paket</span>
+                    <span><i class="bi bi-gear me-2"></i>Daftar Paket</span>
                     <a href="manajemen-paket" class="btn btn-primary btn-sm">
                         <i class="bi bi-plus-circle me-1"></i>Tambah Paket Baru
                     </a>
