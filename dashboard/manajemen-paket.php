@@ -115,10 +115,28 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
                                  <div class="mb-3">
                                      <label class="form-label">Deskripsi Paket:</label>
-                                     <textarea class="form-control" name="deskripsi" rows="5" maxlength="10000" placeholder="Masukkan detail paket wisata seperti itinerari, fasilitas, syarat dan ketentuan, dll."></textarea>
-                                     <div class="mt-2">
-                                         <small class="text-muted">Maksimal 10000 karakter</small>
-                                     </div>
+                                     <textarea class="form-control" name="deskripsi" rows="3" maxlength="10000" placeholder="Masukkan detail paket wisata seperti itinerari singkat."></textarea>
+                                 </div>
+
+                                 <div class="mb-3">
+                                     <label class="form-label">Destinasi:</label>
+                                     <textarea class="form-control" name="destinasi" rows="4" placeholder="Contoh:&#10;• Pantai Kuta&#10;• Pura Tanah Lot&#10;• Ubud Monkey Forest"></textarea>
+                                     <small class="text-muted">Gunakan baris baru atau simbol (•) untuk daftar destinasi.</small>
+                                 </div>
+
+                                 <div class="mb-3">
+                                     <label class="form-label">Fasilitas Include:</label>
+                                     <textarea class="form-control" name="fasilitas_include" rows="4" placeholder="Contoh:&#10;• Tiket Pesawat PP&#10;• Hotel Bintang 4&#10;• Makan 3x Sehari&#10;• Tour Guide Profesional"></textarea>
+                                 </div>
+
+                                 <div class="mb-3">
+                                     <label class="form-label">Fasilitas Exclude:</label>
+                                     <textarea class="form-control" name="fasilitas_exclude" rows="3" placeholder="Contoh:&#10;• Pengeluaran Pribadi&#10;• Tip Guide/Driver&#10;• Asuransi Perjalanan Tambahan"></textarea>
+                                 </div>
+
+                                 <div class="mb-3">
+                                     <label class="form-label">Syarat & Ketentuan:</label>
+                                     <textarea class="form-control" name="syarat_ketentuan" rows="4" placeholder="Contoh:&#10;• DP minimal 30% dari total biaya&#10;• Pelunasan H-7 keberangkatan&#10;• Perubahan jadwal mengikuti ketersediaan"></textarea>
                                  </div>
 
                                  <div class="d-flex gap-2">

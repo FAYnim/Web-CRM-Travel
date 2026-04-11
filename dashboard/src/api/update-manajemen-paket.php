@@ -11,6 +11,10 @@ $harga = (int)$_POST['harga'];
 $label = $_POST['label'] ?? "";
 $rating = (int)$_POST['rating'] ?? 5;
 $deskripsi = htmlspecialchars($_POST['deskripsi'] ?? "");
+$destinasi = htmlspecialchars($_POST['destinasi'] ?? "");
+$fasilitas_include = htmlspecialchars($_POST['fasilitas_include'] ?? "");
+$fasilitas_exclude = htmlspecialchars($_POST['fasilitas_exclude'] ?? "");
+$syarat_ketentuan = htmlspecialchars($_POST['syarat_ketentuan'] ?? "");
 
 $gambar = $_POST['gambar'] ?? "";
 if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
@@ -28,9 +32,9 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
 }
 
 if($gambar == "") {
- 	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, label = '$label', rating = $rating, deskripsi = '$deskripsi' WHERE id = $id";
+ 	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, label = '$label', rating = $rating, deskripsi = '$deskripsi', destinasi = '$destinasi', fasilitas_include = '$fasilitas_include', fasilitas_exclude = '$fasilitas_exclude', syarat_ketentuan = '$syarat_ketentuan' WHERE id = $id";
  } else {
- 	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, gambar = '$gambar', label = '$label', rating = $rating, deskripsi = '$deskripsi' WHERE id = $id";
+ 	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, gambar = '$gambar', label = '$label', rating = $rating, deskripsi = '$deskripsi', destinasi = '$destinasi', fasilitas_include = '$fasilitas_include', fasilitas_exclude = '$fasilitas_exclude', syarat_ketentuan = '$syarat_ketentuan' WHERE id = $id";
  }
 $update = mysqli_query($koneksi, $query);
 
