@@ -281,189 +281,115 @@ function format_harga($harga) {
           <!-- Tab Content: Destinasi -->
           <div class="detail__tab-content" id="tab-destinasi" role="tabpanel">
             <h3>Destinasi yang Dikunjungi</h3>
-            <p>Berikut adalah destinasi-destinasi pilihan yang akan Anda kunjungi selama perjalanan Bali Paradise 5D4N:</p>
-            <ul>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <div>
-                  <strong>Tanah Lot</strong> — Pura ikonik yang berdiri di atas batu karang di tengah laut. Nikmati pemandangan sunset yang menakjubkan dengan latar belakang pura yang megah. Salah satu spot foto paling populer di Bali.
-                </div>
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <div>
-                  <strong>Uluwatu</strong> — Pura yang terletak di tebing setinggi 70 meter di atas permukaan laut. Saksikan pertunjukan tari Kecak yang memukau dengan latar matahari terbenam. Area ini juga dikenal dengan komunitas monyet liarnya.
-                </div>
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <div>
-                  <strong>Ubud</strong> — Pusat seni dan budaya Bali yang terkenal dengan sawah terasering Tegallalang, Monkey Forest, galeri seni, dan pasar tradisional. Tempat ideal untuk merasakan kehidupan pedesaan Bali yang autentik.
-                </div>
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <div>
-                  <strong>Kuta</strong> — Kawasan wisata paling ramai di Bali dengan pantai pasir putih yang luas, pusat perbelanjaan, dan kehidupan malam yang semarak. Tempat sempurna untuk belanja oleh-oleh khas Bali.
-                </div>
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <div>
-                  <strong>Seminyak</strong> — Area trendy dengan beach club, restoran fine dining, dan butik-butik desainer. Nikmati suasana kosmopolitan dengan sentuhan budaya Bali. Sunset di Seminyak beach adalah pengalaman yang tak boleh dilewatkan.
-                </div>
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <div>
-                  <strong>Nusa Dua</strong> — Kawasan resort mewah dengan pantai bersih dan air laut yang tenang. Cocok untuk aktivitas water sport, berjemur, dan bersantai bersama keluarga di lingkungan yang aman dan nyaman.
-                </div>
-              </li>
-            </ul>
+            <?php if (!empty($p['destinasi'])): ?>
+              <p>Berikut adalah destinasi-destinasi pilihan yang akan Anda kunjungi selama perjalanan:</p>
+              <div class="tab-description">
+                <?php 
+                  $destinasi_lines = explode("\n", htmlspecialchars_decode($p['destinasi']));
+                  if (count($destinasi_lines) > 1 || strpos($p['destinasi'], '•') !== false): ?>
+                    <ul class="dynamic-list">
+                      <?php foreach ($destinasi_lines as $line): 
+                        $line = trim($line);
+                        if (empty($line)) continue;
+                        $line = ltrim($line, '•*- ');
+                      ?>
+                        <li>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                          <div><?php echo $line; ?></div>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                  <?php else: ?>
+                    <?php echo nl2br(htmlspecialchars_decode($p['destinasi'])); ?>
+                  <?php endif; ?>
+              </div>
+            <?php else: ?>
+              <p>Destinasi perjalanan akan disesuaikan dengan paket yang Anda pilih. Hubungi kami untuk informasi lebih lanjut mengenai itinerari lengkap.</p>
+              <ul class="dynamic-list">
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <div>Berbagai destinasi wisata populer di lokasi paket.</div>
+                </li>
+              </ul>
+            <?php endif; ?>
           </div>
 
           <!-- Tab Content: Fasilitas -->
           <div class="detail__tab-content" id="tab-fasilitas" role="tabpanel">
             <h3>Fasilitas Termasuk (Include)</h3>
-            <ul class="detail__include" style="margin-bottom:var(--space-8);">
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Tiket pesawat pulang-pergi (PP) Garuda Indonesia kelas ekonomi
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Akomodasi hotel bintang 4 selama 4 malam (twin/double sharing)
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Sarapan pagi (breakfast) setiap hari di hotel
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Transportasi AC selama tour (private car)
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Tour guide berpengalaman dan berlisensi
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Tiket masuk objek wisata sesuai itinerary
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Asuransi perjalanan selama tour
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Air mineral selama perjalanan tour
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Dokumentasi foto perjalanan
-              </li>
-            </ul>
+            <?php if (!empty($p['fasilitas_include'])): ?>
+              <ul class="detail__include" style="margin-bottom:var(--space-8);">
+                <?php 
+                  $include_lines = explode("\n", htmlspecialchars_decode($p['fasilitas_include']));
+                  foreach ($include_lines as $line): 
+                    $line = trim($line);
+                    if (empty($line)) continue;
+                    $line = ltrim($line, '•*- ');
+                ?>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <?php echo $line; ?>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php else: ?>
+              <p class="text-muted mb-4">Informasi fasilitas include belum tersedia. Silakan hubungi kami.</p>
+            <?php endif; ?>
 
             <h3>Tidak Termasuk (Exclude)</h3>
-            <ul class="detail__exclude">
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                Makan siang dan makan malam (kecuali yang tercantum di itinerary)
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                Pengeluaran pribadi (laundry, telepon, minibar, dll)
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                Tips untuk driver dan tour guide
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                Aktivitas optional (water sport, spa, dll)
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                Upgrade kamar hotel (supplement single room)
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                Bagasi tambahan di pesawat (di luar ketentuan maskapai)
-              </li>
-            </ul>
+            <?php if (!empty($p['fasilitas_exclude'])): ?>
+              <ul class="detail__exclude">
+                <?php 
+                  $exclude_lines = explode("\n", htmlspecialchars_decode($p['fasilitas_exclude']));
+                  foreach ($exclude_lines as $line): 
+                    $line = trim($line);
+                    if (empty($line)) continue;
+                    $line = ltrim($line, '•*- ');
+                ?>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    <?php echo $line; ?>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php else: ?>
+              <p class="text-muted">Biaya pribadi dan pengeluaran di luar program tidak termasuk dalam paket.</p>
+            <?php endif; ?>
           </div>
 
           <!-- Tab Content: Syarat & Ketentuan -->
           <div class="detail__tab-content" id="tab-syarat" role="tabpanel">
             <h3>Syarat &amp; Ketentuan</h3>
-
-            <p><strong>Pembayaran:</strong></p>
-            <ul>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                DP (Down Payment) sebesar 50% dari total biaya untuk konfirmasi pemesanan.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Pelunasan paling lambat 14 hari sebelum keberangkatan.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Pembayaran dapat dilakukan via transfer bank (BCA, Mandiri, BNI) atau e-wallet.
-              </li>
-            </ul>
-
-            <p style="margin-top:var(--space-6);"><strong>Kebijakan Pembatalan:</strong></p>
-            <ul>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Pembatalan lebih dari 30 hari sebelum keberangkatan: refund 80% dari total pembayaran.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Pembatalan 15–30 hari sebelum keberangkatan: refund 50% dari total pembayaran.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Pembatalan kurang dari 15 hari sebelum keberangkatan: tidak ada refund.
-              </li>
-            </ul>
-
-            <p style="margin-top:var(--space-6);"><strong>Kebijakan Reschedule:</strong></p>
-            <ul>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Reschedule dapat dilakukan maksimal 1 kali dan minimal 21 hari sebelum keberangkatan.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Biaya reschedule akan disesuaikan dengan selisih harga tiket pesawat dan ketersediaan hotel pada tanggal baru.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Reschedule pada periode high season (Lebaran, Natal, Tahun Baru) dapat dikenakan biaya tambahan.
-              </li>
-            </ul>
-
-            <p style="margin-top:var(--space-6);"><strong>Ketentuan Lainnya:</strong></p>
-            <ul>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Harga dapat berubah sewaktu-waktu tanpa pemberitahuan terlebih dahulu, terutama pada high season.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Itinerary dapat berubah menyesuaikan kondisi cuaca dan situasi di lapangan tanpa mengurangi destinasi yang dikunjungi.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Minimal peserta untuk grup tour adalah 4 orang. Untuk private tour, hubungi kami untuk penawaran khusus.
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Anak usia di bawah 2 tahun free of charge (tanpa extra bed). Anak usia 2–10 tahun dikenakan harga khusus.
-              </li>
-            </ul>
+            <?php if (!empty($p['syarat_ketentuan'])): ?>
+              <div class="tab-description">
+                <?php 
+                  $syarat_lines = explode("\n", htmlspecialchars_decode($p['syarat_ketentuan']));
+                  if (count($syarat_lines) > 1 || strpos($p['syarat_ketentuan'], '•') !== false): ?>
+                    <ul class="dynamic-list">
+                      <?php foreach ($syarat_lines as $line): 
+                        $line = trim($line);
+                        if (empty($line)) continue;
+                        $line = ltrim($line, '•*- ');
+                      ?>
+                        <li>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                          <div><?php echo $line; ?></div>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                  <?php else: ?>
+                    <?php echo nl2br(htmlspecialchars_decode($p['syarat_ketentuan'])); ?>
+                  <?php endif; ?>
+              </div>
+            <?php else: ?>
+              <p>Pemesanan paket ini tunduk pada syarat dan ketentuan umum SnD Tour Travel. Hubungi kami untuk rincian lebih lanjut mengenai kebijakan pembayaran dan pembatalan spesifik untuk paket ini.</p>
+              <ul class="dynamic-list">
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <div>Ketentuan umum berlaku sesuai kebijakan SnD Tour.</div>
+                </li>
+              </ul>
+            <?php endif; ?>
           </div>
 
         </div>
