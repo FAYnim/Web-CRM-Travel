@@ -66,7 +66,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
                             <div class="mb-3">
                                 <label class="form-label">Nama:</label>
-                                <input class="form-control" type="text" name="nama" value="<?php echo htmlspecialchars($data['nama']); ?>">
+                                <input autofocus class="form-control" type="text" name="nama" value="<?php echo htmlspecialchars($data['nama']); ?>">
                             </div>
 
                             <div class="mb-3">

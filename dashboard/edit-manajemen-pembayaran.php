@@ -66,7 +66,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
                             <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
-                                    <input type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
+                                    <input autofocus type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
                                 </div>
 
                             <div class="mb-3">

@@ -75,7 +75,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <label for="judul" class="form-label">Judul Foto <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul foto" required>
+                                        <input autofocus type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul foto" required>
                                     </div>
 
                                     <div class="col-md-5 mb-3">

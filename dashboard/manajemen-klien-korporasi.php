@@ -71,7 +71,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <h6 class="text-primary mb-3"><i class="bi bi-building me-2"></i>Informasi Perusahaan</h6>
                                 <div class="mb-3">
                                     <label for="nama_perusahaan" class="form-label">Nama Perusahaan <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" placeholder="Contoh: PT Telkom Indonesia" required>
+                                    <input autofocus type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" placeholder="Contoh: PT Telkom Indonesia" required>
                                 </div>
 
                                 <div class="row">

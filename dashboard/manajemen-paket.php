@@ -61,7 +61,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <form method="POST" action="src/api/submit-manajemen-paket" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label class="form-label">Nama Paket:</label>
-                                    <input class="form-control" type="text" name="nama_paket" placeholder="Contoh: Bali Paradise Escape" required>
+                                    <input autofocus class="form-control" type="text" name="nama_paket" placeholder="Contoh: Bali Paradise Escape" required>
                                 </div>
 
                                 <div class="mb-3">

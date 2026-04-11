@@ -78,7 +78,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
                             <div class="mb-3">
                                 <label class="form-label">Nama Paket</label>
-                                <input type="text" name="nama_paket" class="form-control" value="<?php echo htmlspecialchars($editData['nama_paket'] ?? ''); ?>" placeholder="Bali Paradise Escape" required>
+                                <input autofocus type="text" name="nama_paket" class="form-control" value="<?php echo htmlspecialchars($editData['nama_paket'] ?? ''); ?>" placeholder="Bali Paradise Escape" required>
                             </div>
 
                             <div class="mb-3">

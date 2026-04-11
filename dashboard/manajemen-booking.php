@@ -69,7 +69,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <form method="POST" action="src/api/submit-manajemen-booking">
                                 <div class="mb-3">
                                     <label class="form-label">Customer :</label>
-                                    <select class="form-select" name="nama" required>
+                                    <select autofocus class="form-select" name="nama" required>
                                         <option value="">Pilih Customer</option>
                                         <?php foreach($customers as $customer): ?>
                                             <option value="<?= htmlspecialchars($customer['nama']) ?>"><?= htmlspecialchars($customer['nama']) ?></option>

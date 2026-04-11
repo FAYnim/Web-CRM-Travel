@@ -61,7 +61,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <form method="POST" action="src/api/submit-manajemen-customer">
                                 <div class="mb-3">
                                     <label class="form-label">Nama:</label>
-                                    <input class="form-control" type="text" name="nama" placeholder="Isi Dengan Nama..." required>
+                                    <input autofocus class="form-control" type="text" name="nama" placeholder="Isi Dengan Nama..." required>
                                 </div>
 
                                 <div class="mb-3">
