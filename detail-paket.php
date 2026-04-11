@@ -23,6 +23,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
   
   if ($result && $result->num_rows > 0) {
     $p = $result->fetch_assoc();
+    if (empty($p['gambar'])) {
+      $p['gambar'] = 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80';
+    }
+    $p['gambar'] = "dashboard/".$p['gambar'];
   } else {
     // Redirect if ID provided but not found
     header("Location: paket-wisata.php?error=notfound");
@@ -54,7 +58,7 @@ function format_harga($harga) {
   <meta property="og:url" content="https://sndtour.com/detail-paket.php">
   <meta property="og:title" content="<?php echo htmlspecialchars($p['nama_paket']); ?> — SnD Tour Travel">
   <meta property="og:description" content="<?php echo htmlspecialchars(substr(strip_tags($p['deskripsi']), 0, 160)); ?>...">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80">
+  <meta property="og:image" content="<?php echo htmlspecialchars($p['gambar']); ?>">
   <meta property="og:locale" content="id_ID">
   <meta property="og:site_name" content="SnD Tour Travel">
 
@@ -63,7 +67,7 @@ function format_harga($harga) {
   <meta property="twitter:url" content="https://sndtour.com/detail-paket.php">
   <meta property="twitter:title" content="<?php echo htmlspecialchars($p['nama_paket']); ?> — SnD Tour Travel">
   <meta property="twitter:description" content="<?php echo htmlspecialchars(substr(strip_tags($p['deskripsi']), 0, 160)); ?>...">
-  <meta property="twitter:image" content="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80">
+  <meta property="twitter:image" content="<?php echo htmlspecialchars($p['gambar']); ?>">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23008080'/%3E%3Ctext x='50' y='68' text-anchor='middle' fill='white' font-family='Georgia' font-size='48' font-weight='bold'%3ESnD%3C/text%3E%3C/svg%3E">
@@ -205,7 +209,7 @@ function format_harga($harga) {
        ============================================================ -->
   <section class="page-header">
     <div class="page-header__bg">
-      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1400&q=80" alt="Pemandangan sawah terasering hijau di Bali dengan langit cerah" loading="eager" width="1400" height="700">
+      <img src="<?php echo htmlspecialchars($p['gambar']); ?>" alt="<?php echo htmlspecialchars($p['nama_paket']); ?>" loading="eager" width="1400" height="700">
     </div>
     <div class="page-header__content container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -244,7 +248,7 @@ function format_harga($harga) {
           <!-- Gallery -->
           <div class="detail__gallery">
             <div class="detail__gallery-main">
-              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80" alt="Sawah terasering Tegallalang di Bali dengan hamparan hijau yang indah" loading="eager" width="900" height="506">
+              <img src="<?php echo htmlspecialchars($p['gambar']); ?>" alt="<?php echo htmlspecialchars($p['nama_paket']); ?>" loading="eager" width="900" height="506">
             </div>
           </div>
 
