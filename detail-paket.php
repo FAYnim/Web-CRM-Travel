@@ -34,6 +34,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
   }
 }
 
+// Fetch related packages (LIMIT 3, exclude current ID, ORDER BY created_at DESC)
+$related_packages = [];
+$stmt_related = $koneksi->prepare("SELECT * FROM manajemen_paket WHERE id != ? ORDER BY created_at DESC LIMIT 3");
+$stmt_related->bind_param("i", $p['id']);
+$stmt_related->execute();
+$result_related = $stmt_related->get_result();
+if ($result_related && $result_related->num_rows > 0) {
+  while ($row = $result_related->fetch_assoc()) {
+    $related_packages[] = $row;
+  }
+}
+
 function format_harga($harga) {
   return 'Rp ' . number_format((int)$harga, 0, ',', '.');
 }
@@ -420,6 +432,7 @@ function format_harga($harga) {
   <!-- ============================================================
        RELATED PACKAGES
        ============================================================ -->
+  <?php if (!empty($related_packages)): ?>
   <section class="section special-tours reveal" id="related-packages" style="background:var(--gradient-section-alt);">
     <div class="container">
       <div class="section-header">
@@ -428,112 +441,48 @@ function format_harga($harga) {
         <p class="section-header__subtitle">Temukan paket wisata menarik lainnya yang mungkin cocok untuk liburan Anda berikutnya.</p>
         <div class="section-header__line"></div>
       </div>
-      <div class="special-tours__scroll">
+      <div class="packages__grid">
 
-        <!-- Related Card 1 -->
+        <?php foreach ($related_packages as $rp): 
+          $rp_gambar = !empty($rp['gambar']) ? "dashboard/" . $rp['gambar'] : 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80';
+        ?>
         <article class="card">
-          <a href="detail-paket.php">
+          <a href="detail-paket.php?id=<?php echo $rp['id']; ?>">
             <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=500&q=80" alt="Panorama Labuan Bajo dengan laut biru dan pulau-pulau" loading="lazy" width="500" height="313">
-              <span class="card__badge">Promo</span>
+              <img src="<?php echo htmlspecialchars($rp_gambar); ?>" alt="<?php echo htmlspecialchars($rp['nama_paket']); ?>" loading="lazy" width="600" height="375">
+              <?php if (!empty($rp['label'])): ?>
+                <span class="card__badge"><?php echo htmlspecialchars($rp['label']); ?></span>
+              <?php endif; ?>
             </div>
           </a>
           <div class="card__body">
-            <span class="card__category">Domestik</span>
-            <h3 class="card__title"><a href="detail-paket.php">Labuan Bajo Explorer 4D3N</a></h3>
+            <span class="card__category">Paket Wisata</span>
+            <h3 class="card__title"><a href="detail-paket.php?id=<?php echo $rp['id']; ?>"><?php echo htmlspecialchars($rp['nama_paket']); ?></a></h3>
             <div class="card__meta">
               <span class="card__meta-item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                NTT, Indonesia
+                <?php echo htmlspecialchars($rp['lokasi']); ?>
               </span>
               <span class="card__duration">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                4D3N
+                <?php echo htmlspecialchars($rp['durasi']); ?>
               </span>
             </div>
             <div class="card__price">
               <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 5.750.000</span>
+              <span class="card__price-value"><?php echo format_harga($rp['harga']); ?></span>
             </div>
             <div class="card__footer">
-              <a href="detail-paket.php" class="btn btn--secondary btn--sm">LIHAT DETAIL</a>
-              <div class="card__airline" title="Lion Air">
-                <span style="font-size:10px;font-weight:700;color:var(--coral);">JT</span>
-              </div>
+              <a href="detail-paket.php?id=<?php echo $rp['id']; ?>" class="btn btn--secondary btn--sm">LIHAT DETAIL</a>
             </div>
           </div>
         </article>
-
-        <!-- Related Card 2 -->
-        <article class="card">
-          <a href="detail-paket.php">
-            <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=500&q=80" alt="Gunung Bromo saat matahari terbit dengan kabut emas" loading="lazy" width="500" height="313">
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Domestik</span>
-            <h3 class="card__title"><a href="detail-paket.php">Bromo Midnight Tour 2D1N</a></h3>
-            <div class="card__meta">
-              <span class="card__meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Jawa Timur
-              </span>
-              <span class="card__duration">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                2D1N
-              </span>
-            </div>
-            <div class="card__price">
-              <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 1.850.000</span>
-            </div>
-            <div class="card__footer">
-              <a href="detail-paket.php" class="btn btn--secondary btn--sm">LIHAT DETAIL</a>
-              <div class="card__airline" title="Citilink">
-                <span style="font-size:10px;font-weight:700;color:var(--emerald);">QG</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Related Card 3 -->
-        <article class="card">
-          <a href="detail-paket.php">
-            <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1574227492706-f65b24c3688a?w=500&q=80" alt="Kota Singapura dengan gedung pencakar langit dan Marina Bay" loading="lazy" width="500" height="313">
-              <span class="card__badge card__badge--teal">Best Seller</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Asia</span>
-            <h3 class="card__title"><a href="detail-paket.php">Singapore City Tour 4D3N</a></h3>
-            <div class="card__meta">
-              <span class="card__meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Singapura
-              </span>
-              <span class="card__duration">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                4D3N
-              </span>
-            </div>
-            <div class="card__price">
-              <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 7.500.000</span>
-            </div>
-            <div class="card__footer">
-              <a href="detail-paket.php" class="btn btn--secondary btn--sm">LIHAT DETAIL</a>
-              <div class="card__airline" title="Singapore Airlines">
-                <span style="font-size:10px;font-weight:700;color:var(--teal-dark);">SQ</span>
-              </div>
-            </div>
-          </div>
-        </article>
+        <?php endforeach; ?>
 
       </div>
     </div>
   </section>
+  <?php endif; ?>
 
   <!-- ============================================================
        CTA BANNER
