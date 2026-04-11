@@ -75,7 +75,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama Maskapai <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="nama_maskapai" value="<?php echo htmlspecialchars($data['nama_maskapai']); ?>" required>
+                                    <input autofocus class="form-control" type="text" name="nama_maskapai" value="<?php echo htmlspecialchars($data['nama_maskapai']); ?>" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Kode Maskapai (IATA) <span class="text-danger">*</span></label>

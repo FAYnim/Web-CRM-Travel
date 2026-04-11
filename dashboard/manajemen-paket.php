@@ -61,7 +61,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <form method="POST" action="src/api/submit-manajemen-paket" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label class="form-label">Nama Paket:</label>
-                                    <input class="form-control" type="text" name="nama_paket" placeholder="Contoh: Bali Paradise Escape" required>
+                                    <input autofocus class="form-control" type="text" name="nama_paket" placeholder="Contoh: Bali Paradise Escape" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -108,17 +108,25 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Rating (1-5):</label>
-                                    <input class="form-control" type="number" name="rating" min="1" max="5" value="5" required>
-                                </div>
+                                 <div class="mb-3">
+                                     <label class="form-label">Rating (1-5):</label>
+                                     <input class="form-control" type="number" name="rating" min="1" max="5" value="5" required>
+                                 </div>
 
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="bi bi-check-lg me-1"></i>Simpan
-                                    </button>
-                                    <a href="data-manajemen-paket" class="btn btn-secondary">Batal</a>
-                                </div>
+                                 <div class="mb-3">
+                                     <label class="form-label">Deskripsi Paket:</label>
+                                     <textarea class="form-control" name="deskripsi" rows="5" maxlength="10000" placeholder="Masukkan detail paket wisata seperti itinerari, fasilitas, syarat dan ketentuan, dll."></textarea>
+                                     <div class="mt-2">
+                                         <small class="text-muted">Maksimal 10000 karakter</small>
+                                     </div>
+                                 </div>
+
+                                 <div class="d-flex gap-2">
+                                     <button class="btn btn-primary" type="submit">
+                                         <i class="bi bi-check-lg me-1"></i>Simpan
+                                     </button>
+                                     <a href="data-manajemen-paket" class="btn btn-secondary">Batal</a>
+                                 </div>
                             </form>
                         </div>
                     </div>

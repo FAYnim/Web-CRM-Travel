@@ -78,7 +78,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
                             <div class="mb-3">
                                 <label class="form-label">Nama Paket</label>
-                                <input type="text" name="nama_paket" class="form-control" value="<?php echo htmlspecialchars($editData['nama_paket'] ?? ''); ?>" placeholder="Bali Paradise Escape" required>
+                                <input autofocus type="text" name="nama_paket" class="form-control" value="<?php echo htmlspecialchars($editData['nama_paket'] ?? ''); ?>" placeholder="Bali Paradise Escape" required>
                             </div>
 
                             <div class="mb-3">
@@ -130,17 +130,25 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Rating (1-5)</label>
-                                <input type="number" name="rating" class="form-control" min="1" max="5" value="<?php echo htmlspecialchars($editData['rating'] ?? 5); ?>" required>
-                            </div>
+                             <div class="mb-3">
+                                 <label class="form-label">Rating (1-5)</label>
+                                 <input type="number" name="rating" class="form-control" min="1" max="5" value="<?php echo htmlspecialchars($editData['rating'] ?? 5); ?>" required>
+                             </div>
 
-                            <div class="d-flex gap-2">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-check-lg me-1"></i><?php echo $editData ? 'Perbarui' : 'Simpan'; ?>
-                                </button>
-                                <a href="data-manajemen-paket" class="btn btn-secondary">Batal</a>
-                            </div>
+                             <div class="mb-3">
+                                 <label class="form-label">Deskripsi Paket:</label>
+                                 <textarea class="form-control" name="deskripsi" rows="5" maxlength="10000" placeholder="Masukkan detail paket wisata seperti itinerari, fasilitas, syarat dan ketentuan, dll."><?php echo htmlspecialchars($editData['deskripsi'] ?? ''); ?></textarea>
+                                 <div class="mt-2">
+                                     <small class="text-muted">Maksimal 10000 karakter</small>
+                                 </div>
+                             </div>
+
+                             <div class="d-flex gap-2">
+                                 <button type="submit" class="btn btn-primary">
+                                     <i class="bi bi-check-lg me-1"></i><?php echo $editData ? 'Perbarui' : 'Simpan'; ?>
+                                 </button>
+                                 <a href="data-manajemen-paket" class="btn btn-secondary">Batal</a>
+                             </div>
                         </form>
                     </div>
                 </div>

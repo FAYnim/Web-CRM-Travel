@@ -70,7 +70,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_pelanggan" class="form-label">Nama Pelanggan <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" placeholder="Contoh: Budi Santoso" required>
+                                        <input autofocus type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" placeholder="Contoh: Budi Santoso" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="tanggal" class="form-label">Tanggal</label>
