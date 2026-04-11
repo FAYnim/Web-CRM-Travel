@@ -246,20 +246,6 @@ function format_harga($harga) {
             <div class="detail__gallery-main">
               <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&q=80" alt="Sawah terasering Tegallalang di Bali dengan hamparan hijau yang indah" loading="eager" width="900" height="506">
             </div>
-            <div class="detail__gallery-thumbs">
-              <div class="detail__gallery-thumb detail__gallery-thumb--active">
-                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=300&q=80" alt="Sawah terasering Tegallalang Bali" loading="lazy" width="300" height="188">
-              </div>
-              <div class="detail__gallery-thumb">
-                <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=300&q=80" alt="Pantai berpasir putih di Bali dengan ombak biru" loading="lazy" width="300" height="188">
-              </div>
-              <div class="detail__gallery-thumb">
-                <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=300&q=80" alt="Pura batu di tebing laut Bali saat senja" loading="lazy" width="300" height="188">
-              </div>
-              <div class="detail__gallery-thumb">
-                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300&q=80" alt="Pemandangan alam pegunungan dan danau di Bali" loading="lazy" width="300" height="188">
-              </div>
-            </div>
           </div>
 
           <!-- Tabs -->
