@@ -9,6 +9,7 @@ $lokasi = $_POST['lokasi'];
 $harga = (int)$_POST['harga'];
 $label = $_POST['label'] ?? "";
 $rating = (int)$_POST['rating'] ?? 5;
+$deskripsi = htmlspecialchars($_POST['deskripsi'] ?? "");
 
 // handle upload gambar
 $gambar = "";
@@ -26,7 +27,7 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
     }
 }
 
-$submit = mysqli_query($koneksi, "INSERT INTO manajemen_paket (nama_paket, durasi, lokasi, harga, gambar, label, rating) VALUES ('$nama', '$durasi', '$lokasi', $harga, '$gambar', '$label', $rating)");
+$submit = mysqli_query($koneksi, "INSERT INTO manajemen_paket (nama_paket, durasi, lokasi, harga, gambar, label, rating, deskripsi) VALUES ('$nama', '$durasi', '$lokasi', $harga, '$gambar', '$label', $rating, '$deskripsi')");
 
 if ($submit == TRUE) {
     header("location: ../../data-manajemen-paket?success=Data berhasil ditambahkan.");

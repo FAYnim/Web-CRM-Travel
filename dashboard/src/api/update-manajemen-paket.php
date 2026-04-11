@@ -10,6 +10,7 @@ $lokasi = $_POST['lokasi'];
 $harga = (int)$_POST['harga'];
 $label = $_POST['label'] ?? "";
 $rating = (int)$_POST['rating'] ?? 5;
+$deskripsi = htmlspecialchars($_POST['deskripsi'] ?? "");
 
 $gambar = $_POST['gambar'] ?? "";
 if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
@@ -27,10 +28,10 @@ if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] == 0) {
 }
 
 if($gambar == "") {
-	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, label = '$label', rating = $rating WHERE id = $id";
-} else {
-	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, gambar = '$gambar', label = '$label', rating = $rating WHERE id = $id";
-}
+ 	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, label = '$label', rating = $rating, deskripsi = '$deskripsi' WHERE id = $id";
+ } else {
+ 	$query = "UPDATE manajemen_paket SET nama_paket = '$nama', durasi = '$durasi', lokasi = '$lokasi', harga = $harga, gambar = '$gambar', label = '$label', rating = $rating, deskripsi = '$deskripsi' WHERE id = $id";
+ }
 $update = mysqli_query($koneksi, $query);
 
 if ($update == TRUE) {

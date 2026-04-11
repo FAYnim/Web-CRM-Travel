@@ -1,10 +1,8 @@
 <?php
 include 'config.php';
-
 if($_SESSION['login'] != true) {
     header("Location: login");
 }
-
 // Ambil semua data paket
 $paketList = [];
 $result = $koneksi->query("SELECT * FROM manajemen_paket ORDER BY id DESC");
@@ -13,9 +11,7 @@ if ($result) {
         $paketList[] = $row;
     }
 }
-
 $successMsg = $_GET['success'] ?? '';
-
 $page_title = 'Data Paket Wisata';
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
@@ -33,13 +29,10 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
     <link rel="stylesheet" href="src/css/dashboard.css">
 </head>
 <body>
-
     <!-- Sidebar -->
      <?php include "sidebar.php"; ?>
-
     <!-- Overlay for mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Top Header -->
@@ -57,7 +50,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                 </span>
             </div>
         </header>
-
         <!-- Page Content -->
         <div class="page-content">
             <?php if ($successMsg): ?>
@@ -66,7 +58,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             <?php endif; ?>
-
             <!-- Admin Panel Table -->
             <div class="dashboard-card">
                 <div class="card-header d-flex align-items-center justify-content-between">
@@ -79,14 +70,14 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                     <div class="table-responsive">
                         <table class="table table-dashboard">
                             <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Paket</th>
-                                    <th>Durasi</th>
-                                    <th>Lokasi</th>
-                                    <th>Harga</th>
-                                    <th>Aksi</th>
-                                </tr>
+                                 <tr>
+                                     <th>No</th>
+                                     <th>Nama Paket</th>
+                                     <th>Durasi</th>
+                                     <th>Lokasi</th>
+                                     <th>Harga</th>
+                                     <th>Aksi</th>
+                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if (!$paketList): ?>
@@ -95,27 +86,27 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     </tr>
                                 <?php else: ?>
                                     <?php $no = 1; ?>
-                                    <?php foreach ($paketList as $p): ?>
-                                        <tr>
-                                            <td><?php echo $no++; ?></td>
-                                            <td>
-                                                <?php echo htmlspecialchars($p['nama_paket']); ?>
-                                                <?php if (!empty($p['label'])): ?>
-                                                    <span class="badge bg-info"><?php echo htmlspecialchars($p['label']); ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td><?php echo htmlspecialchars($p['durasi']); ?></td>
-                                            <td><?php echo htmlspecialchars($p['lokasi']); ?></td>
-                                            <td>Rp <?php echo number_format((int)$p['harga'], 0, ',', '.'); ?></td>
-                                            <td>
-                                                <a href="edit-manajemen-paket?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-warning">
-                                                    <i class="bi bi-pencil"></i> Edit
-                                                </a>
-                                                <a href="src/api/hapus-manajemen-paket?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                    <i class="bi bi-trash"></i> Hapus
-                                                </a>
-                                            </td>
-                                        </tr>
+                                     <?php foreach ($paketList as $p): ?>
+                                         <tr>
+                                             <td><?php echo $no++; ?></td>
+                                             <td>
+                                                 <?php echo htmlspecialchars($p['nama_paket']); ?>
+                                                 <?php if (!empty($p['label'])): ?>
+                                                     <span class="badge bg-info"><?php echo htmlspecialchars($p['label']); ?></span>
+                                                 <?php endif; ?>
+                                             </td>
+                                             <td><?php echo htmlspecialchars($p['durasi']); ?></td>
+                                             <td><?php echo htmlspecialchars($p['lokasi']); ?></td>
+                                             <td>Rp <?php echo number_format((int)$p['harga'], 0, ',', '.'); ?></td>
+                                             <td>
+                                                 <a href="edit-manajemen-paket?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-warning">
+                                                     <i class="bi bi-pencil"></i> Edit
+                                                 </a>
+                                                 <a href="src/api/hapus-manajemen-paket?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                     <i class="bi bi-trash"></i> Hapus
+                                                 </a>
+                                             </td>
+                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </tbody>
@@ -125,10 +116,8 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
             </div>
         </div>
     </div>
-
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
     <!-- Sidebar Toggle Script -->
     <script>
         function toggleSidebar() {
@@ -137,7 +126,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
             sidebar.classList.toggle('show');
             overlay.classList.toggle('show');
         }
-
         // Close sidebar on window resize to desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth >= 992) {
@@ -150,3 +138,4 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
     </script>
 </body>
 </html>
+
