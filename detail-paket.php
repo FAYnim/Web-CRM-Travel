@@ -1,3 +1,39 @@
+<?php
+require_once __DIR__ . '/config.php';
+
+// Default / Fallback data (Bali Paradise)
+$p = [
+  'id' => 0,
+  'nama_paket' => 'Bali Paradise 5D4N',
+  'durasi' => '5D4N',
+  'harga' => '4850000',
+  'lokasi' => 'Bali, Indonesia',
+  'gambar' => 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80',
+  'deskripsi' => 'Nikmati keindahan Pulau Dewata dalam paket Bali Paradise 5D4N yang dirancang khusus untuk keluarga. Perjalanan selama 5 hari 4 malam ini akan membawa Anda menjelajahi pesona alam, budaya, dan kuliner terbaik Bali yang tak terlupakan.',
+  'label' => 'Wisata Keluarga'
+];
+
+// If ID is provided, try to fetch from database
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+  $package_id = (int)$_GET['id'];
+  $stmt = $koneksi->prepare("SELECT * FROM manajemen_paket WHERE id = ?");
+  $stmt->bind_param("i", $package_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  
+  if ($result && $result->num_rows > 0) {
+    $p = $result->fetch_assoc();
+  } else {
+    // Redirect if ID provided but not found
+    header("Location: paket-wisata.php?error=notfound");
+    exit;
+  }
+}
+
+function format_harga($harga) {
+  return 'Rp ' . number_format((int)$harga, 0, ',', '.');
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,9 +42,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- Primary Meta Tags -->
-  <title>Bali Paradise 5D4N — SnD Tour Travel | Paket Wisata Bali Terpercaya</title>
-  <meta name="title" content="Bali Paradise 5D4N — SnD Tour Travel | Paket Wisata Bali Terpercaya">
-  <meta name="description" content="Paket wisata Bali Paradise 5D4N dari SnD Tour Travel. Kunjungi Tanah Lot, Uluwatu, Ubud, Kuta, Seminyak, dan Nusa Dua. Harga mulai Rp 4.850.000 per orang termasuk penerbangan Garuda Indonesia dan hotel Bintang 4.">
+  <title><?php echo htmlspecialchars($p['nama_paket']); ?> — SnD Tour Travel | Paket Wisata Terpercaya</title>
+  <meta name="title" content="<?php echo htmlspecialchars($p['nama_paket']); ?> — SnD Tour Travel | Paket Wisata Terpercaya">
+  <meta name="description" content="<?php echo htmlspecialchars(substr(strip_tags($p['deskripsi']), 0, 160)); ?>...">
   <meta name="keywords" content="paket wisata bali, tour bali 5 hari, liburan bali, paket bali murah, SnD Tour, travel agent surabaya, bali paradise">
   <meta name="author" content="SnD Tour Travel">
   <meta name="robots" content="index, follow">
@@ -16,8 +52,8 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="product">
   <meta property="og:url" content="https://sndtour.com/detail-paket.php">
-  <meta property="og:title" content="Bali Paradise 5D4N — SnD Tour Travel">
-  <meta property="og:description" content="Paket wisata Bali 5 hari 4 malam. Kunjungi Tanah Lot, Uluwatu, Ubud, Kuta, Seminyak, dan Nusa Dua. Mulai Rp 4.850.000/orang.">
+  <meta property="og:title" content="<?php echo htmlspecialchars($p['nama_paket']); ?> — SnD Tour Travel">
+  <meta property="og:description" content="<?php echo htmlspecialchars(substr(strip_tags($p['deskripsi']), 0, 160)); ?>...">
   <meta property="og:image" content="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80">
   <meta property="og:locale" content="id_ID">
   <meta property="og:site_name" content="SnD Tour Travel">
@@ -25,8 +61,8 @@
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://sndtour.com/detail-paket.php">
-  <meta property="twitter:title" content="Bali Paradise 5D4N — SnD Tour Travel">
-  <meta property="twitter:description" content="Paket wisata Bali 5 hari 4 malam. Kunjungi Tanah Lot, Uluwatu, Ubud, Kuta, Seminyak, dan Nusa Dua. Mulai Rp 4.850.000/orang.">
+  <meta property="twitter:title" content="<?php echo htmlspecialchars($p['nama_paket']); ?> — SnD Tour Travel">
+  <meta property="twitter:description" content="<?php echo htmlspecialchars(substr(strip_tags($p['deskripsi']), 0, 160)); ?>...">
   <meta property="twitter:image" content="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80">
 
   <!-- Favicon -->
@@ -47,8 +83,8 @@
   {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
-    "name": "Bali Paradise 5D4N",
-    "description": "Paket wisata Bali 5 hari 4 malam mengunjungi Tanah Lot, Uluwatu, Ubud, Kuta, Seminyak, dan Nusa Dua.",
+    "name": "<?php echo htmlspecialchars($p['nama_paket']); ?>",
+    "description": "<?php echo htmlspecialchars(substr(strip_tags($p['deskripsi']), 0, 200)); ?>",
     "touristType": "Wisata Keluarga",
     "provider": {
       "@type": "TravelAgency",
@@ -57,7 +93,7 @@
     },
     "offers": {
       "@type": "Offer",
-      "price": "4850000",
+      "price": "<?php echo (int)$p['harga']; ?>",
       "priceCurrency": "IDR",
       "availability": "https://schema.org/InStock"
     },
@@ -179,17 +215,17 @@
         <span class="breadcrumb__sep">/</span>
         <a href="paket-wisata.php">Domestik</a>
         <span class="breadcrumb__sep">/</span>
-        <span>Bali Paradise 5D4N</span>
+        <span><?php echo htmlspecialchars($p['nama_paket']); ?></span>
       </nav>
-      <h1 class="page-header__title">Bali Paradise 5D4N</h1>
+      <h1 class="page-header__title"><?php echo htmlspecialchars($p['nama_paket']); ?></h1>
       <div style="display:flex;gap:var(--space-3);margin-top:var(--space-4);flex-wrap:wrap;">
         <span style="display:inline-flex;align-items:center;gap:var(--space-2);padding:6px 18px;background:rgba(64,224,208,0.2);border:1px solid rgba(64,224,208,0.4);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600;color:var(--teal-primary);text-transform:uppercase;letter-spacing:1px;backdrop-filter:blur(8px);">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Wisata Keluarga
+          <?php echo htmlspecialchars($p['label'] ?: 'Paket Wisata'); ?>
         </span>
         <span style="display:inline-flex;align-items:center;gap:var(--space-2);padding:6px 18px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:1px;backdrop-filter:blur(8px);">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          5D4N
+          <?php echo htmlspecialchars($p['durasi']); ?>
         </span>
       </div>
     </div>
@@ -237,10 +273,9 @@
           <!-- Tab Content: Overview -->
           <div class="detail__tab-content detail__tab-content--active" id="tab-overview" role="tabpanel">
             <h3>Tentang Paket Ini</h3>
-            <p>Nikmati keindahan Pulau Dewata dalam paket Bali Paradise 5D4N yang dirancang khusus untuk keluarga. Perjalanan selama 5 hari 4 malam ini akan membawa Anda menjelajahi pesona alam, budaya, dan kuliner terbaik Bali yang tak terlupakan.</p>
-            <p>Mulai dari keagungan Pura Tanah Lot yang berdiri megah di atas batu karang, hingga keindahan tebing Uluwatu dengan pertunjukan tari Kecak saat matahari terbenam. Jelajahi ketenangan Ubud dengan sawah teraseringnya yang ikonik, belanja oleh-oleh di Kuta, menikmati suasana kosmopolitan Seminyak, dan bersantai di pantai eksklusif Nusa Dua.</p>
-            <p>Paket ini sudah termasuk penerbangan pulang-pergi dengan Garuda Indonesia, akomodasi hotel bintang 4, transportasi AC selama tour, tour guide berpengalaman, tiket masuk objek wisata, serta sarapan pagi setiap hari. Kami memastikan setiap momen liburan Anda bersama keluarga menjadi pengalaman yang nyaman, menyenangkan, dan penuh kenangan indah.</p>
-            <p>SnD Tour Travel berkomitmen memberikan layanan terbaik dengan itinerary yang terencana matang namun tetap fleksibel sesuai kebutuhan Anda. Hubungi kami sekarang untuk informasi lebih lanjut dan pemesanan!</p>
+            <div class="tab-description">
+              <?php echo nl2br(htmlspecialchars_decode($p['deskripsi'])); ?>
+            </div>
           </div>
 
           <!-- Tab Content: Destinasi -->
@@ -437,13 +472,13 @@
         <aside class="detail__sidebar">
           <div class="price-box">
             <span class="price-box__label">START FROM</span>
-            <div class="price-box__amount">Rp 4.850.000 <span style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:400;color:var(--gray-400);">/ orang</span></div>
+            <div class="price-box__amount"><?php echo format_harga($p['harga']); ?> <span style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:400;color:var(--gray-400);">/ orang</span></div>
             <p class="price-box__note">Harga dapat berubah sewaktu-waktu tergantung musim, ketersediaan maskapai, dan hotel. Hubungi kami untuk mendapatkan harga terbaru.</p>
 
             <div class="price-box__meta">
               <div class="price-box__meta-item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Durasi: <strong>5 Hari 4 Malam</strong></span>
+                <span>Durasi: <strong><?php echo htmlspecialchars($p['durasi']); ?></strong></span>
               </div>
               <div class="price-box__meta-item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
@@ -455,7 +490,7 @@
               </div>
             </div>
 
-            <a href="https://wa.me/6281234567890?text=Halo%20SnD%20Tour%2C%20saya%20tertarik%20dengan%20paket%20Bali%20Paradise%205D4N%20(Rp%204.850.000%2Forang).%20Mohon%20info%20lebih%20lanjut%20mengenai%20ketersediaan%20jadwal%20dan%20detail%20pembayaran.%20Terima%20kasih!" class="btn btn--primary btn--lg btn--full" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/6281234567890?text=Halo%20SnD%20Tour%2C%20saya%20tertarik%20dengan%20paket%20<?php echo urlencode($p['nama_paket']); ?>%20(<?php echo format_harga($p['harga']); ?>%2Forang).%20Mohon%20info%20lebih%20lanjut%20mengenai%20ketersediaan%20jadwal%20dan%20detail%20pembayaran.%20Terima%20kasih!" class="btn btn--primary btn--lg btn--full" target="_blank" rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               HUBUNGI KAMI
             </a>
