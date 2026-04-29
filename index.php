@@ -174,16 +174,6 @@ function lp_resolve_gambar($gambar)
             </div>
           </li>
 
-          <!-- OUTBOND -->
-          <li class="nav__item">
-            <a href="outbond.php" class="nav__link">OUTBOND</a>
-          </li>
-
-          <!-- CATERING -->
-          <li class="nav__item">
-            <a href="catering.php" class="nav__link">CATERING</a>
-          </li>
-
           <!-- BLOG -->
           <li class="nav__item">
             <a href="blog.php" class="nav__link">BLOG</a>
@@ -194,10 +184,6 @@ function lp_resolve_gambar($gambar)
             <a href="galeri.php" class="nav__link">GALERI</a>
           </li>
 
-          <!-- KONTAK -->
-          <li class="nav__item">
-            <a href="kontak.php" class="nav__link">KONTAK</a>
-          </li>
         </ul>
       </nav>
 
@@ -279,8 +265,6 @@ function lp_resolve_gambar($gambar)
           <option value="">Semua Kategori</option>
           <option value="domestik">Domestik</option>
           <option value="asia">Asia</option>
-          <option value="outbond">Outbond</option>
-          <option value="catering">Catering</option>
         </select>
       </div>
       <div class="search-box__field">
@@ -971,8 +955,6 @@ function lp_resolve_gambar($gambar)
           <h4 class="footer__heading">Layanan</h4>
           <nav class="footer__links" aria-label="Layanan SnD Tour">
             <a href="paket-wisata.php" class="footer__link">Paket Wisata</a>
-            <a href="outbond.php" class="footer__link">Outbond</a>
-            <a href="catering.php" class="footer__link">Catering</a>
             <a href="blog.php" class="footer__link">Blog</a>
             <a href="galeri.php" class="footer__link">Galeri</a>
           </nav>
@@ -984,8 +966,6 @@ function lp_resolve_gambar($gambar)
           <nav class="footer__links" aria-label="Kategori Tour">
             <a href="paket-wisata.php?kategori=domestik" class="footer__link">Tour Domestik</a>
             <a href="paket-wisata.php?kategori=asia" class="footer__link">Tour Asia</a>
-            <a href="outbond.php" class="footer__link">Outbond</a>
-            <a href="catering.php" class="footer__link">Catering</a>
             <a href="paket-wisata.php?kategori=religi" class="footer__link">Wisata Religi</a>
             <a href="paket-wisata.php?kategori=edukasi" class="footer__link">Wisata Edukasi</a>
             <a href="paket-wisata.php?kategori=bulan-madu" class="footer__link">Bulan Madu</a>
@@ -1019,18 +999,6 @@ function lp_resolve_gambar($gambar)
       <!-- Footer Bottom Bar -->
       <div class="footer__bottom">
         <p class="footer__copyright">&copy; 2026 SnD Tour Travel. All Rights Reserved.</p>
-        <div class="footer__stats">
-          <span class="footer__stat">
-            <span class="footer__stat-dot"></span>
-            Online: <span data-count="12">0</span>
-          </span>
-          <span class="footer__stat">
-            Hari Ini: <span data-count="284">0</span>
-          </span>
-          <span class="footer__stat">
-            Total: <span data-count="158432">0</span>
-          </span>
-        </div>
       </div>
     </div>
   </footer>

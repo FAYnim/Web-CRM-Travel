@@ -574,18 +574,6 @@ function format_harga($harga) {
       <!-- Footer Bottom -->
       <div class="footer__bottom">
         <p class="footer__copyright">&copy; 2026 SnD Tour Travel. All Rights Reserved.</p>
-        <div class="footer__stats">
-          <span class="footer__stat">
-            <span class="footer__stat-dot"></span>
-            Online: <span data-count="12">0</span>
-          </span>
-          <span class="footer__stat">
-            Hari Ini: <span data-count="284">0</span>
-          </span>
-          <span class="footer__stat">
-            Total: <span data-count="158432">0</span>
-          </span>
-        </div>
       </div>
     </div>
   </footer>
