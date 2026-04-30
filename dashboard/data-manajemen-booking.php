@@ -62,6 +62,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <table class="table table-dashboard">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Customer</th>
                                     <th>Paket</th>
                                     <th>Tanggal Booking</th>
@@ -75,9 +76,12 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                                                 LEFT JOIN manajemen_customer c ON b.customer_id = c.id 
                                                                 LEFT JOIN manajemen_paket p ON b.paket_id = p.id 
                                                                 ORDER BY b.id DESC");
+                                $no = 0;
                                 while($baris = mysqli_fetch_array($data)){
+                                    $no++;
                                 ?>
                                 <tr>
+                                    <td><?php echo $no; ?></td>
                                     <td>
                                         <i class="bi bi-person-circle me-1 text-muted"></i>
                                         <?php echo htmlspecialchars($baris['customer'] ?? '-'); ?>
