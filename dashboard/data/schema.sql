@@ -79,6 +79,8 @@ CREATE TABLE `manajemen_booking` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
   `paket_id` int(11) DEFAULT NULL,
+  `tanggal_keberangkatan` date DEFAULT NULL,
+  `status_pembayaran` int(1) DEFAULT 0,
   `tanggal` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -127,10 +129,12 @@ CREATE TABLE `manajemen_paket` (
 
 CREATE TABLE `manajemen_pembayaran` (
   `id` int(11) NOT NULL,
-  `booking` varchar(100) NOT NULL,
+  `booking_id` int(11) DEFAULT NULL,
+  `booking` varchar(150) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `jumlah` int(11) NOT NULL,
-  `metode` enum('cash','transfer bank','qris') NOT NULL
+  `metode` enum('cash','transfer bank','qris') NOT NULL,
+  `bukti_transfer` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -244,7 +248,8 @@ ALTER TABLE `manajemen_paket`
 -- Indexes for table `manajemen_pembayaran`
 --
 ALTER TABLE `manajemen_pembayaran`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `booking_id` (`booking_id`);
 
 --
 -- Indexes for table `partner_maskapai`

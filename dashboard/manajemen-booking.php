@@ -64,15 +64,15 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <i class="bi bi-calendar-plus me-2"></i>Tambah Booking Baru
                         </div>
                         <div class="card-body">
-                            <p class="text-muted mb-4">Silahkan isi data-dessous ini dengan benar.</p>
+                            <p class="text-muted mb-4">Silahkan isi data booking ini dengan benar.</p>
 
                             <form method="POST" action="src/api/submit-manajemen-booking">
                                 <div class="mb-3">
                                     <label class="form-label">Customer :</label>
-                                    <select autofocus class="form-select" name="nama" required>
+                                    <select autofocus class="form-select" name="customer_id" required>
                                         <option value="">Pilih Customer</option>
                                         <?php foreach($customers as $customer): ?>
-                                            <option value="<?= htmlspecialchars($customer['nama']) ?>"><?= htmlspecialchars($customer['nama']) ?></option>
+                                            <option value="<?= (int) $customer['id'] ?>"><?= htmlspecialchars($customer['nama']) ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -85,6 +85,11 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                             <option value="<?= htmlspecialchars($paket['nama_paket']) ?>"><?= htmlspecialchars($paket['nama_paket']) ?></option>
                                         <?php endforeach; ?>
                                     </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Tanggal Keberangkatan :</label>
+                                    <input type="date" class="form-control" name="tanggal_keberangkatan" required>
                                 </div>
 
                                 <div class="d-flex gap-2">

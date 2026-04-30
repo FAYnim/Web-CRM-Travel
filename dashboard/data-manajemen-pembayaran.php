@@ -63,34 +63,56 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Booking</th>
+                                    <th style="width: 220px;">Booking</th>
                                     <th>Jumlah</th>
                                     <th>Metode</th>
                                     <th>Tanggal</th>
+                                    <th>Bukti</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $data = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran");
+                                $data = mysqli_query($koneksi, "SELECT mp.*,
+                                                                       c.nama AS customer,
+                                                                       p.nama_paket AS paket
+                                                                FROM manajemen_pembayaran mp
+                                                                LEFT JOIN manajemen_booking b ON mp.booking_id = b.id
+                                                                LEFT JOIN manajemen_customer c ON b.customer_id = c.id
+                                                                LEFT JOIN manajemen_paket p ON b.paket_id = p.id
+                                                                ORDER BY mp.id DESC");
                                 $no = 0;
                                 while($baris = mysqli_fetch_array($data)){
                                     $no++;
+                                    $booking_label = !empty($baris['booking_id'])
+                                        ? 'ID' . $baris['booking_id'] . ' - ' . ($baris['customer'] ?? '-') . ' - ' . ($baris['paket'] ?? '-')
+                                        : $baris['booking'];
                                 ?>
                                 <tr>
                                     <td><?php echo $no; ?></td>
-                                    <td><?php echo htmlspecialchars($baris['booking']); ?></td>
+                                    <td style="max-width: 220px; white-space: normal;">
+                                        <div class="fw-semibold text-break"><?php echo htmlspecialchars($booking_label); ?></div>
+                                    </td>
                                     <td>
                                         <span class="fw-semibold text-success">
                                             Rp <?php echo number_format($baris['jumlah'], 0, ',', '.'); ?>
                                         </span>
                                     </td>
                                     <td>
-                                        <span class="badge <?php echo $baris['metode'] === 'transfer' ? 'bg-primary' : 'bg-secondary'; ?>">
+                                        <span class="badge <?php echo $baris['metode'] === 'transfer bank' ? 'bg-primary' : 'bg-secondary'; ?>">
                                             <?php echo htmlspecialchars($baris['metode']); ?>
                                         </span>
                                     </td>
                                     <td><?php echo $baris['tanggal'] ? date('d M Y', strtotime($baris['tanggal'])) : '-'; ?></td>
+                                    <td>
+                                        <?php if(!empty($baris['bukti_transfer'])): ?>
+                                            <a href="<?php echo htmlspecialchars($baris['bukti_transfer']); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-file-earmark-text"></i> Lihat
+                                            </a>
+                                        <?php else: ?>
+                                            <span class="text-muted">-</span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <a href="edit-manajemen-pembayaran?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
                                             <i class="bi bi-pencil"></i> Edit

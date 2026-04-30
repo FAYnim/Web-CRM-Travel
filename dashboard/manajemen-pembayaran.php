@@ -5,6 +5,16 @@ if($_SESSION['login'] != true) {
     header("Location: login");
 }
 
+$query_booking = mysqli_query($koneksi, "SELECT b.id,
+                                                c.nama AS customer,
+                                                p.nama_paket AS paket,
+                                                p.harga AS harga
+                                         FROM manajemen_booking b
+                                         LEFT JOIN manajemen_customer c ON b.customer_id = c.id
+                                         LEFT JOIN manajemen_paket p ON b.paket_id = p.id
+                                         ORDER BY b.id DESC");
+$bookings = mysqli_fetch_all($query_booking, MYSQLI_ASSOC);
+
 $page_title = 'Tambah Pembayaran';
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
@@ -56,23 +66,38 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <i class="bi bi-cash-stack me-2"></i>Tambah Pembayaran Baru
                         </div>
                         <div class="card-body">
-                            <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
+                            <p class="text-muted mb-4">Silakan isi data di bawah ini dengan benar</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-pembayaran">
+                            <form method="POST" action="src/api/submit-manajemen-pembayaran" enctype="multipart/form-data">
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
-                                    <input autofocus type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Tanggal:</label>
-                                    <input class="form-control" type="date" name="tanggal" placeholder="Isi Dengan Tanggal..." required>
+                                    <select autofocus name="booking_id" id="bookingSelect" class="form-select" required>
+                                        <option value="">Pilih Kode Booking</option>
+                                        <?php foreach($bookings as $booking): ?>
+                                            <?php $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-'); ?>
+                                            <option value="<?php echo (int) $booking['id']; ?>" data-harga="<?php echo (int) ($booking['harga'] ?? 0); ?>">
+                                                <?php echo htmlspecialchars($kode_booking); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div id="hargaPaketBox" class="alert alert-info mt-3 d-none">
+                                        <div class="small text-muted">Harga Paket</div>
+                                        <div class="fw-semibold" id="hargaPaketText">Rp 0</div>
+                                    </div>
+                                    <?php if(empty($bookings)): ?>
+                                        <div class="form-text text-danger">Belum ada data booking. Tambahkan booking terlebih dahulu.</div>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Jumlah:</label>
-                                    <input class="form-control" type="number" min="0" name="jumlah" placeholder="Isi Dengan Jumlah..." required>
+                                    <input class="form-control" type="number" min="0" name="jumlah" placeholder="Isi dengan jumlah yang dibayarkan" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Tanggal Pembayaran:</label>
+                                    <input class="form-control" type="date" name="tanggal" placeholder="Isi Dengan Tanggal..." required>
                                 </div>
 
                                 <div class="mb-3">
@@ -106,7 +131,7 @@ Cash
 
 <div class="mb-3">
 <label class="form-label">Upload Bukti Transfer</label>
-<input type="file" name="bukti_transfer" class="form-control">
+<input type="file" name="bukti_transfer" class="form-control" accept=".jpg,.jpeg,.png,.webp,.pdf">
 </div>
 
 <button class="btn btn-success">
@@ -143,6 +168,30 @@ Cash
                 overlay.classList.remove('show');
             }
         });
+
+        const bookingSelect = document.getElementById('bookingSelect');
+        const hargaPaketBox = document.getElementById('hargaPaketBox');
+        const hargaPaketText = document.getElementById('hargaPaketText');
+
+        function updateHargaPaket() {
+            const selectedOption = bookingSelect.options[bookingSelect.selectedIndex];
+            const harga = Number(selectedOption.dataset.harga || 0);
+
+            if (!bookingSelect.value || harga <= 0) {
+                hargaPaketBox.classList.add('d-none');
+                hargaPaketText.textContent = 'Rp 0';
+                return;
+            }
+
+            hargaPaketText.textContent = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(harga);
+            hargaPaketBox.classList.remove('d-none');
+        }
+
+        bookingSelect.addEventListener('change', updateHargaPaket);
     </script>
 </body>
 </html>

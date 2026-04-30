@@ -62,29 +62,48 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <table class="table table-dashboard">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Customer</th>
                                     <th>Paket</th>
+                                    <th>Tanggal Keberangkatan</th>
                                     <th>Tanggal Booking</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $data = mysqli_query($koneksi, "SELECT b.id, c.nama as customer, p.nama_paket as paket, b.tanggal 
+                                $data = mysqli_query($koneksi, "SELECT b.id,
+                                                                       b.tanggal_keberangkatan,
+                                                                       b.status_pembayaran,
+                                                                       b.tanggal,
+                                                                       c.nama as customer,
+                                                                       c.email as customer_email,
+                                                                       c.handphone as customer_handphone,
+                                                                       c.alamat as customer_alamat,
+                                                                       p.nama_paket as paket,
+                                                                       p.harga as harga_paket
                                                                 FROM manajemen_booking b 
                                                                 LEFT JOIN manajemen_customer c ON b.customer_id = c.id 
                                                                 LEFT JOIN manajemen_paket p ON b.paket_id = p.id 
                                                                 ORDER BY b.id DESC");
-                                while($baris = mysqli_fetch_array($data)){
+                                $bookings = mysqli_fetch_all($data, MYSQLI_ASSOC);
+                                foreach($bookings as $index => $baris){
+                                    $no = $index + 1;
+                                    $modal_id = 'detailBookingModal' . (int) $baris['id'];
                                 ?>
                                 <tr>
+                                    <td><?php echo $no; ?></td>
                                     <td>
                                         <i class="bi bi-person-circle me-1 text-muted"></i>
                                         <?php echo htmlspecialchars($baris['customer'] ?? '-'); ?>
                                     </td>
                                     <td><?php echo htmlspecialchars($baris['paket'] ?? '-'); ?></td>
+                                    <td><?php echo $baris['tanggal_keberangkatan'] ? date('d M Y', strtotime($baris['tanggal_keberangkatan'])) : '-'; ?></td>
                                     <td><?php echo $baris['tanggal'] ? date('d M Y H:i', strtotime($baris['tanggal'])) : '-'; ?></td>
                                     <td>
+                                        <button type="button" class="btn btn-sm btn-info text-white" data-bs-toggle="modal" data-bs-target="#<?php echo $modal_id; ?>">
+                                            <i class="bi bi-eye"></i> Detail
+                                        </button>
                                         <a href="src/api/hapus-manajemen-booking?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>
@@ -94,6 +113,65 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             </tbody>
                         </table>
                     </div>
+                    <?php foreach($bookings as $baris): ?>
+                        <?php
+                            $modal_id = 'detailBookingModal' . (int) $baris['id'];
+                            $status_pembayaran = (int) ($baris['status_pembayaran'] ?? 0);
+                            $status_label = $status_pembayaran === 1 ? 'Lunas' : 'Belum Lunas';
+                            $status_class = $status_pembayaran === 1 ? 'bg-success' : 'bg-warning text-dark';
+                        ?>
+                        <div class="modal fade" id="<?php echo $modal_id; ?>" tabindex="-1" aria-labelledby="<?php echo $modal_id; ?>Label" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="<?php echo $modal_id; ?>Label">
+                                            Detail Booking #<?php echo (int) $baris['id']; ?>
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <h6 class="text-uppercase text-muted small mb-3">Detail Customer</h6>
+                                                <dl class="row mb-0">
+                                                    <dt class="col-sm-4">Nama</dt>
+                                                    <dd class="col-sm-8"><?php echo htmlspecialchars($baris['customer'] ?? '-'); ?></dd>
+                                                    <dt class="col-sm-4">Email</dt>
+                                                    <dd class="col-sm-8"><?php echo htmlspecialchars($baris['customer_email'] ?? '-'); ?></dd>
+                                                    <dt class="col-sm-4">Handphone</dt>
+                                                    <dd class="col-sm-8"><?php echo htmlspecialchars($baris['customer_handphone'] ?? '-'); ?></dd>
+                                                    <dt class="col-sm-4">Alamat</dt>
+                                                    <dd class="col-sm-8"><?php echo htmlspecialchars($baris['customer_alamat'] ?? '-'); ?></dd>
+                                                </dl>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 class="text-uppercase text-muted small mb-3">Detail Paket</h6>
+                                                <dl class="row mb-0">
+                                                    <dt class="col-sm-5">Paket</dt>
+                                                    <dd class="col-sm-7"><?php echo htmlspecialchars($baris['paket'] ?? '-'); ?></dd>
+                                                    <dt class="col-sm-5">Harga Paket</dt>
+                                                    <dd class="col-sm-7 fw-semibold text-success">
+                                                        Rp <?php echo number_format((int) ($baris['harga_paket'] ?? 0), 0, ',', '.'); ?>
+                                                    </dd>
+                                                    <dt class="col-sm-5">Keberangkatan</dt>
+                                                    <dd class="col-sm-7"><?php echo $baris['tanggal_keberangkatan'] ? date('d M Y', strtotime($baris['tanggal_keberangkatan'])) : '-'; ?></dd>
+                                                    <dt class="col-sm-5">Tanggal Booking</dt>
+                                                    <dd class="col-sm-7"><?php echo $baris['tanggal'] ? date('d M Y H:i', strtotime($baris['tanggal'])) : '-'; ?></dd>
+                                                    <dt class="col-sm-5">Status Pembayaran</dt>
+                                                    <dd class="col-sm-7">
+                                                        <span class="badge <?php echo $status_class; ?>"><?php echo $status_label; ?></span>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

@@ -1,18 +1,24 @@
 <?php
 include('../../config.php');
 
-$nama = $_POST['nama'];
-$paket = $_POST['paket'];
+$customer_id = isset($_POST['customer_id']) ? (int) $_POST['customer_id'] : 0;
+$paket = isset($_POST['paket']) ? mysqli_real_escape_string($koneksi, $_POST['paket']) : '';
+$tanggal_keberangkatan = isset($_POST['tanggal_keberangkatan']) ? mysqli_real_escape_string($koneksi, $_POST['tanggal_keberangkatan']) : '';
 
-// Check if customer exists, if not create new customer
-$cek_customer = mysqli_query($koneksi, "SELECT id FROM manajemen_customer WHERE nama = '$nama'");
-if(mysqli_num_rows($cek_customer) > 0){
-    $customer = mysqli_fetch_array($cek_customer);
-    $customer_id = $customer['id'];
-}else{
-    // Insert new customer with default values for email, handset, alamat
-    $insert_customer = mysqli_query($koneksi, "INSERT INTO manajemen_customer (nama, email, handset, alamat) VALUES ('$nama', '-', 0, '-')");
-    $customer_id = mysqli_insert_id($koneksi);
+if($customer_id <= 0){
+    echo "Customer tidak valid";
+    exit;
+}
+
+if(empty($tanggal_keberangkatan)){
+    echo "Tanggal keberangkatan wajib diisi";
+    exit;
+}
+
+$cek_customer = mysqli_query($koneksi, "SELECT id FROM manajemen_customer WHERE id = '$customer_id'");
+if(mysqli_num_rows($cek_customer) === 0){
+    echo "Customer tidak ditemukan";
+    exit;
 }
 
 // Check if paket exists, if not create new paket
@@ -27,7 +33,7 @@ if(mysqli_num_rows($cek_paket) > 0){
 }
 
 // Insert into manajemen_booking
-$submit = mysqli_query($koneksi, "INSERT INTO manajemen_booking (customer_id, paket_id) VALUES ('$customer_id', '$paket_id')");
+$submit = mysqli_query($koneksi, "INSERT INTO manajemen_booking (customer_id, paket_id, tanggal_keberangkatan) VALUES ('$customer_id', '$paket_id', '$tanggal_keberangkatan')");
 
 if($submit == TRUE){
     header("Location: ../../data-manajemen-booking");
