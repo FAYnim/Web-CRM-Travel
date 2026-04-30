@@ -73,15 +73,25 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             </thead>
                             <tbody>
                                 <?php
-                                $data = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran ORDER BY id DESC");
+                                $data = mysqli_query($koneksi, "SELECT mp.*,
+                                                                       c.nama AS customer,
+                                                                       p.nama_paket AS paket
+                                                                FROM manajemen_pembayaran mp
+                                                                LEFT JOIN manajemen_booking b ON mp.booking_id = b.id
+                                                                LEFT JOIN manajemen_customer c ON b.customer_id = c.id
+                                                                LEFT JOIN manajemen_paket p ON b.paket_id = p.id
+                                                                ORDER BY mp.id DESC");
                                 $no = 0;
                                 while($baris = mysqli_fetch_array($data)){
                                     $no++;
+                                    $booking_label = !empty($baris['booking_id'])
+                                        ? 'ID' . $baris['booking_id'] . ' - ' . ($baris['customer'] ?? '-') . ' - ' . ($baris['paket'] ?? '-')
+                                        : $baris['booking'];
                                 ?>
                                 <tr>
                                     <td><?php echo $no; ?></td>
                                     <td style="max-width: 220px; white-space: normal;">
-                                        <div class="fw-semibold text-break"><?php echo htmlspecialchars($baris['booking']); ?></div>
+                                        <div class="fw-semibold text-break"><?php echo htmlspecialchars($booking_label); ?></div>
                                     </td>
                                     <td>
                                         <span class="fw-semibold text-success">

@@ -129,6 +129,7 @@ CREATE TABLE `manajemen_paket` (
 
 CREATE TABLE `manajemen_pembayaran` (
   `id` int(11) NOT NULL,
+  `booking_id` int(11) DEFAULT NULL,
   `booking` varchar(150) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `jumlah` int(11) NOT NULL,
@@ -247,7 +248,8 @@ ALTER TABLE `manajemen_paket`
 -- Indexes for table `manajemen_pembayaran`
 --
 ALTER TABLE `manajemen_pembayaran`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `booking_id` (`booking_id`);
 
 --
 -- Indexes for table `partner_maskapai`

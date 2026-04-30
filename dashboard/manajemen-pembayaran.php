@@ -72,11 +72,11 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
-                                    <select autofocus name="booking" id="bookingSelect" class="form-select" required>
+                                    <select autofocus name="booking_id" id="bookingSelect" class="form-select" required>
                                         <option value="">Pilih Kode Booking</option>
                                         <?php foreach($bookings as $booking): ?>
                                             <?php $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-'); ?>
-                                            <option value="<?php echo htmlspecialchars($kode_booking); ?>" data-harga="<?php echo (int) ($booking['harga'] ?? 0); ?>">
+                                            <option value="<?php echo (int) $booking['id']; ?>" data-harga="<?php echo (int) ($booking['harga'] ?? 0); ?>">
                                                 <?php echo htmlspecialchars($kode_booking); ?>
                                             </option>
                                         <?php endforeach; ?>

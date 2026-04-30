@@ -21,7 +21,7 @@ $bookings = mysqli_fetch_all($query_booking, MYSQLI_ASSOC);
 $selected_booking_exists = false;
 foreach($bookings as $booking) {
     $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-');
-    if($data['booking'] === $kode_booking) {
+    if((int) ($data['booking_id'] ?? 0) === (int) $booking['id'] || $data['booking'] === $kode_booking) {
         $selected_booking_exists = true;
         break;
     }
@@ -84,16 +84,16 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
                             <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
-                                    <select autofocus name="booking" id="bookingSelect" class="form-select" required>
+                                    <select autofocus name="booking_id" id="bookingSelect" class="form-select" required>
                                         <option value="">Pilih Kode Booking</option>
                                         <?php if(!$selected_booking_exists && !empty($data['booking'])): ?>
-                                            <option value="<?php echo htmlspecialchars($data['booking']); ?>" selected>
+                                            <option value="<?php echo (int) ($data['booking_id'] ?? 0); ?>" selected>
                                                 <?php echo htmlspecialchars($data['booking']); ?> - Data booking tidak ditemukan
                                             </option>
                                         <?php endif; ?>
                                         <?php foreach($bookings as $booking): ?>
                                             <?php $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-'); ?>
-                                            <option value="<?php echo htmlspecialchars($kode_booking); ?>" data-harga="<?php echo (int) ($booking['harga'] ?? 0); ?>" <?php echo $data['booking'] === $kode_booking ? 'selected' : ''; ?>>
+                                            <option value="<?php echo (int) $booking['id']; ?>" data-harga="<?php echo (int) ($booking['harga'] ?? 0); ?>" <?php echo ((int) ($data['booking_id'] ?? 0) === (int) $booking['id'] || $data['booking'] === $kode_booking) ? 'selected' : ''; ?>>
                                                 <?php echo htmlspecialchars($kode_booking); ?>
                                             </option>
                                         <?php endforeach; ?>
