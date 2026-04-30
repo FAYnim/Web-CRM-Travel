@@ -79,6 +79,8 @@ CREATE TABLE `manajemen_booking` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
   `paket_id` int(11) DEFAULT NULL,
+  `tanggal_keberangkatan` date DEFAULT NULL,
+  `status_pembayaran` int(1) DEFAULT 0,
   `tanggal` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -87,6 +87,11 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     </select>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label">Tanggal Keberangkatan :</label>
+                                    <input type="date" class="form-control" name="tanggal_keberangkatan" required>
+                                </div>
+
                                 <div class="d-flex gap-2">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="bi bi-check-lg me-1"></i>Kirim

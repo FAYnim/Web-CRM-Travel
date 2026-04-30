@@ -2,10 +2,16 @@
 include('../../config.php');
 
 $customer_id = isset($_POST['customer_id']) ? (int) $_POST['customer_id'] : 0;
-$paket = $_POST['paket'];
+$paket = isset($_POST['paket']) ? mysqli_real_escape_string($koneksi, $_POST['paket']) : '';
+$tanggal_keberangkatan = isset($_POST['tanggal_keberangkatan']) ? mysqli_real_escape_string($koneksi, $_POST['tanggal_keberangkatan']) : '';
 
 if($customer_id <= 0){
     echo "Customer tidak valid";
+    exit;
+}
+
+if(empty($tanggal_keberangkatan)){
+    echo "Tanggal keberangkatan wajib diisi";
     exit;
 }
 
@@ -27,7 +33,7 @@ if(mysqli_num_rows($cek_paket) > 0){
 }
 
 // Insert into manajemen_booking
-$submit = mysqli_query($koneksi, "INSERT INTO manajemen_booking (customer_id, paket_id) VALUES ('$customer_id', '$paket_id')");
+$submit = mysqli_query($koneksi, "INSERT INTO manajemen_booking (customer_id, paket_id, tanggal_keberangkatan) VALUES ('$customer_id', '$paket_id', '$tanggal_keberangkatan')");
 
 if($submit == TRUE){
     header("Location: ../../data-manajemen-booking");
