@@ -12,7 +12,7 @@ CRM dan Sistem Manajemen Konten (CMS) yang lengkap dan siap pakai untuk Agen Per
 
 ### Dasbor Admin
 - **Manajemen Konten**: Kelola paket wisata, postingan blog, galeri, testimoni, dan mitra maskapai/perusahaan.
-- **CRM Pemesanan & Pelanggan**: Lacak pemesanan pelanggan, kelola data pelanggan, dan catat pembayaran.
+- **CRM Pemesanan & Pelanggan**: Lacak pemesanan pelanggan dengan fitur **tanggal keberangkatan**, kelola data pelanggan yang dioptimalkan, dan catat serta pantau **status pembayaran** (Lunas/Belum Bayar).
 - **Pengaturan Perusahaan**: Perbarui informasi profil perusahaan dan branding langsung dari dasbor.
 - **Analitik Dasbor**: Lihat statistik utama seperti total pemesanan, pendapatan, dan aktivitas terbaru secara ringkas.
 

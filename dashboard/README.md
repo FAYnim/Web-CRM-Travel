@@ -8,7 +8,9 @@ Panel admin CRM berbasis PHP + MySQL untuk operasional travel: kelola customer, 
 ## Fitur Utama
 
 - Dashboard ringkasan (total customer, booking, paket, pendapatan, data terbaru)
-- Manajemen data customer, booking, paket wisata, dan pembayaran
+- Manajemen data customer yang dioptimalkan
+- Manajemen booking dengan **tanggal keberangkatan**
+- Manajemen pembayaran dengan pelacakan **status pembayaran** (DP/Lunas)
 - Manajemen konten landing page: kategori, galeri, testimoni
 - Manajemen relasi bisnis: partner maskapai dan klien korporasi
 - Pengaturan profil perusahaan (kontak, deskripsi, media sosial)
@@ -94,9 +96,9 @@ Data awal pada `data/schema.sql` menyertakan user admin berikut:
 
 - Dashboard
 - Customer
-- Booking
+- Booking (dengan Tanggal Keberangkatan)
 - Paket Wisata
-- Pembayaran
+- Pembayaran (dengan Status Pembayaran)
 - Kategori
 - Galeri
 - Testimoni
