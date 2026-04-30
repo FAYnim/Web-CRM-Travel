@@ -9,6 +9,23 @@ $id = $_GET['id'];
 $query = mysqli_query($koneksi, "SELECT * FROM manajemen_pembayaran WHERE id='$id'");
 $data = mysqli_fetch_array($query);
 
+$query_booking = mysqli_query($koneksi, "SELECT b.id,
+                                                c.nama AS customer,
+                                                p.nama_paket AS paket
+                                         FROM manajemen_booking b
+                                         LEFT JOIN manajemen_customer c ON b.customer_id = c.id
+                                         LEFT JOIN manajemen_paket p ON b.paket_id = p.id
+                                         ORDER BY b.id DESC");
+$bookings = mysqli_fetch_all($query_booking, MYSQLI_ASSOC);
+$selected_booking_exists = false;
+foreach($bookings as $booking) {
+    $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-');
+    if($data['booking'] === $kode_booking) {
+        $selected_booking_exists = true;
+        break;
+    }
+}
+
 $page_title = 'Edit Pembayaran';
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
@@ -61,29 +78,45 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                     <div class="card-body">
                         <p class="text-muted mb-4">Silakan edit data pembayaran dengan benar</p>
 
-                        <form method="POST" action="src/api/update-manajemen-pembayaran">
+                        <form method="POST" action="src/api/update-manajemen-pembayaran" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
 
                             <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
-                                    <input autofocus type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
+                                    <select autofocus name="booking" class="form-select" required>
+                                        <option value="">Pilih Kode Booking</option>
+                                        <?php if(!$selected_booking_exists && !empty($data['booking'])): ?>
+                                            <option value="<?php echo htmlspecialchars($data['booking']); ?>" selected>
+                                                <?php echo htmlspecialchars($data['booking']); ?> - Data booking tidak ditemukan
+                                            </option>
+                                        <?php endif; ?>
+                                        <?php foreach($bookings as $booking): ?>
+                                            <?php $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-'); ?>
+                                            <option value="<?php echo htmlspecialchars($kode_booking); ?>" <?php echo $data['booking'] === $kode_booking ? 'selected' : ''; ?>>
+                                                <?php echo htmlspecialchars($kode_booking); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?php if(empty($bookings)): ?>
+                                        <div class="form-text text-danger">Belum ada data booking. Tambahkan booking terlebih dahulu.</div>
+                                    <?php endif; ?>
                                 </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Tanggal:</label>
-                                <input class="form-control" type="date" name="tanggal" value="<?php echo $data['tanggal']; ?>">
+                                <input class="form-control" type="date" name="tanggal" value="<?php echo $data['tanggal'] ? date('Y-m-d', strtotime($data['tanggal'])) : ''; ?>">
                             </div>
 
 							<div class="mb-3">
 								<label class="form-label">Jumlah:</label>
-								<input class="form-control" type="number" min="0" name="jumlah" placeholder="Isi Dengan Jumlah..." required>
+								<input class="form-control" type="number" min="0" name="jumlah" value="<?php echo htmlspecialchars($data['jumlah']); ?>" placeholder="Isi Dengan Jumlah..." required>
 							</div>
 
 							<div class="mb-3">
 <label class="form-label">Metode Pembayaran</label>
 
 <div class="form-check">
-<input class="form-check-input" type="radio" name="metode" value="transfer bank" required>
+<input class="form-check-input" type="radio" name="metode" value="transfer bank" <?php echo $data['metode'] === 'transfer bank' ? 'checked' : ''; ?> required>
 <label class="form-check-label">
 <i class="fa-solid fa-building-columns text-primary"></i>
 Transfer Bank
@@ -91,7 +124,7 @@ Transfer Bank
 </div>
 
 <div class="form-check">
-<input class="form-check-input" type="radio" name="metode" value="qris">
+<input class="form-check-input" type="radio" name="metode" value="qris" <?php echo $data['metode'] === 'qris' ? 'checked' : ''; ?>>
 <label class="form-check-label">
 <i class="fa-solid fa-qrcode text-success"></i>
 QRIS
@@ -99,7 +132,7 @@ QRIS
 </div>
 
 <div class="form-check">
-<input class="form-check-input" type="radio" name="metode" value="cash">
+<input class="form-check-input" type="radio" name="metode" value="cash" <?php echo $data['metode'] === 'cash' ? 'checked' : ''; ?>>
 <label class="form-check-label">
 <i class="fa-solid fa-money-bill text-warning"></i>
 Cash
@@ -110,7 +143,12 @@ Cash
 
 <div class="mb-3">
 <label class="form-label">Upload Bukti Transfer</label>
-<input type="file" name="bukti_transfer" class="form-control">
+<input type="file" name="bukti_transfer" class="form-control" accept=".jpg,.jpeg,.png,.webp,.pdf">
+<?php if(!empty($data['bukti_transfer'])): ?>
+<div class="form-text">
+    Bukti saat ini: <a href="<?php echo htmlspecialchars($data['bukti_transfer']); ?>" target="_blank" rel="noopener noreferrer">Lihat file</a>
+</div>
+<?php endif; ?>
 </div>
 
 <button class="btn btn-success">

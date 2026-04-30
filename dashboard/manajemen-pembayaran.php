@@ -5,6 +5,15 @@ if($_SESSION['login'] != true) {
     header("Location: login");
 }
 
+$query_booking = mysqli_query($koneksi, "SELECT b.id,
+                                                c.nama AS customer,
+                                                p.nama_paket AS paket
+                                         FROM manajemen_booking b
+                                         LEFT JOIN manajemen_customer c ON b.customer_id = c.id
+                                         LEFT JOIN manajemen_paket p ON b.paket_id = p.id
+                                         ORDER BY b.id DESC");
+$bookings = mysqli_fetch_all($query_booking, MYSQLI_ASSOC);
+
 $page_title = 'Tambah Pembayaran';
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 ?>
@@ -58,11 +67,22 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data-dessous ini dengan benar</p>
 
-                            <form method="POST" action="src/api/submit-manajemen-pembayaran">
+                            <form method="POST" action="src/api/submit-manajemen-pembayaran" enctype="multipart/form-data">
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
-                                    <input autofocus type="text" name="booking" class="form-control" placeholder="Contoh : BK-2026-001" required>
+                                    <select autofocus name="booking" class="form-select" required>
+                                        <option value="">Pilih Kode Booking</option>
+                                        <?php foreach($bookings as $booking): ?>
+                                            <?php $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-'); ?>
+                                            <option value="<?php echo htmlspecialchars($kode_booking); ?>">
+                                                <?php echo htmlspecialchars($kode_booking); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <?php if(empty($bookings)): ?>
+                                        <div class="form-text text-danger">Belum ada data booking. Tambahkan booking terlebih dahulu.</div>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="mb-3">
@@ -106,7 +126,7 @@ Cash
 
 <div class="mb-3">
 <label class="form-label">Upload Bukti Transfer</label>
-<input type="file" name="bukti_transfer" class="form-control">
+<input type="file" name="bukti_transfer" class="form-control" accept=".jpg,.jpeg,.png,.webp,.pdf">
 </div>
 
 <button class="btn btn-success">

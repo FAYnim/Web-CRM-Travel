@@ -55,26 +55,6 @@
                 </ul>
             </li>
 
-            <!-- Paket Wisata -->
-            <li class="nav-item">
-                <a href="#menuPaket" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-paket', 'data-manajemen-paket', 'edit-manajemen-paket']) ? 'true' : 'false'; ?>">
-                    <i class="bi bi-suitcase-lg"></i>
-                    <span>Paket Wisata</span>
-                </a>
-                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-paket', 'data-manajemen-paket', 'edit-manajemen-paket']) ? 'show active' : ''; ?>" id="menuPaket">
-                    <li class="nav-item">
-                        <a href="data-manajemen-paket" class="nav-link <?php echo $current_page === 'data-manajemen-paket' ? 'active' : ''; ?>">
-                            <span>Data Paket</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="manajemen-paket" class="nav-link <?php echo $current_page === 'manajemen-paket' ? 'active' : ''; ?>">
-                            <span>Tambah Paket</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
             <!-- Pembayaran -->
             <li class="nav-item">
                 <a href="#menuPembayaran" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-pembayaran', 'data-manajemen-pembayaran', 'edit-manajemen-pembayaran']) ? 'true' : 'false'; ?>">
@@ -90,6 +70,26 @@
                     <li class="nav-item">
                         <a href="manajemen-pembayaran" class="nav-link <?php echo $current_page === 'manajemen-pembayaran' ? 'active' : ''; ?>">
                             <span>Tambah Pembayaran</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Paket Wisata -->
+            <li class="nav-item">
+                <a href="#menuPaket" class="nav-link" data-bs-toggle="collapse" aria-expanded="<?php echo in_array($current_page, ['manajemen-paket', 'data-manajemen-paket', 'edit-manajemen-paket']) ? 'true' : 'false'; ?>">
+                    <i class="bi bi-suitcase-lg"></i>
+                    <span>Paket Wisata</span>
+                </a>
+                <ul class="nav-submenu collapse <?php echo in_array($current_page, ['manajemen-paket', 'data-manajemen-paket', 'edit-manajemen-paket']) ? 'show active' : ''; ?>" id="menuPaket">
+                    <li class="nav-item">
+                        <a href="data-manajemen-paket" class="nav-link <?php echo $current_page === 'data-manajemen-paket' ? 'active' : ''; ?>">
+                            <span>Data Paket</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="manajemen-paket" class="nav-link <?php echo $current_page === 'manajemen-paket' ? 'active' : ''; ?>">
+                            <span>Tambah Paket</span>
                         </a>
                     </li>
                 </ul>

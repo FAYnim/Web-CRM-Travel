@@ -127,10 +127,11 @@ CREATE TABLE `manajemen_paket` (
 
 CREATE TABLE `manajemen_pembayaran` (
   `id` int(11) NOT NULL,
-  `booking` varchar(100) NOT NULL,
+  `booking` varchar(150) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `jumlah` int(11) NOT NULL,
-  `metode` enum('cash','transfer bank','qris') NOT NULL
+  `metode` enum('cash','transfer bank','qris') NOT NULL,
+  `bukti_transfer` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
