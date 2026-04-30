@@ -11,7 +11,8 @@ $data = mysqli_fetch_array($query);
 
 $query_booking = mysqli_query($koneksi, "SELECT b.id,
                                                 c.nama AS customer,
-                                                p.nama_paket AS paket
+                                                p.nama_paket AS paket,
+                                                p.harga AS harga
                                          FROM manajemen_booking b
                                          LEFT JOIN manajemen_customer c ON b.customer_id = c.id
                                          LEFT JOIN manajemen_paket p ON b.paket_id = p.id
@@ -83,7 +84,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
 
                             <div class="mb-3">
                                     <label class="form-label">Kode Booking</label>
-                                    <select autofocus name="booking" class="form-select" required>
+                                    <select autofocus name="booking" id="bookingSelect" class="form-select" required>
                                         <option value="">Pilih Kode Booking</option>
                                         <?php if(!$selected_booking_exists && !empty($data['booking'])): ?>
                                             <option value="<?php echo htmlspecialchars($data['booking']); ?>" selected>
@@ -92,25 +93,29 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                         <?php endif; ?>
                                         <?php foreach($bookings as $booking): ?>
                                             <?php $kode_booking = 'ID' . $booking['id'] . ' - ' . ($booking['customer'] ?? '-') . ' - ' . ($booking['paket'] ?? '-'); ?>
-                                            <option value="<?php echo htmlspecialchars($kode_booking); ?>" <?php echo $data['booking'] === $kode_booking ? 'selected' : ''; ?>>
+                                            <option value="<?php echo htmlspecialchars($kode_booking); ?>" data-harga="<?php echo (int) ($booking['harga'] ?? 0); ?>" <?php echo $data['booking'] === $kode_booking ? 'selected' : ''; ?>>
                                                 <?php echo htmlspecialchars($kode_booking); ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
+                                    <div id="hargaPaketBox" class="alert alert-info mt-3 d-none">
+                                        <div class="small text-muted">Harga Paket</div>
+                                        <div class="fw-semibold" id="hargaPaketText">Rp 0</div>
+                                    </div>
                                     <?php if(empty($bookings)): ?>
                                         <div class="form-text text-danger">Belum ada data booking. Tambahkan booking terlebih dahulu.</div>
                                     <?php endif; ?>
                                 </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Tanggal:</label>
-                                <input class="form-control" type="date" name="tanggal" value="<?php echo $data['tanggal'] ? date('Y-m-d', strtotime($data['tanggal'])) : ''; ?>">
-                            </div>
-
 							<div class="mb-3">
 								<label class="form-label">Jumlah:</label>
 								<input class="form-control" type="number" min="0" name="jumlah" value="<?php echo htmlspecialchars($data['jumlah']); ?>" placeholder="Isi Dengan Jumlah..." required>
 							</div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Tanggal:</label>
+                                <input class="form-control" type="date" name="tanggal" value="<?php echo $data['tanggal'] ? date('Y-m-d', strtotime($data['tanggal'])) : ''; ?>">
+                            </div>
 
 							<div class="mb-3">
 <label class="form-label">Metode Pembayaran</label>
@@ -184,6 +189,31 @@ Cash
                 overlay.classList.remove('show');
             }
         });
+
+        const bookingSelect = document.getElementById('bookingSelect');
+        const hargaPaketBox = document.getElementById('hargaPaketBox');
+        const hargaPaketText = document.getElementById('hargaPaketText');
+
+        function updateHargaPaket() {
+            const selectedOption = bookingSelect.options[bookingSelect.selectedIndex];
+            const harga = Number(selectedOption.dataset.harga || 0);
+
+            if (!bookingSelect.value || harga <= 0) {
+                hargaPaketBox.classList.add('d-none');
+                hargaPaketText.textContent = 'Rp 0';
+                return;
+            }
+
+            hargaPaketText.textContent = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(harga);
+            hargaPaketBox.classList.remove('d-none');
+        }
+
+        bookingSelect.addEventListener('change', updateHargaPaket);
+        updateHargaPaket();
     </script>
 </body>
 </html>
