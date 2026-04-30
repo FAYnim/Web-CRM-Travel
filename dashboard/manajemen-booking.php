@@ -64,7 +64,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <i class="bi bi-calendar-plus me-2"></i>Tambah Booking Baru
                         </div>
                         <div class="card-body">
-                            <p class="text-muted mb-4">Silahkan isi data-dessous ini dengan benar.</p>
+                            <p class="text-muted mb-4">Silahkan isi data booking ini dengan benar.</p>
 
                             <form method="POST" action="src/api/submit-manajemen-booking">
                                 <div class="mb-3">
