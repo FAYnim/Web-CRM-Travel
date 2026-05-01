@@ -332,22 +332,22 @@ document.addEventListener('click', (e) => {
    ============================================================ */
 function initSearchFilter() {
   const searchForm = document.querySelector('.search-box');
-  if (!searchForm) return;
+  if (searchForm) {
+    const searchBtn = searchForm.querySelector('.search-box__btn .btn');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const category = searchForm.querySelector('.search-box__select');
+        const keyword = searchForm.querySelector('.search-box__input');
 
-  const searchBtn = searchForm.querySelector('.search-box__btn .btn');
-  if (searchBtn) {
-    searchBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const category = searchForm.querySelector('.search-box__select');
-      const keyword = searchForm.querySelector('.search-box__input');
+        // For now, redirect to paket-wisata page with query params
+        const params = new URLSearchParams();
+        if (category && category.value) params.set('kategori', category.value);
+        if (keyword && keyword.value) params.set('q', keyword.value);
 
-      // For now, redirect to paket-wisata page with query params
-      const params = new URLSearchParams();
-      if (category && category.value) params.set('kategori', category.value);
-      if (keyword && keyword.value) params.set('q', keyword.value);
-
-      window.location.href = 'paket-wisata.html' + (params.toString() ? '?' + params.toString() : '');
-    });
+        window.location.href = 'paket-wisata.php' + (params.toString() ? '?' + params.toString() : '');
+      });
+    }
   }
 
   // Filter tags on listing page

@@ -158,7 +158,7 @@ function format_harga($harga) {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </a>
             <div class="nav__dropdown">
-              <a href="profil.php" class="nav__dropdown-link">Tentang Kami</a>
+              <a href="profil.php#tentang-kami" class="nav__dropdown-link">Tentang Kami</a>
               <a href="profil.php#visi-misi" class="nav__dropdown-link">Visi &amp; Misi</a>
             </div>
           </li>
@@ -170,19 +170,9 @@ function format_harga($harga) {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </a>
             <div class="nav__dropdown">
-              <a href="paket-wisata.php" class="nav__dropdown-link">Domestik</a>
-              <a href="paket-wisata.php" class="nav__dropdown-link">Asia</a>
+              <a href="paket-wisata.php?kategori=domestik" class="nav__dropdown-link">Domestik</a>
+              <a href="paket-wisata.php?kategori=asia" class="nav__dropdown-link">Asia</a>
             </div>
-          </li>
-
-          <!-- OUTBOND -->
-          <li class="nav__item">
-            <a href="outbond.php" class="nav__link">OUTBOND</a>
-          </li>
-
-          <!-- CATERING -->
-          <li class="nav__item">
-            <a href="catering.php" class="nav__link">CATERING</a>
           </li>
 
           <!-- BLOG -->
@@ -193,11 +183,6 @@ function format_harga($harga) {
           <!-- GALERI -->
           <li class="nav__item">
             <a href="galeri.php" class="nav__link">GALERI</a>
-          </li>
-
-          <!-- KONTAK -->
-          <li class="nav__item">
-            <a href="kontak.php" class="nav__link">KONTAK</a>
           </li>
         </ul>
       </nav>

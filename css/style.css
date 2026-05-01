@@ -1172,6 +1172,7 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 220px);
+  grid-auto-rows: 220px;
   gap: var(--space-5);
 }
 
@@ -1974,6 +1975,19 @@ p {
   background: var(--teal-primary);
   border-color: var(--teal-primary);
   color: var(--near-black);
+}
+
+#filter-section {
+  padding: 16px !important;
+}
+
+#filter-section .filters {
+  margin-bottom: 0;
+  padding: var(--space-4);
+}
+
+#paket-listing {
+  padding: 0 !important;
 }
 
 /* ============================================================
