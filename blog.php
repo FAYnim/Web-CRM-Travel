@@ -90,16 +90,6 @@
             </div>
           </li>
 
-          <!-- OUTBOND -->
-          <li class="nav__item">
-            <a href="outbond.php" class="nav__link">OUTBOND</a>
-          </li>
-
-          <!-- CATERING -->
-          <li class="nav__item">
-            <a href="catering.php" class="nav__link">CATERING</a>
-          </li>
-
           <!-- BLOG (Active) -->
           <li class="nav__item">
             <a href="blog.php" class="nav__link nav__link--active">BLOG</a>
@@ -108,11 +98,6 @@
           <!-- GALERI -->
           <li class="nav__item">
             <a href="galeri.php" class="nav__link">GALERI</a>
-          </li>
-
-          <!-- KONTAK -->
-          <li class="nav__item">
-            <a href="kontak.php" class="nav__link">KONTAK</a>
           </li>
         </ul>
       </nav>
