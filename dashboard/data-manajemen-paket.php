@@ -5,7 +5,7 @@ if($_SESSION['login'] != true) {
 }
 // Ambil semua data paket
 $paketList = [];
-$result = $koneksi->query("SELECT * FROM manajemen_paket ORDER BY id DESC");
+$result = $koneksi->query("SELECT manajemen_paket.*, kategori.nama_kategori FROM manajemen_paket LEFT JOIN kategori ON manajemen_paket.kategori_id = kategori.id ORDER BY manajemen_paket.id DESC");
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $paketList[] = $row;
@@ -75,6 +75,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                      <th>Nama Paket</th>
                                      <th>Durasi</th>
                                      <th>Lokasi</th>
+                                     <th>Kategori</th>
                                      <th>Harga</th>
                                      <th>Aksi</th>
                                  </tr>
@@ -82,7 +83,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <tbody>
                                 <?php if (!$paketList): ?>
                                     <tr>
-                                        <td colspan="6" class="text-center text-muted py-4">Belum ada data paket.</td>
+                                        <td colspan="7" class="text-center text-muted py-4">Belum ada data paket.</td>
                                     </tr>
                                 <?php else: ?>
                                     <?php $no = 1; ?>
@@ -97,6 +98,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                              </td>
                                              <td><?php echo htmlspecialchars($p['durasi']); ?></td>
                                              <td><?php echo htmlspecialchars($p['lokasi']); ?></td>
+                                             <td><?php echo htmlspecialchars($p['nama_kategori'] ?? '-'); ?></td>
                                              <td>Rp <?php echo number_format((int)$p['harga'], 0, ',', '.'); ?></td>
                                              <td>
                                                  <a href="edit-manajemen-paket?id=<?php echo $p['id']; ?>" class="btn btn-sm btn-warning">

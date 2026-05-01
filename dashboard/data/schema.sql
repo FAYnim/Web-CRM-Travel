@@ -44,8 +44,7 @@ CREATE TABLE `galeri` (
 CREATE TABLE `kategori` (
   `id` int(11) NOT NULL,
   `nama_kategori` varchar(100) NOT NULL,
-  `deskripsi` varchar(255) DEFAULT NULL,
-  `status` enum('Aktif','Tidak Aktif') DEFAULT 'Aktif'
+  `deskripsi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -109,6 +108,7 @@ CREATE TABLE `manajemen_paket` (
   `nama_paket` varchar(120) NOT NULL,
   `durasi` varchar(60) NOT NULL,
   `lokasi` varchar(120) NOT NULL,
+  `kategori_id` int(11) DEFAULT NULL,
   `harga` int(11) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `label` varchar(50) NOT NULL,
@@ -242,7 +242,8 @@ ALTER TABLE `manajemen_customer`
 -- Indexes for table `manajemen_paket`
 --
 ALTER TABLE `manajemen_paket`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kategori_id` (`kategori_id`);
 
 --
 -- Indexes for table `manajemen_pembayaran`
@@ -344,6 +345,12 @@ ALTER TABLE `testimoni`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for table `manajemen_paket`
+--
+ALTER TABLE `manajemen_paket`
+  ADD CONSTRAINT `manajemen_paket_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Dummy data for table `user`

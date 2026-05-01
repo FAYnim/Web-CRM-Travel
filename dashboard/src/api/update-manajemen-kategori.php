@@ -7,14 +7,16 @@ if($_SESSION['login'] != true) {
     exit;
 }
 
+header("Location: ../../data-manajemen-kategori?status=error&message=Kategori hanya bisa ditambahkan dan dihapus.");
+exit;
+
 // Ambil data dari form
 $id = mysqli_real_escape_string($koneksi, $_POST['id']);
 $nama_kategori = mysqli_real_escape_string($koneksi, $_POST['nama_kategori']);
 $deskripsi = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
-$status = mysqli_real_escape_string($koneksi, $_POST['status']);
 
 // Query update
-$query = "UPDATE kategori SET nama_kategori = '$nama_kategori', deskripsi = '$deskripsi', status = '$status' WHERE id = '$id'";
+$query = "UPDATE kategori SET nama_kategori = '$nama_kategori', deskripsi = '$deskripsi' WHERE id = '$id'";
 $submit = mysqli_query($koneksi, $query);
 
 if($submit) {

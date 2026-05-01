@@ -7,6 +7,16 @@ if($_SESSION['login'] != true) {
 
 $page_title = 'Tambah Paket Wisata';
 $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
+
+$kategoriList = [];
+$kategoriResult = $koneksi->query("SELECT id, nama_kategori FROM kategori ORDER BY nama_kategori ASC");
+if ($kategoriResult) {
+    while ($kategori = $kategoriResult->fetch_assoc()) {
+        $kategoriList[] = $kategori;
+    }
+}
+
+$kategoriKosong = empty($kategoriList);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -58,7 +68,30 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                         <div class="card-body">
                             <p class="text-muted mb-4">Silakan isi data paket wisata di bawah ini dengan benar</p>
 
+                            <?php if(isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-circle me-2"></i><?php echo htmlspecialchars($_GET['message']); ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($kategoriKosong): ?>
+                                <div class="alert alert-warning d-flex align-items-start gap-2" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                    <div>
+                                        <strong>Belum ada kategori.</strong>
+                                        Buat kategori terlebih dahulu sebelum menambahkan paket wisata.
+                                        <div class="mt-2">
+                                            <a href="manajemen-kategori" class="btn btn-sm btn-warning">
+                                                <i class="bi bi-plus-circle me-1"></i>Buat Kategori
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
                                 <form method="POST" action="src/api/submit-manajemen-paket" enctype="multipart/form-data">
+                                <fieldset <?php echo $kategoriKosong ? 'disabled' : ''; ?>>
                                 <div class="mb-3">
                                     <label class="form-label">Nama Paket:</label>
                                     <input autofocus class="form-control" type="text" name="nama_paket" placeholder="Contoh: Bali Paradise Escape" required>
@@ -79,6 +112,16 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <div class="mb-3">
                                     <label class="form-label">Lokasi:</label>
                                     <input class="form-control" type="text" name="lokasi" placeholder="Contoh: Bali, Indonesia" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Kategori:</label>
+                                    <select class="form-select" name="kategori_id" required>
+                                        <option value="">Pilih Kategori</option>
+                                        <?php foreach ($kategoriList as $kategori): ?>
+                                            <option value="<?php echo $kategori['id']; ?>"><?php echo htmlspecialchars($kategori['nama_kategori']); ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
 
                                 <div class="mb-3">
@@ -145,6 +188,7 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                      </button>
                                      <a href="data-manajemen-paket" class="btn btn-secondary">Batal</a>
                                  </div>
+                                </fieldset>
                             </form>
                         </div>
                     </div>

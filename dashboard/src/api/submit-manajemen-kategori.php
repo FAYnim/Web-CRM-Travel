@@ -10,10 +10,9 @@ if($_SESSION['login'] != true) {
 // Ambil data dari form
 $nama_kategori = mysqli_real_escape_string($koneksi, $_POST['nama_kategori']);
 $deskripsi = mysqli_real_escape_string($koneksi, $_POST['deskripsi']);
-$status = mysqli_real_escape_string($koneksi, $_POST['status']);
 
 // Query insert
-$query = "INSERT INTO kategori (nama_kategori, deskripsi, status) VALUES ('$nama_kategori', '$deskripsi', '$status')";
+$query = "INSERT INTO kategori (nama_kategori, deskripsi) VALUES ('$nama_kategori', '$deskripsi')";
 $submit = mysqli_query($koneksi, $query);
 
 if($submit) {

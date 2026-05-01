@@ -6,6 +6,7 @@ if($_SESSION['login'] != true) {
 }
 
 $editData = null;
+$kategoriList = [];
 
 // Handle edit (ngambil data)
 if (isset($_GET["id"]) && $_GET["id"]) {
@@ -17,6 +18,13 @@ if (isset($_GET["id"]) && $_GET["id"]) {
         $result = $stmt->get_result();
         $editData = $result->fetch_assoc();
         $stmt->close();
+    }
+}
+
+$kategoriResult = $koneksi->query("SELECT id, nama_kategori FROM kategori ORDER BY nama_kategori ASC");
+if ($kategoriResult) {
+    while ($kategori = $kategoriResult->fetch_assoc()) {
+        $kategoriList[] = $kategori;
     }
 }
 
@@ -96,6 +104,22 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <div class="mb-3">
                                 <label class="form-label">Lokasi</label>
                                 <input type="text" name="lokasi" class="form-control" value="<?php echo htmlspecialchars($editData['lokasi'] ?? ''); ?>" placeholder="Bali, Indonesia" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Kategori</label>
+                                <select name="kategori_id" class="form-select" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <?php foreach ($kategoriList as $kategori): ?>
+                                        <?php
+                                            $selectedKategori = (int)($editData['kategori_id'] ?? 0);
+                                            $kategoriId = (int)$kategori['id'];
+                                        ?>
+                                        <option value="<?php echo $kategoriId; ?>" <?php echo $selectedKategori === $kategoriId ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($kategori['nama_kategori']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">

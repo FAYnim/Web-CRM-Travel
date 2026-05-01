@@ -78,7 +78,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <th>No</th>
                                     <th>Nama Kategori</th>
                                     <th>Deskripsi</th>
-                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -95,16 +94,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                     <td><?php echo htmlspecialchars($baris['nama_kategori']); ?></td>
                                     <td><?php echo htmlspecialchars($baris['deskripsi']); ?></td>
                                     <td>
-                                        <?php if($baris['status'] == 'Aktif'): ?>
-                                            <span class="badge bg-success">Aktif</span>
-                                        <?php else: ?>
-                                            <span class="badge bg-secondary">Tidak Aktif</span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <a href="edit-manajemen-kategori?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil"></i> Edit
-                                        </a>
                                         <a href="src/api/hapus-manajemen-kategori?id=<?php echo $baris['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
                                             <i class="bi bi-trash"></i> Hapus
                                         </a>

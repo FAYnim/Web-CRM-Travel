@@ -5,6 +5,9 @@ if($_SESSION['login'] != true) {
     header("Location: login");
 }
 
+header("Location: data-manajemen-kategori?status=error&message=Kategori hanya bisa ditambahkan dan dihapus.");
+exit;
+
 $id = $_GET['id'];
 $query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE id='$id'");
 $data = mysqli_fetch_array($query);
@@ -80,14 +83,6 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                             <div class="mb-3">
                                 <label class="form-label">Deskripsi</label>
                                 <textarea class="form-control" name="deskripsi" rows="3"><?php echo htmlspecialchars($data['deskripsi']); ?></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Status</label>
-                                <select class="form-select" name="status">
-                                    <option value="Aktif" <?php echo ($data['status'] == 'Aktif') ? 'selected' : ''; ?>>Aktif</option>
-                                    <option value="Tidak Aktif" <?php echo ($data['status'] == 'Tidak Aktif') ? 'selected' : ''; ?>>Tidak Aktif</option>
-                                </select>
                             </div>
 
                             <div class="d-flex gap-2">
