@@ -1172,6 +1172,7 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 220px);
+  grid-auto-rows: 220px;
   gap: var(--space-5);
 }
 

@@ -2,6 +2,7 @@
 require_once __DIR__ . '/config.php';
 
 $paketTerbaru = [];
+$kategoriWisata = [];
 $queryPaketTerbaru = mysqli_query(
   $koneksi,
   "SELECT id, nama_paket, durasi, lokasi, harga, gambar, label FROM manajemen_paket ORDER BY created_at DESC, id DESC LIMIT 6"
@@ -35,6 +36,45 @@ function lp_resolve_gambar($gambar)
   }
 
   return 'dashboard/uploads/' . ltrim($gambar, '/');
+}
+
+function lp_slugify($text)
+{
+  $slug = strtolower(trim((string)$text));
+  $slug = preg_replace('/[^a-z0-9]+/', '-', $slug);
+  return trim($slug, '-');
+}
+
+function lp_kategori_image($slug)
+{
+  $images = [
+    'religi' => 'https://images.unsplash.com/photo-1564415637254-92c66292cd64?w=600&q=80',
+    'edukasi' => 'https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=600&q=80',
+    'bulan-madu' => 'https://images.unsplash.com/photo-1546514355-7fdc90ccbd03?w=600&q=80',
+    'keluarga' => 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80',
+    'perusahaan' => 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80',
+    'adventure' => 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=600&q=80',
+    'domestik' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+    'asia' => 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80',
+  ];
+
+  return $images[$slug] ?? 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80';
+}
+
+$queryKategoriWisata = mysqli_query(
+  $koneksi,
+  "SELECT k.id, k.nama_kategori, COUNT(p.id) AS jumlah_paket
+   FROM kategori k
+   LEFT JOIN manajemen_paket p ON p.kategori_id = k.id
+   GROUP BY k.id, k.nama_kategori
+   ORDER BY k.nama_kategori ASC"
+);
+
+if ($queryKategoriWisata) {
+  while ($kategori = mysqli_fetch_assoc($queryKategoriWisata)) {
+    $kategori['slug'] = lp_slugify($kategori['nama_kategori']);
+    $kategoriWisata[] = $kategori;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -345,123 +385,6 @@ function lp_resolve_gambar($gambar)
   </section>
 
   <!-- ============================================================
-       TOUR SPESIAL LIBURAN
-       ============================================================ -->
-  <section class="section special-tours reveal" id="tour-spesial">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-header__eyebrow">Momen Spesial</span>
-        <h2 class="section-header__title">Tour Spesial Liburan</h2>
-        <p class="section-header__subtitle">Paket khusus untuk momen berharga Anda bersama keluarga dan orang tersayang.</p>
-        <div class="section-header__line"></div>
-      </div>
-      <div class="special-tours__scroll">
-
-        <!-- Tahun Baru -->
-        <article class="card">
-          <a href="paket-wisata.php?kategori=tahun-baru">
-            <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Pantai untuk perayaan Tahun Baru" loading="lazy" width="500" height="313">
-              <span class="card__badge--teal" style="position:absolute;top:var(--space-3);left:var(--space-3);padding:4px 14px;font-size:var(--text-xs);font-weight:600;border-radius:var(--radius-full);background:var(--teal-primary);color:var(--near-black);text-transform:uppercase;letter-spacing:0.5px;z-index:2;">Tahun Baru</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Spesial Liburan</span>
-            <h3 class="card__title"><a href="paket-wisata.php?kategori=tahun-baru">Paket Tahun Baru</a></h3>
-            <p class="card__text">Rayakan pergantian tahun di destinasi impian dengan keluarga dan sahabat.</p>
-            <div class="card__price">
-              <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 3.500.000</span>
-            </div>
-            <a href="paket-wisata.php?kategori=tahun-baru" class="btn btn--secondary btn--sm btn--full">LIHAT PAKET</a>
-          </div>
-        </article>
-
-        <!-- Natal -->
-        <article class="card">
-          <a href="paket-wisata.php?kategori=natal">
-            <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&q=80" alt="Liburan Natal di pegunungan" loading="lazy" width="500" height="313">
-              <span class="card__badge--teal" style="position:absolute;top:var(--space-3);left:var(--space-3);padding:4px 14px;font-size:var(--text-xs);font-weight:600;border-radius:var(--radius-full);background:var(--coral);color:var(--white);text-transform:uppercase;letter-spacing:0.5px;z-index:2;">Natal</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Spesial Liburan</span>
-            <h3 class="card__title"><a href="paket-wisata.php?kategori=natal">Paket Natal</a></h3>
-            <p class="card__text">Rayakan natal dengan suasana berbeda di destinasi wisata pilihan.</p>
-            <div class="card__price">
-              <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 4.200.000</span>
-            </div>
-            <a href="paket-wisata.php?kategori=natal" class="btn btn--secondary btn--sm btn--full">LIHAT PAKET</a>
-          </div>
-        </article>
-
-        <!-- Idul Fitri -->
-        <article class="card">
-          <a href="paket-wisata.php?kategori=idul-fitri">
-            <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=500&q=80" alt="Liburan Idul Fitri bersama keluarga" loading="lazy" width="500" height="313">
-              <span class="card__badge--teal" style="position:absolute;top:var(--space-3);left:var(--space-3);padding:4px 14px;font-size:var(--text-xs);font-weight:600;border-radius:var(--radius-full);background:var(--emerald);color:var(--white);text-transform:uppercase;letter-spacing:0.5px;z-index:2;">Idul Fitri</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Spesial Liburan</span>
-            <h3 class="card__title"><a href="paket-wisata.php?kategori=idul-fitri">Paket Idul Fitri</a></h3>
-            <p class="card__text">Libur Lebaran semakin bermakna dengan wisata bersama keluarga besar.</p>
-            <div class="card__price">
-              <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 3.800.000</span>
-            </div>
-            <a href="paket-wisata.php?kategori=idul-fitri" class="btn btn--secondary btn--sm btn--full">LIHAT PAKET</a>
-          </div>
-        </article>
-
-        <!-- Libur Sekolah -->
-        <article class="card">
-          <a href="paket-wisata.php?kategori=libur-sekolah">
-            <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80" alt="Liburan sekolah di pantai" loading="lazy" width="500" height="313">
-              <span class="card__badge--teal" style="position:absolute;top:var(--space-3);left:var(--space-3);padding:4px 14px;font-size:var(--text-xs);font-weight:600;border-radius:var(--radius-full);background:var(--amber);color:var(--near-black);text-transform:uppercase;letter-spacing:0.5px;z-index:2;">Libur Sekolah</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Spesial Liburan</span>
-            <h3 class="card__title"><a href="paket-wisata.php?kategori=libur-sekolah">Paket Libur Sekolah</a></h3>
-            <p class="card__text">Isi liburan sekolah anak dengan petualangan seru dan edukatif.</p>
-            <div class="card__price">
-              <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 2.900.000</span>
-            </div>
-            <a href="paket-wisata.php?kategori=libur-sekolah" class="btn btn--secondary btn--sm btn--full">LIHAT PAKET</a>
-          </div>
-        </article>
-
-        <!-- Imlek -->
-        <article class="card">
-          <a href="paket-wisata.php?kategori=imlek">
-            <div class="card__image">
-              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80" alt="Liburan Imlek ke destinasi favorit" loading="lazy" width="500" height="313">
-              <span class="card__badge--teal" style="position:absolute;top:var(--space-3);left:var(--space-3);padding:4px 14px;font-size:var(--text-xs);font-weight:600;border-radius:var(--radius-full);background:var(--coral);color:var(--white);text-transform:uppercase;letter-spacing:0.5px;z-index:2;">Imlek</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Spesial Liburan</span>
-            <h3 class="card__title"><a href="paket-wisata.php?kategori=imlek">Paket Imlek</a></h3>
-            <p class="card__text">Sambut tahun baru Imlek dengan liburan istimewa bersama keluarga.</p>
-            <div class="card__price">
-              <span class="card__price-label">Start From</span>
-              <span class="card__price-value">Rp 5.100.000</span>
-            </div>
-            <a href="paket-wisata.php?kategori=imlek" class="btn btn--secondary btn--sm btn--full">LIHAT PAKET</a>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
        KATEGORI WISATA
        ============================================================ -->
   <section class="section categories reveal" id="kategori-wisata">
@@ -474,71 +397,28 @@ function lp_resolve_gambar($gambar)
       </div>
       <div class="categories__grid">
 
-        <!-- Wisata Religi -->
-        <a href="paket-wisata.php?kategori=religi" class="category-card reveal reveal--delay-1">
-          <img src="https://images.unsplash.com/photo-1564415637254-92c66292cd64?w=600&q=80" alt="Wisata Religi - Masjid dan tempat ibadah" class="category-card__img" loading="lazy">
-          <div class="category-card__overlay"></div>
-          <div class="category-card__content">
-            <svg class="category-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
-            <h3 class="category-card__title">Wisata Religi</h3>
-            <span class="category-card__count">12 Paket Tersedia</span>
-          </div>
-        </a>
-
-        <!-- Wisata Edukasi -->
-        <a href="paket-wisata.php?kategori=edukasi" class="category-card reveal reveal--delay-2">
-          <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=600&q=80" alt="Wisata Edukasi - Belajar dan berwisata" class="category-card__img" loading="lazy">
-          <div class="category-card__overlay"></div>
-          <div class="category-card__content">
-            <svg class="category-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            <h3 class="category-card__title">Wisata Edukasi</h3>
-            <span class="category-card__count">8 Paket Tersedia</span>
-          </div>
-        </a>
-
-        <!-- Bulan Madu -->
-        <a href="paket-wisata.php?kategori=bulan-madu" class="category-card reveal reveal--delay-3">
-          <img src="https://images.unsplash.com/photo-1546514355-7fdc90ccbd03?w=600&q=80" alt="Bulan Madu - Romantis di pantai" class="category-card__img" loading="lazy">
-          <div class="category-card__overlay"></div>
-          <div class="category-card__content">
-            <svg class="category-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <h3 class="category-card__title">Bulan Madu</h3>
-            <span class="category-card__count">10 Paket Tersedia</span>
-          </div>
-        </a>
-
-        <!-- Wisata Keluarga -->
-        <a href="paket-wisata.php?kategori=keluarga" class="category-card reveal reveal--delay-4">
-          <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80" alt="Wisata Keluarga - Berlibur bersama" class="category-card__img" loading="lazy">
-          <div class="category-card__overlay"></div>
-          <div class="category-card__content">
-            <svg class="category-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <h3 class="category-card__title">Wisata Keluarga</h3>
-            <span class="category-card__count">15 Paket Tersedia</span>
-          </div>
-        </a>
-
-        <!-- Wisata Perusahaan -->
-        <a href="paket-wisata.php?kategori=perusahaan" class="category-card reveal reveal--delay-5">
-          <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80" alt="Wisata Perusahaan - Team building dan outing" class="category-card__img" loading="lazy">
-          <div class="category-card__overlay"></div>
-          <div class="category-card__content">
-            <svg class="category-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            <h3 class="category-card__title">Wisata Perusahaan</h3>
-            <span class="category-card__count">7 Paket Tersedia</span>
-          </div>
-        </a>
-
-        <!-- Wisata Adventure -->
-        <a href="paket-wisata.php?kategori=adventure" class="category-card reveal reveal--delay-6">
-          <img src="https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=600&q=80" alt="Wisata Adventure - Petualangan alam" class="category-card__img" loading="lazy">
-          <div class="category-card__overlay"></div>
-          <div class="category-card__content">
-            <svg class="category-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <h3 class="category-card__title">Wisata Adventure</h3>
-            <span class="category-card__count">9 Paket Tersedia</span>
-          </div>
-        </a>
+        <?php if (!empty($kategoriWisata)): ?>
+          <?php foreach ($kategoriWisata as $index => $kategori): ?>
+            <?php
+              $kategoriNama = htmlspecialchars($kategori['nama_kategori']);
+              $kategoriSlug = htmlspecialchars($kategori['slug']);
+              $kategoriImage = htmlspecialchars(lp_kategori_image($kategori['slug']));
+              $jumlahPaket = (int)$kategori['jumlah_paket'];
+              $delayClass = 'reveal--delay-' . (($index % 6) + 1);
+            ?>
+            <a href="paket-wisata.php?kategori=<?php echo $kategoriSlug; ?>" class="category-card reveal <?php echo $delayClass; ?>">
+              <img src="<?php echo $kategoriImage; ?>" alt="<?php echo $kategoriNama; ?>" class="category-card__img" loading="lazy">
+              <div class="category-card__overlay"></div>
+              <div class="category-card__content">
+                <svg class="category-card__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21 12 3l7 18"/><path d="M8 14h8"/></svg>
+                <h3 class="category-card__title"><?php echo $kategoriNama; ?></h3>
+                <span class="category-card__count"><?php echo $jumlahPaket; ?> Paket Tersedia</span>
+              </div>
+            </a>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p style="grid-column:1/-1;text-align:center;color:#64748b;">Belum ada kategori wisata. Silakan tambah kategori dari dashboard.</p>
+        <?php endif; ?>
 
       </div>
     </div>
