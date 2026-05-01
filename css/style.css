@@ -1976,6 +1976,19 @@ p {
   color: var(--near-black);
 }
 
+#filter-section {
+  padding: 16px !important;
+}
+
+#filter-section .filters {
+  margin-bottom: 0;
+  padding: var(--space-4);
+}
+
+#paket-listing {
+  padding: 0 !important;
+}
+
 /* ============================================================
    DETAIL PAGE
    ============================================================ */

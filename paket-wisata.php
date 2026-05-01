@@ -289,11 +289,11 @@ if ($queryPaket) {
   <!-- ============================================================
        FILTER SECTION
        ============================================================ -->
-  <section class="section section--sm" id="filter-section">
+  <section class="section" id="filter-section">
     <div class="container">
       <div class="filters reveal">
         <!-- Category Filter Tags -->
-        <div style="width:100%;margin-bottom:var(--space-4);">
+        <div style="width:100%;">
           <div class="filter-tags">
             <button class="filter-tag <?php echo $selectedKategori === 'semua' ? 'filter-tag--active' : ''; ?>" data-filter="semua">Semua</button>
             <?php foreach ($kategoriList as $kategori): ?>
