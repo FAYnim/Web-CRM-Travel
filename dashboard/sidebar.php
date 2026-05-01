@@ -204,6 +204,13 @@
                     <span>Setting Profil</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="src/api/process-logout" class="nav-link">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
         </ul>
 
         <div class="sidebar-footer">
