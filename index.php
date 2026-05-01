@@ -281,62 +281,6 @@ function lp_resolve_gambar($gambar)
   </section>
 
   <!-- ============================================================
-       VALUE PROPOSITION
-       ============================================================ -->
-  <section class="section values reveal" id="values">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-header__eyebrow">Mengapa Memilih Kami</span>
-        <h2 class="section-header__title">Keunggulan SnD Tour Travel</h2>
-        <p class="section-header__subtitle">Kami hadir untuk memberikan pengalaman perjalanan terbaik dengan layanan profesional dan harga terjangkau.</p>
-        <div class="section-header__line"></div>
-      </div>
-      <div class="values__grid">
-        <!-- Value 1: Efisien & Terencana -->
-        <div class="value-card reveal reveal--delay-1">
-          <div class="value-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-              <path d="M9 16l2 2 4-4"/>
-            </svg>
-          </div>
-          <h3 class="value-card__title">Efisien &amp; Terencana</h3>
-          <p class="value-card__text">Perjalanan sudah dijadwalkan rapi sehingga waktu lebih optimal dan tidak membingungkan. Nikmati liburan tanpa ribet!</p>
-        </div>
-        <!-- Value 2: Fleksibel Sesuai Budget -->
-        <div class="value-card reveal reveal--delay-2">
-          <div class="value-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="M2 10h20"/>
-              <path d="M6 16h4"/>
-              <path d="M14 16h4"/>
-            </svg>
-          </div>
-          <h3 class="value-card__title">Fleksibel Sesuai Budget</h3>
-          <p class="value-card__text">Paket bisa disesuaikan dengan anggaran tanpa mengorbankan kenyamanan dan kebahagiaan. Budget pas, liburan puas!</p>
-        </div>
-        <!-- Value 3: Custom & Transparan -->
-        <div class="value-card reveal reveal--delay-3">
-          <div class="value-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-          <h3 class="value-card__title">Custom &amp; Transparan</h3>
-          <p class="value-card__text">Destinasi, penginapan, dan transportasi disepakati bersama sesuai kebutuhan klien. Tanpa biaya tersembunyi!</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
        PAKET TERBARU
        ============================================================ -->
   <section class="section packages reveal" id="paket-terbaru">
