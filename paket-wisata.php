@@ -306,31 +306,6 @@ if ($queryPaket) {
             <?php endforeach; ?>
           </div>
         </div>
-
-        <!-- Durasi Filter -->
-        <div class="filter-group">
-          <label class="filter-group__label" for="filterDurasi">Durasi</label>
-          <select class="filter-group__select" id="filterDurasi" name="durasi">
-            <option value="">Semua Durasi</option>
-            <option value="2d1n">2D1N</option>
-            <option value="3d2n">3D2N</option>
-            <option value="4d3n">4D3N</option>
-            <option value="5d4n">5D4N</option>
-            <option value="6d5n">6D5N</option>
-          </select>
-        </div>
-
-        <!-- Sort By -->
-        <div class="filter-group">
-          <label class="filter-group__label" for="filterSort">Urutkan</label>
-          <select class="filter-group__select" id="filterSort" name="sort">
-            <option value="">Terbaru</option>
-            <option value="harga-rendah">Harga Terendah</option>
-            <option value="harga-tinggi">Harga Tertinggi</option>
-            <option value="populer">Terpopuler</option>
-            <option value="durasi">Durasi Tersingkat</option>
-          </select>
-        </div>
       </div>
     </div>
   </section>
