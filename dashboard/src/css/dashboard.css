@@ -364,3 +364,192 @@ background: var(--sidebar-active);
     font-size: 0.75rem;
     color: #64748b;
 }
+
+/* ---- Guidebook Dashboard ---- */
+.guidebook-wrapper {
+    display: grid;
+    gap: 20px;
+    max-width: 1180px;
+}
+
+.guidebook-hero,
+.guidebook-faq {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.guidebook-hero {
+    padding: 28px;
+}
+
+.guidebook-kicker,
+.guidebook-section-label {
+    margin: 0 0 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2563eb;
+}
+
+.guidebook-hero h2,
+.guidebook-faq h2 {
+    margin: 0;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.guidebook-hero h2 {
+    font-size: 1.55rem;
+}
+
+.guidebook-hero p:last-child {
+    max-width: 760px;
+    margin: 12px 0 0;
+    color: #475569;
+    line-height: 1.7;
+}
+
+.guidebook-faq {
+    overflow: hidden;
+}
+
+.guidebook-faq-header {
+    padding: 22px 24px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.guidebook-faq-header h2 {
+    font-size: 1.15rem;
+}
+
+.guidebook-accordion {
+    display: grid;
+    gap: 0;
+}
+
+.guidebook-faq-item {
+    border: 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.guidebook-faq-item:last-child {
+    border-bottom: 0;
+}
+
+.guidebook-faq-button {
+    gap: 12px;
+    padding: 18px 22px;
+    color: #1e293b;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.guidebook-faq-button:not(.collapsed) {
+    background: #f8fafc;
+    color: #0f172a;
+    box-shadow: none;
+}
+
+.guidebook-faq-button:focus {
+    border-color: transparent;
+    box-shadow: inset 0 0 0 2px #bfdbfe;
+}
+
+.guidebook-faq-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #e0f2fe;
+    color: #0369a1;
+    flex-shrink: 0;
+}
+
+.guidebook-faq-body {
+    padding: 0 22px 22px 68px;
+    background: #fff;
+}
+
+.guidebook-faq-body h3 {
+    margin: 0 0 10px;
+    color: #1e293b;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.guidebook-faq-body p {
+    color: #475569;
+    line-height: 1.65;
+}
+
+.guidebook-step-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-left: 20px;
+    color: #334155;
+}
+
+.guidebook-step-list li {
+    padding-left: 4px;
+    line-height: 1.6;
+}
+
+.guidebook-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.guidebook-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #1e40af;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.guidebook-links a:hover {
+    background: #dbeafe;
+}
+
+@media (max-width: 991.98px) {
+    .guidebook-hero {
+        padding: 22px;
+    }
+
+    .guidebook-faq-body {
+        padding-left: 22px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .guidebook-hero,
+    .guidebook-faq {
+        border-radius: 10px;
+    }
+
+    .guidebook-faq-header {
+        padding: 18px;
+    }
+
+    .guidebook-faq-button {
+        padding: 16px 18px;
+        font-size: 0.9rem;
+    }
+
+    .guidebook-faq-body {
+        padding: 0 18px 18px;
+    }
+}
