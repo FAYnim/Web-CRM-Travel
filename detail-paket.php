@@ -510,10 +510,7 @@ function format_harga($harga) {
         <div>
           <h4 class="footer__heading">Layanan</h4>
           <div class="footer__links">
-            <a href="paket-wisata.php" class="footer__link">Paket Wisata Domestik</a>
-            <a href="paket-wisata.php" class="footer__link">Paket Wisata Asia</a>
-            <a href="outbond.php" class="footer__link">Outbond</a>
-            <a href="catering.php" class="footer__link">Catering</a>
+            <a href="paket-wisata.php" class="footer__link">Paket Wisata</a>
             <a href="galeri.php" class="footer__link">Galeri</a>
           </div>
         </div>

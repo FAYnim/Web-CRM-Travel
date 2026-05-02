@@ -309,8 +309,6 @@ $footerKontak = crm_get_footer_context($koneksi);
           <h4 class="footer__heading">Layanan</h4>
           <nav class="footer__links" aria-label="Layanan SnD Tour">
             <a href="paket-wisata.php" class="footer__link">Paket Wisata</a>
-            <a href="outbond.php" class="footer__link">Outbond</a>
-            <a href="catering.php" class="footer__link">Catering</a>
             <a href="galeri.php" class="footer__link">Galeri</a>
           </nav>
         </div>
