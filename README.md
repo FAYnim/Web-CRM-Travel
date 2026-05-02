@@ -79,7 +79,7 @@ web-crm-travel/
 ├── config.php                # Koneksi database dan konfigurasi sesi
 ├── index.php                 # Halaman utama situs publik (landing page)
 ├── css/ & js/                # Aset frontend publik (CSS Kustom & Vanilla JS)
-├── *.php                     # Halaman publik lainnya (detail-paket.php, blog.php, dll.)
+├── *.php                     # Halaman publik lainnya (detail-paket.php, galeri.php, dll.)
 └── dashboard/                # Panel Admin
     ├── index.php             # Halaman utama dasbor admin
     ├── login.php             # Autentikasi admin

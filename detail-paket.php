@@ -175,11 +175,6 @@ function format_harga($harga) {
             </div>
           </li>
 
-          <!-- BLOG -->
-          <li class="nav__item">
-            <a href="blog.php" class="nav__link">BLOG</a>
-          </li>
-
           <!-- GALERI -->
           <li class="nav__item">
             <a href="galeri.php" class="nav__link">GALERI</a>
@@ -532,7 +527,6 @@ function format_harga($harga) {
           <div class="footer__links">
             <a href="profil.php" class="footer__link">Tentang Kami</a>
             <a href="profil.php#visi-misi" class="footer__link">Visi &amp; Misi</a>
-            <a href="blog.php" class="footer__link">Blog &amp; Artikel</a>
             <a href="kontak.php" class="footer__link">Hubungi Kami</a>
           </div>
         </div>

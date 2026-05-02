@@ -214,11 +214,6 @@ if ($queryKategoriWisata) {
             </div>
           </li>
 
-          <!-- BLOG -->
-          <li class="nav__item">
-            <a href="blog.php" class="nav__link">BLOG</a>
-          </li>
-
           <!-- GALERI -->
           <li class="nav__item">
             <a href="galeri.php" class="nav__link">GALERI</a>
@@ -420,93 +415,6 @@ if ($queryKategoriWisata) {
           <p style="grid-column:1/-1;text-align:center;color:#64748b;">Belum ada kategori wisata. Silakan tambah kategori dari dashboard.</p>
         <?php endif; ?>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       BLOG / ARTIKEL
-       ============================================================ -->
-  <section class="section blog reveal" id="blog">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-header__eyebrow">Blog &amp; Artikel</span>
-        <h2 class="section-header__title">Tips &amp; Inspirasi Perjalanan</h2>
-        <p class="section-header__subtitle">Temukan informasi menarik, tips traveling, dan inspirasi destinasi untuk liburan Anda berikutnya.</p>
-        <div class="section-header__line"></div>
-      </div>
-      <div class="blog__grid">
-
-        <!-- Blog Card 1 -->
-        <article class="card blog-card reveal reveal--delay-1">
-          <a href="blog-detail.php">
-            <div class="blog-card__image card__image">
-              <img src="https://images.unsplash.com/photo-1574227492706-f65b24c3688a?w=600&q=80" alt="Tips packing efisien untuk liburan" loading="lazy" width="600" height="375">
-              <span class="card__badge card__badge--teal">Tips</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Tips Traveling</span>
-            <h3 class="card__title"><a href="blog-detail.php">10 Tips Packing Efisien untuk Liburan Panjang</a></h3>
-            <p class="card__text">Packing tidak perlu ribet! Ikuti tips berikut agar koper Anda tetap ringan namun semua kebutuhan terpenuhi selama liburan.</p>
-            <div class="card__footer">
-              <span class="blog-card__date">15 Februari 2026</span>
-              <a href="blog-detail.php" class="blog-card__link">
-                Baca Selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Blog Card 2 -->
-        <article class="card blog-card reveal reveal--delay-2">
-          <a href="blog-detail.php">
-            <div class="blog-card__image card__image">
-              <img src="https://images.unsplash.com/photo-1528127269322-539801943592?w=600&q=80" alt="Destinasi wisata tersembunyi di Indonesia" loading="lazy" width="600" height="375">
-              <span class="card__badge card__badge--teal">Destinasi</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Fun Facts Destinasi</span>
-            <h3 class="card__title"><a href="blog-detail.php">5 Destinasi Tersembunyi di Indonesia Timur</a></h3>
-            <p class="card__text">Indonesia Timur menyimpan keindahan alam yang luar biasa. Berikut 5 destinasi tersembunyi yang wajib Anda kunjungi.</p>
-            <div class="card__footer">
-              <span class="blog-card__date">10 Februari 2026</span>
-              <a href="blog-detail.php" class="blog-card__link">
-                Baca Selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Blog Card 3 -->
-        <article class="card blog-card reveal reveal--delay-3">
-          <a href="blog-detail.php">
-            <div class="blog-card__image card__image">
-              <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=600&q=80" alt="Panduan wisata hemat ke Singapura" loading="lazy" width="600" height="375">
-              <span class="card__badge card__badge--teal">Panduan</span>
-            </div>
-          </a>
-          <div class="card__body">
-            <span class="card__category">Panduan Wisata</span>
-            <h3 class="card__title"><a href="blog-detail.php">Panduan Lengkap Wisata Hemat ke Singapura</a></h3>
-            <p class="card__text">Berlibur ke Singapura tidak harus mahal! Simak panduan lengkap kami untuk menikmati Singapura dengan budget terjangkau.</p>
-            <div class="card__footer">
-              <span class="blog-card__date">5 Februari 2026</span>
-              <a href="blog-detail.php" class="blog-card__link">
-                Baca Selengkapnya
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="packages__more" style="margin-top:var(--space-12);">
-        <a href="blog.php" class="btn btn--secondary">LIHAT SEMUA ARTIKEL</a>
       </div>
     </div>
   </section>
@@ -779,7 +687,6 @@ if ($queryKategoriWisata) {
           <h4 class="footer__heading">Layanan</h4>
           <nav class="footer__links" aria-label="Layanan SnD Tour">
             <a href="paket-wisata.php" class="footer__link">Paket Wisata</a>
-            <a href="blog.php" class="footer__link">Blog</a>
             <a href="galeri.php" class="footer__link">Galeri</a>
           </nav>
         </div>

@@ -225,11 +225,6 @@ if ($queryPaket) {
             </div>
           </li>
 
-          <!-- BLOG -->
-          <li class="nav__item">
-            <a href="blog.php" class="nav__link">BLOG</a>
-          </li>
-
           <!-- GALERI -->
           <li class="nav__item">
             <a href="galeri.php" class="nav__link">GALERI</a>
@@ -404,7 +399,6 @@ if ($queryPaket) {
             <a href="paket-wisata.php" class="footer__link">Paket Wisata</a>
             <a href="outbond.php" class="footer__link">Outbond</a>
             <a href="catering.php" class="footer__link">Catering</a>
-            <a href="blog.php" class="footer__link">Blog</a>
             <a href="galeri.php" class="footer__link">Galeri</a>
           </nav>
         </div>
