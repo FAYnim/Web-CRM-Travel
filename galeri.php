@@ -3,6 +3,39 @@ require_once __DIR__ . '/config.php';
 
 $footerKategoriList = crm_get_kategori_footer($koneksi);
 $footerKontak = crm_get_footer_context($koneksi);
+
+function galeri_resolve_gambar($gambar)
+{
+  $gambar = trim((string)$gambar);
+
+  if ($gambar === '' || $gambar === '-') {
+    return 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80';
+  }
+
+  if (preg_match('/^https?:\/\//i', $gambar)) {
+    return $gambar;
+  }
+
+  if (strpos($gambar, 'dashboard/') === 0) {
+    return $gambar;
+  }
+
+  if (strpos($gambar, 'uploads/') === 0) {
+    return 'dashboard/' . $gambar;
+  }
+
+  return 'dashboard/uploads/' . ltrim($gambar, '/');
+}
+
+$galeriList = [];
+if ($koneksi) {
+  $queryGaleri = mysqli_query($koneksi, "SELECT id, judul, deskripsi, gambar FROM galeri ORDER BY created_at DESC, id DESC");
+  if ($queryGaleri) {
+    while ($row = mysqli_fetch_assoc($queryGaleri)) {
+      $galeriList[] = $row;
+    }
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -138,121 +171,34 @@ $footerKontak = crm_get_footer_context($koneksi);
   </section>
 
   <!-- ============================================================
-       FILTER SECTION
+       GALLERY SECTION
        ============================================================ -->
-  <section class="section section--sm" id="galeri-filter">
+  <section class="section section--sm">
     <div class="container">
-      <div style="text-align:center;margin-bottom:var(--space-8);">
-        <div class="filter-tags" style="justify-content:center;">
-          <button class="filter-tag filter-tag--active" data-filter="semua">Semua</button>
-          <button class="filter-tag" data-filter="domestik">Tour Domestik</button>
-          <button class="filter-tag" data-filter="asia">Tour Asia</button>
-          <button class="filter-tag" data-filter="outbond">Outbond</button>
-          <button class="filter-tag" data-filter="event">Event/Catering</button>
-        </div>
-      </div>
 
       <!-- ============================================================
            GALLERY GRID
            ============================================================ -->
       <div class="gallery-grid" id="galleryGrid">
-
-        <!-- Gallery Item 1: Bali Temple -->
-        <div class="gallery-item reveal reveal--delay-1" data-category="domestik">
-          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Pura di Bali dengan pemandangan sawah terasering" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Pura Ulun Danu, Bali</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 2: Tropical Beach -->
-        <div class="gallery-item reveal reveal--delay-2" data-category="domestik">
-          <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=600&q=80" alt="Pantai tropis dengan air laut biru jernih" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Pantai Labuan Bajo, NTT</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 3: Rice Terrace -->
-        <div class="gallery-item reveal reveal--delay-3" data-category="domestik">
-          <img src="https://images.unsplash.com/photo-1570789210967-2cac24f6d023?w=600&q=80" alt="Sawah terasering hijau nan indah" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Tegallalang Rice Terrace, Bali</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 4: Singapore -->
-        <div class="gallery-item reveal reveal--delay-4" data-category="asia">
-          <img src="https://images.unsplash.com/photo-1574227492706-f65b24c3688a?w=600&q=80" alt="Pemandangan kota Singapura di malam hari" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Marina Bay, Singapore</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 5: Mountain Lake -->
-        <div class="gallery-item reveal reveal--delay-5" data-category="asia">
-          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80" alt="Danau di pegunungan dengan pemandangan alam hijau" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Lake Garden, Malaysia</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 6: Sunset -->
-        <div class="gallery-item reveal reveal--delay-6" data-category="domestik">
-          <img src="https://images.unsplash.com/photo-1504681869696-d977211a5f4c?w=600&q=80" alt="Sunset indah di atas laut" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Sunset di Raja Ampat, Papua Barat</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 7: Team Activity -->
-        <div class="gallery-item reveal reveal--delay-1" data-category="outbond">
-          <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80" alt="Kegiatan team building outbond bersama" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Team Building - PT Telkom Indonesia</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 8: Outdoor -->
-        <div class="gallery-item reveal reveal--delay-2" data-category="outbond">
-          <img src="https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=600&q=80" alt="Aktivitas outdoor adventure di alam terbuka" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Outbond Adventure - Bank BCA</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 9: Catering -->
-        <div class="gallery-item reveal reveal--delay-3" data-category="event">
-          <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=80" alt="Hidangan catering untuk event perusahaan" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Catering Event - Gala Dinner</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 10: Food -->
-        <div class="gallery-item reveal reveal--delay-4" data-category="event">
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Sajian makanan catering premium" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Buffet Catering - Corporate Event</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 11: Lake -->
-        <div class="gallery-item reveal reveal--delay-5" data-category="asia">
-          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80" alt="Danau indah dengan pemandangan alam" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Lake Como, Tour Eropa</span>
-          </div>
-        </div>
-
-        <!-- Gallery Item 12: Mountain -->
-        <div class="gallery-item reveal reveal--delay-6" data-category="domestik">
-          <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=600&q=80" alt="Pemandangan gunung yang megah" loading="lazy" width="600" height="450">
-          <div class="gallery-item__overlay">
-            <span class="gallery-item__caption">Gunung Bromo, Jawa Timur</span>
-          </div>
-        </div>
-
+        <?php if (!empty($galeriList)): ?>
+          <?php foreach ($galeriList as $index => $item): ?>
+            <?php
+              $delay = ($index % 6) + 1;
+              $judul = trim((string)($item['judul'] ?? 'Foto Galeri'));
+              $deskripsi = trim((string)($item['deskripsi'] ?? ''));
+              $caption = $judul !== '' ? $judul : 'Foto Galeri';
+              $alt = $deskripsi !== '' ? $deskripsi : $caption;
+            ?>
+            <div class="gallery-item reveal reveal--delay-<?php echo $delay; ?>" data-category="semua">
+              <img src="<?php echo htmlspecialchars(galeri_resolve_gambar($item['gambar'] ?? '')); ?>" alt="<?php echo htmlspecialchars($alt); ?>" loading="lazy" width="600" height="450">
+              <div class="gallery-item__overlay">
+                <span class="gallery-item__caption"><?php echo htmlspecialchars($caption); ?></span>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p style="grid-column:1/-1;text-align:center;color:var(--color-text-muted);">Belum ada foto galeri.</p>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -384,39 +330,5 @@ $footerKontak = crm_get_footer_context($koneksi);
   <!-- JavaScript -->
   <script src="js/main.js"></script>
 
-  <!-- Gallery Filter Script -->
-  <script>
-    (function() {
-      const filterTags = document.querySelectorAll('#galeri-filter .filter-tag');
-      const galleryItems = document.querySelectorAll('.gallery-item');
-
-      filterTags.forEach(tag => {
-        tag.addEventListener('click', () => {
-          // Update active tag
-          filterTags.forEach(t => t.classList.remove('filter-tag--active'));
-          tag.classList.add('filter-tag--active');
-
-          const filter = tag.dataset.filter;
-
-          galleryItems.forEach(item => {
-            if (filter === 'semua' || item.dataset.category === filter) {
-              item.style.display = '';
-              item.style.opacity = '1';
-              item.style.transform = 'scale(1)';
-            } else {
-              item.style.opacity = '0';
-              item.style.transform = 'scale(0.8)';
-              setTimeout(() => {
-                if (!item.dataset.category.includes(document.querySelector('.filter-tag--active').dataset.filter) &&
-                    document.querySelector('.filter-tag--active').dataset.filter !== 'semua') {
-                  item.style.display = 'none';
-                }
-              }, 350);
-            }
-          });
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
