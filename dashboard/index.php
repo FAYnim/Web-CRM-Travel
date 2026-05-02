@@ -160,6 +160,9 @@ $current_page = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_FILENAME);
                                 <a href="manajemen-pembayaran" class="btn btn-outline-info btn-sm">
                                     <i class="bi bi-cash-stack me-1"></i> Tambah Pembayaran
                                 </a>
+                                <a href="guidebook-dashboard" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-book me-1"></i> Buka Guidebook
+                                </a>
                             </div>
                         </div>
                     </div>

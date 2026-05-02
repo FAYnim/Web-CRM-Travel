@@ -206,6 +206,13 @@
             </li>
 
             <li class="nav-item">
+                <a href="guidebook-dashboard" class="nav-link <?php echo $current_page === 'guidebook-dashboard' ? 'active' : ''; ?>">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Guidebook</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a href="src/api/process-logout" class="nav-link">
                     <i class="bi bi-box-arrow-right"></i>
                     <span>Logout</span>
