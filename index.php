@@ -695,12 +695,17 @@ if ($queryKategoriWisata) {
         <div>
           <h4 class="footer__heading">Kategori Tour</h4>
           <nav class="footer__links" aria-label="Kategori Tour">
-            <a href="paket-wisata.php?kategori=domestik" class="footer__link">Tour Domestik</a>
-            <a href="paket-wisata.php?kategori=asia" class="footer__link">Tour Asia</a>
-            <a href="paket-wisata.php?kategori=religi" class="footer__link">Wisata Religi</a>
-            <a href="paket-wisata.php?kategori=edukasi" class="footer__link">Wisata Edukasi</a>
-            <a href="paket-wisata.php?kategori=bulan-madu" class="footer__link">Bulan Madu</a>
-            <a href="paket-wisata.php?kategori=keluarga" class="footer__link">Wisata Keluarga</a>
+            <?php if (!empty($kategoriWisata)): ?>
+              <?php foreach ($kategoriWisata as $kategori): ?>
+                <?php
+                  $kategoriNama = htmlspecialchars($kategori['nama_kategori']);
+                  $kategoriSlug = htmlspecialchars($kategori['slug']);
+                ?>
+                <a href="paket-wisata.php?kategori=<?php echo $kategoriSlug; ?>" class="footer__link"><?php echo $kategoriNama; ?></a>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <span class="footer__link">Belum ada kategori</span>
+            <?php endif; ?>
           </nav>
         </div>
 
