@@ -1,17 +1,17 @@
 # Web CRM Travel
 
-CRM dan Sistem Manajemen Konten (CMS) yang lengkap dan siap pakai untuk Agen Perjalanan, dibangun dengan PHP native dan MySQL. Menyediakan situs utama publik bagi pelanggan untuk menelusuri paket wisata, membaca artikel blog, dan melihat galeri, beserta dasbor administratif yang aman untuk mengelola konten, pemesanan, pelanggan, dan pembayaran.
+CRM dan Sistem Manajemen Konten (CMS) untuk Agen Perjalanan, dibangun dengan PHP native dan MySQL. Menyediakan situs utama publik bagi pelanggan untuk menelusuri paket wisata, melihat galeri, dan mengakses informasi perusahaan/kontak, beserta dasbor administratif untuk mengelola konten, pemesanan, pelanggan, dan pembayaran.
 
 ## ✨ Fitur
 
 ### Situs Web Publik
 - **Katalog Paket Wisata**: Jelajahi paket wisata, aktivitas outbound, dan layanan katering yang tersedia.
-- **Blog & Artikel**: Baca pembaruan terbaru dan panduan perjalanan.
-- **Profil Perusahaan & Kontak**: Informasi tentang agen perjalanan dan formulir kontak.
+- **Halaman Galeri**: Lihat dokumentasi foto perjalanan dan aktivitas.
+- **Profil Perusahaan & Kontak**: Informasi tentang agen perjalanan dengan CTA WhatsApp dan Email.
 - **Desain Responsif**: CSS kustom dan Vanilla JS untuk pengalaman yang lancar di berbagai perangkat.
 
 ### Dasbor Admin
-- **Manajemen Konten**: Kelola paket wisata, postingan blog, galeri, testimoni, dan mitra maskapai/perusahaan.
+- **Manajemen Konten**: Kelola paket wisata, galeri, testimoni, kategori, dan mitra/klien perusahaan.
 - **CRM Pemesanan & Pelanggan**: Lacak pemesanan pelanggan dengan fitur **tanggal keberangkatan**, kelola data pelanggan yang dioptimalkan, dan catat serta pantau **status pembayaran** (Lunas/Belum Bayar).
 - **Pengaturan Perusahaan**: Perbarui informasi profil perusahaan dan branding langsung dari dasbor.
 - **Analitik Dasbor**: Lihat statistik utama seperti total pemesanan, pendapatan, dan aktivitas terbaru secara ringkas.
