@@ -61,6 +61,28 @@ function lp_kategori_image($slug)
   return $images[$slug] ?? 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80';
 }
 
+function lp_testimoni_initial($nama)
+{
+  $words = explode(' ', trim((string)$nama));
+  $initials = '';
+  foreach ($words as $w) {
+    $initials .= strtoupper(substr($w, 0, 1));
+    if (strlen($initials) >= 2) break;
+  }
+  return $initials ?: '?';
+}
+
+function lp_render_rating($rating)
+{
+  $rating = max(1, min(5, (int)$rating));
+  $html = '';
+  for ($i = 1; $i <= 5; $i++) {
+    $opacity = $i <= $rating ? '1' : '0.3';
+    $html .= '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="opacity:' . $opacity . '"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  }
+  return $html;
+}
+
 $queryKategoriWisata = mysqli_query(
   $koneksi,
   "SELECT k.id, k.nama_kategori, COUNT(p.id) AS jumlah_paket
@@ -75,6 +97,29 @@ if ($queryKategoriWisata) {
     $kategori['slug'] = lp_slugify($kategori['nama_kategori']);
     $kategoriWisata[] = $kategori;
   }
+}
+
+$testimoniLanding = [];
+$queryTestimoni = mysqli_query(
+  $koneksi,
+  "SELECT id, nama_pelanggan, pesan, rating, tanggal FROM testimoni WHERE status='Aktif' ORDER BY tanggal DESC, id DESC LIMIT 3"
+);
+
+if ($queryTestimoni) {
+  while ($row = mysqli_fetch_assoc($queryTestimoni)) {
+    $testimoniLanding[] = $row;
+  }
+}
+
+// Fallback deterministik jika kosong
+if (empty($testimoniLanding)) {
+  $testimoniLanding[] = [
+    'id' => 0,
+    'nama_pelanggan' => 'Pelanggan Setia',
+    'pesan' => 'Layanan SnD Tour Travel sangat profesional dan terpercaya. Pengalaman liburan kami menjadi sangat berkesan dan menyenangkan.',
+    'rating' => 5,
+    'tanggal' => date('Y-m-d')
+  ];
 }
 
 $profilKontak = crm_get_profil($koneksi);
@@ -453,77 +498,42 @@ $footerSocialLinks = [
       </div>
 
       <div class="testimonials__slider">
-
-        <!-- Testimonial 1 -->
-        <div class="testimonial-card">
-          <p class="testimonial-card__quote">Pengalaman liburan ke Bali bersama SnD Tour benar-benar luar biasa! Semua sudah terorganisir dengan baik, dari hotel, transportasi, hingga tempat wisata. Tidak perlu pusing mikir apapun, tinggal nikmati saja!</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">AS</div>
-            <div>
-              <div class="testimonial-card__name">Andi Setiawan</div>
-              <div class="testimonial-card__package">Pesona Bali 5D4N</div>
-            </div>
-            <div class="testimonial-card__stars">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 2 -->
-        <div class="testimonial-card">
-          <p class="testimonial-card__quote">Trip ke Singapura bareng SnD Tour seru banget! Guide-nya ramah, hotel strategis, dan itinerary-nya pas. Yang paling berkesan adalah team SnD sangat responsif dan helpful. Pasti balik lagi!</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">DP</div>
-            <div>
-              <div class="testimonial-card__name">Diana Putri</div>
-              <div class="testimonial-card__package">Singapore City Tour 4D3N</div>
-            </div>
-            <div class="testimonial-card__stars">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <?php foreach ($testimoniLanding as $item): ?>
+          <?php
+            $namaPelanggan = htmlspecialchars($item['nama_pelanggan'], ENT_QUOTES, 'UTF-8');
+            $pesan = htmlspecialchars($item['pesan'], ENT_QUOTES, 'UTF-8');
+            $initials = lp_testimoni_initial($item['nama_pelanggan']);
+            $ratingHtml = lp_render_rating($item['rating']);
+            $tanggal = date('d M Y', strtotime($item['tanggal']));
+          ?>
+          <div class="testimonial-card">
+            <p class="testimonial-card__quote"><?php echo $pesan; ?></p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar"><?php echo $initials; ?></div>
+              <div>
+                <div class="testimonial-card__name"><?php echo $namaPelanggan; ?></div>
+                <div class="testimonial-card__package">Testimoni Pelanggan • <?php echo $tanggal; ?></div>
+              </div>
+              <div class="testimonial-card__stars">
+                <?php echo $ratingHtml; ?>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Testimonial 3 -->
-        <div class="testimonial-card">
-          <p class="testimonial-card__quote">Kami pakai jasa outbond SnD Tour untuk acara team building kantor dan hasilnya luar biasa memuaskan. Aktivitasnya seru, lokasi bagus, dan timnya sangat profesional. Recommended banget!</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">BW</div>
-            <div>
-              <div class="testimonial-card__name">Budi Wicaksono</div>
-              <div class="testimonial-card__package">Outbond Team Building</div>
-            </div>
-            <div class="testimonial-card__stars">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-          </div>
-        </div>
-
+        <?php endforeach; ?>
       </div>
 
       <!-- Testimonial Controls -->
       <div class="testimonials__controls">
-        <button class="testimonials__arrow testimonials__arrow--prev" aria-label="Testimoni sebelumnya">
+        <?php $isSingle = count($testimoniLanding) <= 1; ?>
+        <button class="testimonials__arrow testimonials__arrow--prev" aria-label="Testimoni sebelumnya" <?php echo $isSingle ? 'disabled aria-hidden="true"' : ''; ?>>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div class="testimonials__dots">
-          <button class="testimonials__dot testimonials__dot--active" aria-label="Testimoni 1"></button>
-          <button class="testimonials__dot" aria-label="Testimoni 2"></button>
-          <button class="testimonials__dot" aria-label="Testimoni 3"></button>
+          <?php foreach ($testimoniLanding as $index => $item): ?>
+            <button class="testimonials__dot <?php echo $index === 0 ? 'testimonials__dot--active' : ''; ?>" aria-label="Testimoni <?php echo $index + 1; ?>"></button>
+          <?php endforeach; ?>
         </div>
-        <button class="testimonials__arrow testimonials__arrow--next" aria-label="Testimoni berikutnya">
+        <button class="testimonials__arrow testimonials__arrow--next" aria-label="Testimoni berikutnya" <?php echo $isSingle ? 'disabled aria-hidden="true"' : ''; ?>>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
