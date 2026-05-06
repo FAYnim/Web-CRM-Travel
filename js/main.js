@@ -172,15 +172,19 @@ function initTestimonialSlider() {
     if (current >= cards.length) current = 0;
     if (current < 0) current = cards.length - 1;
 
-    cards[current].style.display = 'block';
-    // Trigger reflow
-    cards[current].offsetHeight;
-    cards[current].style.opacity = '1';
+    if (cards[current]) {
+      cards[current].style.display = 'block';
+      // Trigger reflow
+      cards[current].offsetHeight;
+      cards[current].style.opacity = '1';
+    }
 
     if (dots[current]) dots[current].classList.add('testimonials__dot--active');
   }
 
   function startAutoplay() {
+    // Disable autoplay if only one or zero card
+    if (cards.length <= 1) return;
     interval = setInterval(() => goTo(current + 1), 5000);
   }
 
@@ -190,6 +194,7 @@ function initTestimonialSlider() {
 
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
+      if (cards.length <= 1) return;
       stopAutoplay();
       goTo(i);
       startAutoplay();
@@ -198,6 +203,7 @@ function initTestimonialSlider() {
 
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
+      if (cards.length <= 1) return;
       stopAutoplay();
       goTo(current - 1);
       startAutoplay();
@@ -206,6 +212,7 @@ function initTestimonialSlider() {
 
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
+      if (cards.length <= 1) return;
       stopAutoplay();
       goTo(current + 1);
       startAutoplay();
