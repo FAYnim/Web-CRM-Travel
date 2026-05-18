@@ -2,14 +2,14 @@
 
 :root {
     --bg-page: #f4f6fa;
-    --color-primary: #3b4bf7;
-    --color-primary-hover: #2636de;
-    --color-primary-light: rgba(59, 75, 247, 0.08);
+    --color-primary: #1e293b;
+    --color-primary-hover: #334155;
+    --color-primary-light: rgba(30, 41, 59, 0.08);
     --color-text-main: #181d25;
     --color-text-muted: #64748b;
     --color-border: #e2e8f0;
     --color-border-hover: #cbd5e1;
-    --gradient-blue: linear-gradient(135deg, #3b4bf7 0%, #1e2bc4 100%);
+    --gradient-blue: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     --shadow-main: 0 25px 50px -12px rgba(0, 0, 0, 0.06);
     --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
     --shadow-float: 0 20px 35px -5px rgba(26, 43, 86, 0.15), 0 10px 15px -5px rgba(26, 43, 86, 0.1);
