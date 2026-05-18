@@ -335,49 +335,133 @@ document.addEventListener('click', (e) => {
 });
 
 /* ============================================================
-   SEARCH / FILTER FUNCTIONALITY
+   SEARCH / FILTER / SORT FUNCTIONALITY
    ============================================================ */
 function initSearchFilter() {
-  const searchForm = document.querySelector('.search-box');
-  if (searchForm) {
-    const searchBtn = searchForm.querySelector('.search-box__btn .btn');
-    if (searchBtn) {
-      searchBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const category = searchForm.querySelector('.search-box__select');
-        const keyword = searchForm.querySelector('.search-box__input');
+  // === Ambil elemen-elemen yang diperlukan ===
+  var searchInput = document.getElementById('searchInput');
+  var sortSelect  = document.getElementById('sortHarga');
+  var filterTags  = document.querySelectorAll('.filter-tag');   // kategori
+  var labelTags   = document.querySelectorAll('.label-tag');    // label
 
-        // For now, redirect to paket-wisata page with query params
-        const params = new URLSearchParams();
+  // === State: simpan pilihan aktif ===
+  var activeKategori = 'semua';
+  var activeLabel    = 'semua';
+
+  // --- 1) Event: Kategori Filter ---
+  filterTags.forEach(function(tag) {
+    tag.addEventListener('click', function() {
+      filterTags.forEach(function(t) { t.classList.remove('filter-tag--active'); });
+      tag.classList.add('filter-tag--active');
+      activeKategori = tag.dataset.filter;
+      applyAllFilters();
+    });
+  });
+
+  // --- 2) Event: Label Filter ---
+  labelTags.forEach(function(tag) {
+    tag.addEventListener('click', function() {
+      labelTags.forEach(function(t) { t.classList.remove('label-tag--active'); });
+      tag.classList.add('label-tag--active');
+      activeLabel = tag.dataset.label;
+      applyAllFilters();
+    });
+  });
+
+  // --- 3) Event: Search (ketik langsung) ---
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      applyAllFilters();
+    });
+  }
+
+  // --- 4) Event: Sort Harga ---
+  if (sortSelect) {
+    sortSelect.addEventListener('change', function() {
+      applyAllFilters();
+    });
+  }
+
+  // === Fungsi utama: terapkan semua filter sekaligus ===
+  function applyAllFilters() {
+    var grid  = document.querySelector('.packages__grid');
+    var cards = document.querySelectorAll('.packages__grid .card');
+    if (!grid || cards.length === 0) return;
+
+    // Ambil kata kunci pencarian (huruf kecil)
+    var keyword = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    // Ambil pilihan sort
+    var sortMode = sortSelect ? sortSelect.value : 'default';
+
+    // --- Langkah 1: Filter (show/hide) ---
+    cards.forEach(function(card) {
+      var cocokKategori = (activeKategori === 'semua') || (card.dataset.category === activeKategori);
+      var cocokLabel    = (activeLabel === 'semua') || (card.dataset.label && card.dataset.label.includes(activeLabel));
+      var cocokSearch   = (keyword === '') || (card.dataset.nama && card.dataset.nama.includes(keyword));
+
+      // Tampilkan hanya jika SEMUA kondisi terpenuhi
+      if (cocokKategori && cocokLabel && cocokSearch) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // --- Langkah 2: Sort (urutkan kartu) ---
+    if (sortMode !== 'default') {
+      // Konversi ke array agar bisa di-sort
+      var cardsArray = Array.prototype.slice.call(cards);
+
+      cardsArray.sort(function(a, b) {
+        var hargaA = parseInt(a.dataset.harga) || 0;
+        var hargaB = parseInt(b.dataset.harga) || 0;
+
+        if (sortMode === 'termurah') {
+          return hargaA - hargaB;  // kecil ke besar
+        } else {
+          return hargaB - hargaA;  // besar ke kecil
+        }
+      });
+
+      // Pindahkan kartu dalam urutan baru ke grid
+      cardsArray.forEach(function(card) {
+        grid.appendChild(card);
+      });
+    }
+
+    // --- Langkah 3: Tampilkan pesan jika tidak ada hasil ---
+    var oldMsg = grid.querySelector('.no-results-msg');
+    if (oldMsg) oldMsg.remove();
+
+    var adaHasil = false;
+    cards.forEach(function(card) {
+      if (card.style.display !== 'none') adaHasil = true;
+    });
+
+    if (!adaHasil) {
+      var msg = document.createElement('p');
+      msg.className = 'no-results-msg';
+      msg.textContent = 'Tidak ada paket wisata yang cocok dengan pencarian Anda.';
+      grid.appendChild(msg);
+    }
+  }
+
+  // === Handle search box di homepage (jika ada) ===
+  var searchForm = document.querySelector('.search-box');
+  if (searchForm) {
+    var searchBtn = searchForm.querySelector('.search-box__btn .btn');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var category = searchForm.querySelector('.search-box__select');
+        var keyword  = searchForm.querySelector('.search-box__input');
+        var params   = new URLSearchParams();
         if (category && category.value) params.set('kategori', category.value);
         if (keyword && keyword.value) params.set('q', keyword.value);
-
         window.location.href = 'paket-wisata.php' + (params.toString() ? '?' + params.toString() : '');
       });
     }
   }
-
-  // Filter tags on listing page
-  const filterTags = document.querySelectorAll('.filter-tag');
-  filterTags.forEach(tag => {
-    tag.addEventListener('click', () => {
-      filterTags.forEach(t => t.classList.remove('filter-tag--active'));
-      tag.classList.add('filter-tag--active');
-      filterPackages(tag.dataset.filter);
-    });
-  });
-}
-
-function filterPackages(category) {
-  const cards = document.querySelectorAll('.packages__grid .card');
-  cards.forEach(card => {
-    if (!category || category === 'semua') {
-      card.style.display = '';
-      return;
-    }
-    const cardCategory = card.dataset.category;
-    card.style.display = (cardCategory === category) ? '' : 'none';
-  });
 }
 
 /* ============================================================

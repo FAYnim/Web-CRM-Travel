@@ -119,7 +119,7 @@ if ($queryPaket) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
   <!-- Schema.org ItemList for Tour Packages -->
   <script type="application/ld+json">
@@ -274,7 +274,21 @@ if ($queryPaket) {
   <section class="section" id="filter-section">
     <div class="container">
       <div class="filters reveal">
-        <!-- Category Filter Tags -->
+
+        <!-- Baris 1: Search Bar + Sorting -->
+        <div class="search-filter-bar">
+          <div class="search-input-wrap">
+            <svg class="search-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari paket wisata...">
+          </div>
+          <select id="sortHarga" class="sort-select">
+            <option value="default">Urutkan Harga</option>
+            <option value="termurah">Harga: Termurah</option>
+            <option value="termahal">Harga: Termahal</option>
+          </select>
+        </div>
+
+        <!-- Baris 2: Filter Kategori -->
         <div style="width:100%;">
           <div class="filter-tags">
             <button class="filter-tag <?php echo $selectedKategori === 'semua' ? 'filter-tag--active' : ''; ?>" data-filter="semua">Semua</button>
@@ -288,6 +302,18 @@ if ($queryPaket) {
             <?php endforeach; ?>
           </div>
         </div>
+
+        <!-- Baris 3: Filter Label -->
+        <div style="width:100%;">
+          <p class="label-filters-title">Filter Label:</p>
+          <div class="label-filters">
+            <button class="label-tag label-tag--active" data-label="semua">Semua</button>
+            <button class="label-tag" data-label="promo">🏷️ Promo</button>
+            <button class="label-tag" data-label="hot deal">🔥 Hot Deal</button>
+            <button class="label-tag" data-label="best seller">⭐ Best Seller</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -313,7 +339,7 @@ if ($queryPaket) {
               $detailUrl = 'detail-paket.php?id=' . (int)$paket['id'];
               $hiddenStyle = $selectedKategori !== 'semua' && $selectedKategori !== $paket['kategori_slug'] ? ' style="display:none;"' : '';
             ?>
-            <article class="card reveal <?php echo $delayClass; ?>" data-category="<?php echo $kategoriSlug; ?>"<?php echo $hiddenStyle; ?>>
+            <article class="card reveal <?php echo $delayClass; ?>" data-category="<?php echo $kategoriSlug; ?>" data-label="<?php echo strtolower($label); ?>" data-harga="<?php echo (int)$paket['harga']; ?>" data-nama="<?php echo strtolower($namaPaket); ?>"<?php echo $hiddenStyle; ?>>
               <a href="<?php echo $detailUrl; ?>">
                 <div class="card__image">
                   <img src="<?php echo $gambar; ?>" alt="<?php echo $namaPaket; ?>" loading="lazy" width="600" height="375">
